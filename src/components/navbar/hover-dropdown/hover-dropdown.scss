@@ -1,0 +1,13 @@
+.bottom_category_block_sub-menu {
+  display: flex;
+  flex-direction: column;
+  h3 {
+    padding: 6px 20px;
+  }
+  li {
+    ul {
+      padding: 10px 10px;
+      cursor: pointer;
+    }
+  }
+}

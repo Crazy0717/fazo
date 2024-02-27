@@ -1,0 +1,11 @@
+.blackBackground {
+  position: absolute;
+  width: 100%;
+  background-color: #0000004d;
+  height: 100vh;
+  display: none;
+  z-index: 4;
+  &.active {
+    display: inline-block;
+  }
+}
