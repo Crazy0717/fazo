@@ -1,0 +1,254 @@
+@import "../../variables";
+@import "../../mixins";
+
+.signUp {
+  width: 100%;
+  height: 100dvh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  background: radial-gradient(
+      50% 50% at 100% 0,
+      #fafafa 0% 5%,
+      #ffffff 6% 15%,
+      #fafafa 16% 25%,
+      #ffffff 26% 35%,
+      #fafafa 36% 45%,
+      #ffffff 46% 55%,
+      #fafafa 56% 65%,
+      #ffffff 66% 75%,
+      #fafafa 76% 85%,
+      #ffffff 86% 95%,
+      #0000 96%
+    ),
+    radial-gradient(
+      50% 50% at 0 100%,
+      #fafafa 0% 5%,
+      #ffffff 6% 15%,
+      #fafafa 16% 25%,
+      #ffffff 26% 35%,
+      #fafafa 36% 45%,
+      #ffffff 46% 55%,
+      #fafafa 56% 65%,
+      #ffffff 66% 75%,
+      #fafafa 76% 85%,
+      #ffffff 86% 95%,
+      #0000 96%
+    ),
+    radial-gradient(
+      50% 50%,
+      #fafafa 0% 5%,
+      #ffffff 6% 15%,
+      #fafafa 16% 25%,
+      #ffffff 26% 35%,
+      #fafafa 36% 45%,
+      #ffffff 46% 55%,
+      #fafafa 56% 65%,
+      #ffffff 66% 75%,
+      #fafafa 76% 85%,
+      #ffffff 86% 95%,
+      #0000 96%
+    ),
+    radial-gradient(
+        50% 50%,
+        #fafafa 0% 5%,
+        #ffffff 6% 15%,
+        #fafafa 16% 25%,
+        #ffffff 26% 35%,
+        #fafafa 36% 45%,
+        #ffffff 46% 55%,
+        #fafafa 56% 65%,
+        #ffffff 66% 75%,
+        #fafafa 76% 85%,
+        #ffffff 86% 95%,
+        #0000 96%
+      )
+      24px 24px;
+  background-size: 38px 38px;
+  background-color: $tertiary;
+  @include centerFlex();
+  .box {
+    background-color: $tertiary;
+    padding: 30px;
+    width: 530px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    border: 1px solid #9090903d;
+    border-radius: $borderRadius;
+    box-shadow: 0px 1.9px 3.3px rgba(0, 0, 0, 0.024),
+      0px 4.6px 7.8px rgba(0, 0, 0, 0.035),
+      0px 8.6px 14.8px rgba(0, 0, 0, 0.043),
+      0px 15.4px 26.4px rgba(0, 0, 0, 0.053),
+      0px 28.8px 49.3px rgba(0, 0, 0, 0.064), 0px 69px 118px rgba(0, 0, 0, 0.09);
+    .title {
+      @include alignCenterFlex();
+      justify-content: space-between;
+      img {
+        width: 100px;
+      }
+      h2 {
+        font-size: 14px;
+        font-weight: 400;
+        color: $black;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      .content {
+        .sub_title {
+          @include alignCenterFlex;
+          gap: 6px;
+          margin-bottom: 5px;
+          :first-child {
+            font-size: 20px;
+          }
+        }
+        .input {
+          padding: 10px;
+          width: 100%;
+          height: 60px;
+          background-color: #ededed;
+          border-radius: $borderRadius;
+
+          input {
+            font-size: 14px;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            outline: none;
+            border: none;
+          }
+        }
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      a {
+        button {
+          &:first-child {
+            background-color: #e0e0e0;
+            color: $secondary;
+            &:hover {
+              background-color: #cfcece;
+            }
+          }
+        }
+      }
+      button {
+        padding: 16px 40px;
+        border-radius: $borderRadius;
+        border: none;
+        transition: 0.1s;
+        cursor: pointer;
+
+        &:last-child {
+          background-color: $primary;
+          color: $tertiary;
+          &:hover {
+            background-color: #d12a2c;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (width < 448px) {
+  .signUp {
+    .box {
+      padding: 20px;
+      width: 94%;
+      gap: 40px;
+
+      .title {
+        img {
+          width: 70px;
+        }
+        h2 {
+          font-size: 12px;
+        }
+      }
+      form {
+        gap: 20px;
+        .content {
+          .sub_title {
+            gap: 5px;
+            margin-bottom: 5px;
+            font-size: 13px;
+            :first-child {
+              font-size: 16px;
+            }
+          }
+          .input {
+            height: 42px;
+
+            input {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      .buttons {
+        a {
+          button {
+            width: 100%;
+            padding: 12px 30px;
+          }
+        }
+        button {
+          width: 45%;
+          padding: 12px 0%;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (448px < width < 768px) {
+  .signUp {
+    .box {
+      gap: 44px;
+
+      .title {
+        img {
+          width: 80px;
+        }
+        h2 {
+          font-size: 13px;
+        }
+      }
+      form {
+        gap: 22px;
+        .content {
+          .sub_title {
+            gap: 5px;
+            margin-bottom: 5px;
+            font-size: 13px;
+            :first-child {
+              font-size: 16px;
+            }
+          }
+          .input {
+            height: 44px;
+
+            input {
+              font-size: 13px;
+            }
+          }
+        }
+      }
+      .buttons {
+        button {
+          padding: 10px 36px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

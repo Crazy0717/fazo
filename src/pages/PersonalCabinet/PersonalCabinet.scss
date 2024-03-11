@@ -1,0 +1,402 @@
+@import "../../variables";
+@import "../../mixins";
+
+$grey2: #494949;
+$grey3: #f2f2f2;
+$grey4: #585858d8;
+
+@mixin radio {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  @include alignCenterFlex;
+  justify-content: center;
+  background-color: rgb(236, 236, 236);
+  color: $grey4;
+  font-size: 20px;
+}
+@mixin btnHover {
+  border-radius: $borderRadius;
+  transition: 0.1s;
+  &:hover {
+    background-color: $primary;
+    color: $tertiary;
+    cursor: pointer;
+  }
+}
+
+.map {
+  padding: 26px 100px;
+  color: $secondary;
+  p {
+    @include alignCenterFlex;
+  }
+}
+
+.Cobinet {
+  width: 100%;
+  height: auto;
+  padding: 0px 100px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+
+  .left {
+    width: 24%;
+    height: auto;
+    border-right: 1px solid #f2f2f2;
+    .Me {
+      width: auto;
+      @include alignCenterFlex;
+      padding: 20px 0px;
+      gap: 20px;
+      border-bottom: 1px solid $grey3;
+      line-height: 25px;
+      h4 {
+        font-size: 16px;
+        color: $grey2;
+      }
+
+      p {
+        color: $grey4;
+      }
+      .radio {
+        @include radio;
+      }
+    }
+
+    .items {
+      width: 100%;
+      height: auto;
+
+      .item {
+        @include alignCenterFlex;
+        gap: 20px;
+        margin: 30px 0px;
+        cursor: pointer;
+        font-size: 15px;
+        color: $grey4;
+        &:hover {
+          background-color: #f2f2f2;
+        }
+        .radio {
+          @include radio;
+        }
+      }
+    }
+  }
+
+  .AbouteMe {
+    width: 35%;
+    height: auto;
+    border-radius: 10px;
+
+    .aboute {
+      width: 100%;
+      height: auto;
+      border: 1px solid #f2f2f2;
+          border-radius: $borderRadius;
+
+
+      .contact {
+        width: 100%;
+        padding: 15px 15px;
+        @include alignCenterFlex;
+        justify-content: space-between;
+        border-bottom: 1px solid $grey3;
+
+        .left {
+          width: auto;
+          gap: 10px;
+          @include alignCenterFlex;
+
+          .radio {
+            @include radio;
+          }
+
+          h3 {
+            font-size: 16px;
+            color: $grey2;
+          }
+        }
+
+        button {
+          padding: 10px 15px;
+          color: $primary;
+          background-color: transparent;
+          border: 1px solid $primary;
+          @include btnHover;
+        }
+      }
+
+      .direction {
+        width: 100%;
+        padding: 15px 15px 25px 15px;
+        line-height: 40px;
+        border-bottom: 1px solid #f2f2f2;
+
+        h3 {
+          font-size: 15px;
+          font-weight: 550;
+          color: $grey2;
+        }
+
+        p {
+          font-size: 14px;
+          color: $grey4;
+        }
+      }
+    }
+    .carta {
+      @extend .aboute;
+      margin-top: 20px;
+      .Carta {
+        @extend .contact;
+      }
+
+      .Carta_direction {
+        @extend .direction;
+      }
+    }
+  }
+
+  .right {
+    @extend .AbouteMe;
+
+    .Sms {
+      @extend .aboute;
+      .switch {
+        display: flex;
+      }
+      .code {
+        @extend .contact;
+      }
+    }
+    .AStarter {
+      @extend .aboute;
+      margin-top: 20px;
+
+      .Add {
+        @extend .contact;
+      }
+      .direction {
+        .MuiTextField-root {
+          width: 48%;
+          .MuiOutlinedInput-root {
+            &.Mui-focused fieldset {
+              border: 1px solid $primary;
+            }
+          }
+          .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+            color: $secondary;
+          }
+        }
+
+        .House_Or_apartment {
+          padding: 20px 0px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
+        .checkbox {
+          .ant-checkbox {
+            @include alignCenterFlex;
+            justify-content: center;
+
+            .ant-checkbox-inner {
+              width: 22px;
+              height: 22px;
+              border-radius: 6px;
+              border: 1px solid $secondary;
+
+              &::after {
+                left: 34%;
+              }
+            }
+
+            &.ant-checkbox-checked {
+              outline: none;
+              .ant-checkbox-inner {
+                border: none;
+                background-color: $primary;
+              }
+            }
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 10px;
+        button {
+          padding: 6px 25px;
+          border-radius: $borderRadius;
+          border: none;
+          transition: 0.1s;
+          cursor: pointer;
+          &:first-child {
+            background-color: $primary;
+            color: $tertiary;
+            font-size: 14px;
+            text-transform: none;
+            &:hover {
+              background-color: #d12a2c;
+            }
+          }
+          &:last-child {
+            border: 1px solid $primary;
+            color: $primary;
+            background-color: transparent;
+            @include btnHover;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .map {
+    padding: 12px 14px;
+    p {
+      font-size: 12px;
+    }
+  }
+  .Cobinet {
+    padding: 0px 10px;
+    .left {
+      width: 100%;
+      &.res {
+        padding-left: 10px;
+      }
+    }
+    .AbouteMe {
+      width: 100%;
+    }
+    .right {
+      .Sms {
+        .direction {
+          h3 {
+            font-size: 13px;
+          }
+        }
+      }
+
+      .AStarter {
+        margin-top: 20px;
+        .Add {
+          .left {
+            h3 {
+              font-size: 15px;
+            }
+          }
+        }
+        .direction {
+          .House_Or_apartment {
+            gap: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .map {
+    padding: 12px 14px;
+    p {
+      font-size: 14px;
+    }
+  }
+  .Cobinet {
+    padding: 0px 14px;
+
+    .left {
+      width: 48%;
+    }
+    .AbouteMe {
+      width: 48%;
+    }
+    .right {
+      width: 100%;
+      display: flex;
+
+      justify-content: space-between;
+      .Sms {
+        width: 48%;
+        .direction {
+          h3 {
+            font-size: 13px;
+          }
+        }
+      }
+
+      .AStarter {
+        width: 48%;
+        margin: 0;
+        .Add {
+          .left {
+            h3 {
+              font-size: 15px;
+            }
+          }
+        }
+        .direction {
+          .House_Or_apartment {
+            gap: 10px;
+            justify-content: space-around;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+  .map {
+    padding: 12px 14px;
+    p {
+      font-size: 14px;
+    }
+  }
+  .Cobinet {
+    padding: 0px 20px;
+
+    .left {
+      width: 31%;
+    }
+    .AbouteMe {
+      width: 31%;
+    }
+    .right {
+      width: 31%;
+      .Sms {
+        .direction {
+          h3 {
+            font-size: 13px;
+          }
+        }
+      }
+
+      .AStarter {
+        .Add {
+          .left {
+            h3 {
+              font-size: 15px;
+            }
+          }
+        }
+        .direction {
+          .House_Or_apartment {
+            gap: 10px;
+            justify-content: space-around;
+          }
+        }
+      }
+    }
+  }
+}

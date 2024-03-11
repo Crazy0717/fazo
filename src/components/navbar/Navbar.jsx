@@ -30,6 +30,7 @@ import {
   enableNavCategoryResBlock,
 } from "../../slices/transparent-black-background";
 import { categoryThemes, categoryThemesInside } from "../../data/category";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { navBarsBlockState, categoryBlockResState } = useSelector(
@@ -72,7 +73,9 @@ const Navbar = () => {
       </div>
       <div className="nav_top_responsive">
         <div className="nav_top_responsive_logo">
-          <img src="./images/logo (2).png" alt="" />
+          <Link to={"/"}>
+            <img src="/images/logo (2).png" alt="" />
+          </Link>
         </div>
         <div className="nav_top_responsive_right">
           <div className="nav_top_responsive_right_number">
@@ -88,9 +91,10 @@ const Navbar = () => {
 
       <div className="nav_center">
         <div className="nav_center_logo">
-          <img src="./images/logo (2).png" alt="" />
+          <Link to={"/"}>
+            <img src="/images/logo (2).png" alt="" />
+          </Link>
         </div>
-
         <HiBars3
           onClick={() => dispatch(enableNavBarsBlock())}
           className="bars-mobile"
@@ -99,20 +103,26 @@ const Navbar = () => {
         <SearchBar />
         <div className="nav_center_icons">
           <div className="icon">
-            <FiUser />
-            <p>Войти</p>
+            <Link to={"/login"}>
+              <FiUser />
+              <p>Войти</p>
+            </Link>
           </div>
           <div className="icon">
             <PiScales />
             <p>Сравнение</p>
           </div>
           <div className="icon">
-            <FiHeart />
-            <p>Избранное</p>
+            <Link to={"/favorite"}>
+              <FiHeart />
+              <p>Избранное</p>
+            </Link>
           </div>
           <div className="icon">
-            <FiShoppingCart />
-            <p>Корзина</p>
+            <Link to={"/purchase"}>
+              <FiShoppingCart />
+              <p>Корзина</p>
+            </Link>
           </div>
         </div>
       </div>
@@ -126,7 +136,7 @@ const Navbar = () => {
       >
         <div className="nav_center_bars_block_top">
           <div className="bars_block_top_logo">
-            <img src="./images/logo (2).png" alt="" />
+            <img src="/images/logo (2).png" alt="" />
           </div>
           <div
             onClick={() => dispatch(disableNavBarsBlock())}
@@ -137,8 +147,10 @@ const Navbar = () => {
         </div>
         <div className="nav_center_bars_block_userPart">
           <div className="block_userPart_logIn">
-            <FiUser />
-            <p>Войти</p>
+            <Link to={"/login"}>
+              <FiUser />
+              <p>Войти</p>
+            </Link>
           </div>
           <div className="block_userPart_signIn">
             <p>Регистрация</p>

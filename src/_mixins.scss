@@ -1,0 +1,17 @@
+@mixin centerFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin alignCenterFlex {
+  display: flex;
+  align-items: center;
+}
+
+@mixin boxHover{
+  transition: .1s;
+  &:hover {
+    box-shadow: 0px 0px 20px 0px #0000001a;
+  }
+}

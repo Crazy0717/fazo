@@ -17,7 +17,12 @@ import "swiper/css/effect-fade";
 // icons
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import DiscountBoxes from "../../components/discount boxes/Discount-boxes";
+import {
+  DiscountBoxes,
+  ProductBoxes,
+  RecommendBoxes,
+} from "../../components/index";
+import { MdArrowRightAlt } from "react-icons/md";
 
 const Home = () => {
   return (
@@ -38,17 +43,24 @@ const Home = () => {
             spaceBetween={50}
             slidesPerView={1}
             effect={"fade"}
-            // autoplay={{ delay: "5000" }}
+            // autoplay={{ delay: "3000" }}
             loop={true}
           >
+            {" "}
             <SwiperSlide>
               <div className="header_swiper_image">
-                <img src="./images/header image.png" alt="" />
+                <img
+                  src="https://media.geeksforgeeks.org/wp-content/uploads/20231020102559/Discount.png"
+                  alt=""
+                />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className="header_swiper_image">
-                <img src="./images/header image (2).png" alt="" />
+                <img
+                  src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?size=626&ext=jpg&ga=GA1.1.1319243779.1708992000&semt=sph"
+                  alt=""
+                />
               </div>
             </SwiperSlide>
             <SwiperSlide>
@@ -86,7 +98,10 @@ const Home = () => {
           <div className="category-slider_swiper">
             <Swiper
               modules={[Navigation, Scrollbar, A11y, Autoplay]}
-              navigation={{ nextEl: ".button_right", prevEl: ".button_left" }}
+              navigation={{
+                prevEl: ".category_button_left",
+                nextEl: ".category_button_right",
+              }}
               spaceBetween={10}
               slidesPerView={4}
               breakpoints={{
@@ -165,10 +180,10 @@ const Home = () => {
               </SwiperSlide>
             </Swiper>
 
-            <div className="swiper_buttons_button button_left">
+            <div className="swiper_buttons_button category_button_left">
               <FiChevronLeft />
             </div>
-            <div className="swiper_buttons_button button_right">
+            <div className="swiper_buttons_button category_button_right">
               <FiChevronRight />
             </div>
           </div>
@@ -246,6 +261,140 @@ const Home = () => {
             <div className="slider_buttons_button main_button_right">
               <FiChevronRight />
             </div>
+          </div>
+        </div>
+        <div className="product_boxes">
+          <div className="product_boxes_top">
+            <h2>Товары дешевле:</h2>
+            <div className="boxes_top_seeAll">
+              Посмотреть все
+              <IoIosArrowRoundForward />
+            </div>
+          </div>
+          <ProductBoxes />
+        </div>
+        <div className="recommend_boxes">
+          <div className="recommend_boxes_top">
+            <h2>Рекомендуем</h2>
+            <div className="boxes_top_seeAll">
+              Посмотреть все
+              <IoIosArrowRoundForward />
+            </div>
+          </div>
+          <div className="recommend_boxes_bottom">
+            <div className="boxes_bottom_img">
+              <img src="./images/newHotRus 1.png" alt="" />
+            </div>
+            <RecommendBoxes />
+          </div>
+        </div>
+        <div className="brands">
+          <div className="brands_top">
+            <h2>Бренды</h2>
+            <div className="arrows">
+              <MdArrowRightAlt id="brands_button_left" />
+              <MdArrowRightAlt id="brands_button_right" />
+            </div>
+          </div>
+          <div className="brands-slider_swiper">
+            <Swiper
+              modules={[Navigation, Scrollbar, A11y, Autoplay]}
+              navigation={{
+                nextEl: "#brands_button_right",
+                prevEl: "#brands_button_left",
+              }}
+              spaceBetween={10}
+              slidesPerView={5}
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                },
+                350: {
+                  slidesPerView: 1.5,
+                },
+                510: {
+                  slidesPerView: 2,
+                },
+                660: {
+                  slidesPerView: 2.5,
+                },
+                770: {
+                  slidesPerView: 2.8,
+                },
+                900: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                },
+                1000: {
+                  slidesPerView: 5,
+                  spaceBetween: 30,
+                },
+              }}
+            >
+              <SwiperSlide>
+                <div className="swiper_slider_image">
+                  <img
+                    loading="lazy"
+                    src="./images/brands (canon).png"
+                    alt=""
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="swiper_slider_image">
+                  <img
+                    loading="lazy"
+                    src="./images/brands (canon).png"
+                    alt=""
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="swiper_slider_image">
+                  <img
+                    loading="lazy"
+                    src="./images/brands (canon).png"
+                    alt=""
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="swiper_slider_image">
+                  <img
+                    loading="lazy"
+                    src="./images/brands (canon).png"
+                    alt=""
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="swiper_slider_image">
+                  <img
+                    loading="lazy"
+                    src="./images/brands (canon).png"
+                    alt=""
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="swiper_slider_image">
+                  <img
+                    loading="lazy"
+                    src="./images/brands (canon).png"
+                    alt=""
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="swiper_slider_image">
+                  <img
+                    loading="lazy"
+                    src="./images/brands (canon).png"
+                    alt=""
+                  />
+                </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </main>

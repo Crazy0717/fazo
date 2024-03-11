@@ -1,0 +1,32 @@
+@import "../../variables";
+
+.favorite {
+  padding: 36px 100px 80px 100px;
+  .title {
+    h1 {
+      color: $black;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 19px;
+      margin-bottom: 26px;
+    }
+  }
+}
+
+@media screen and (width < 448px) {
+  .favorite {
+    padding: 20px 10px 80px 10px;
+  }
+}
+
+@media screen and (448px < width < 768px) {
+  .favorite {
+    padding: 20px 14px 80px 14px;
+  }
+}
+
+@media screen and (768px < width < 1200px) {
+  .favorite {
+    padding: 20px 14px 80px 14px;
+  }
+}

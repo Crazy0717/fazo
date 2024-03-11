@@ -1,0 +1,49 @@
+@import "../../variables";
+
+.media_menus {
+  width: 100%;
+  padding: 10px 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  // background-color: rgb(55, 55, 55);
+  border-top: 1px solid #bdbdbd;
+  background-color: $tertiary;
+  .menu {
+    text-align: center;
+    a {
+      color: $black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+
+      &.active {
+        color: $primary;
+      }
+    }
+    svg {
+      font-size: 16px;
+    }
+    p {
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+@media screen and (max-width: 447px) {
+  .media_menus {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 447px) and (max-width: 769px) {
+  .media_menus {
+    display: flex;
+  }
+}

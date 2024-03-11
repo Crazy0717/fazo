@@ -1,0 +1,524 @@
+@import "../../variables";
+@import "../../mixins";
+
+.purchase {
+  padding: 20px 100px 80px 100px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  .purchase_left {
+    width: 64%;
+    color: $black;
+
+    h2 {
+      font-size: 28px;
+      margin: 26px 0;
+    }
+    .sections {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      section {
+        .title {
+          @include alignCenterFlex();
+          gap: 10px;
+          font-size: 18px;
+          margin-bottom: 30px;
+
+          span {
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: $borderRadius;
+          }
+        }
+        .content {
+          &.yourDetails {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            row-gap: 16px;
+            .MuiTextField-root {
+              width: 48%;
+              .MuiOutlinedInput-root {
+                &.Mui-focused fieldset {
+                  border: 1px solid $primary;
+                }
+              }
+              .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+                font-size: 14px;
+              }
+              #labelInput {
+                width: 100%;
+                padding: 12px 10px 16px 20px;
+              }
+              .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+                color: $secondary;
+              }
+            }
+          }
+          &.yourOrders {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .product {
+              width: 100%;
+              display: flex;
+              gap: 40px;
+              img {
+                width: 110px;
+              }
+              .product_info {
+                width: 100%;
+                @include alignCenterFlex;
+                justify-content: space-between;
+                h3 {
+                  font-size: 16px;
+                  font-weight: 400;
+                }
+                span {
+                  @extend h3;
+                }
+                p {
+                  font-size: 18px;
+                  font-weight: 500;
+                }
+              }
+            }
+          }
+          &.radio {
+            .MuiFormGroup-root {
+              padding-left: 10px;
+              gap: 15px;
+              .MuiFormControlLabel-root {
+                width: 70%;
+                padding: 8px 10px;
+                border: 1px solid #e0e0e0;
+                border-radius: $borderRadius;
+                color: $black;
+                .css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+                  color: #e0e0e0;
+                  &.Mui-checked {
+                    color: $primary;
+                  }
+                }
+              }
+            }
+          }
+          &.getting {
+            @extend .radio;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            .stage {
+              .sub-title {
+                font-size: 14px;
+                color: $secondary;
+                margin-bottom: 15px;
+              }
+              .location {
+                display: flex;
+                justify-content: space-between;
+                .MuiFormControl-root {
+                  margin-top: 4px;
+                  width: 48%;
+                  .MuiOutlinedInput-root {
+                    &.Mui-focused fieldset {
+                      border: 1px solid $primary;
+                    }
+                  }
+                  .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+                    color: $secondary;
+                  }
+                }
+              }
+              &.addressDiv {
+                display: flex;
+                justify-content: space-between;
+                .address {
+                  &.floor {
+                    &.MuiFormControl-root {
+                      width: 22%;
+                    }
+                  }
+                  &.MuiFormControl-root {
+                    width: 72%;
+                    .MuiOutlinedInput-root {
+                      &.Mui-focused fieldset {
+                        border: 1px solid $primary;
+                      }
+                    }
+                    .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+                      color: $secondary;
+                    }
+                  }
+                }
+              }
+              &.date {
+                .MuiFormControl-root {
+                  #calendarIcon {
+                    color: $secondary;
+                  }
+                  width: 100%;
+                  .MuiFormLabel-root {
+                    background-color: $tertiary;
+                  }
+                  .MuiOutlinedInput-root {
+                    &.Mui-focused fieldset {
+                      border: 1px solid $primary;
+                    }
+                  }
+                  .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+                    color: $secondary;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .purchase_right {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid #e0e0e0;
+    background-color: #f7f7f7;
+    border-radius: $borderRadius;
+    padding: 30px 30px 20px 30px;
+    margin-top: 26px;
+    color: $black;
+    h3 {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .stage {
+      @include alignCenterFlex;
+      justify-content: space-between;
+      &.line {
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 20px;
+      }
+      &.total {
+        margin: 4px 0;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 400;
+      }
+      span {
+        @extend h3;
+      }
+    }
+    button {
+      padding: 9px 0;
+      background-color: $primary;
+      font-size: 16px;
+      color: $tertiary;
+      font-weight: 400;
+      border: none;
+      border-radius: $borderRadius;
+      transition: 0.1s;
+      cursor: pointer;
+      &:hover {
+        background-color: #d12a2c;
+      }
+      &:active {
+        background-color: $primary;
+      }
+    }
+    .privacy {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      span {
+        cursor: pointer;
+        color: #2f80ed;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 448px) {
+  .purchase {
+    padding: 0 10px;
+    flex-direction: column;
+    .purchase_left {
+      width: 100%;
+
+      h2 {
+        font-size: 18px;
+        margin: 20px 0;
+      }
+      .sections {
+        gap: 30px;
+        section {
+          .title {
+            gap: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+
+            span {
+              padding: 6px 10px;
+            }
+          }
+          .content {
+            &.yourDetails {
+              row-gap: 10px;
+              .MuiTextField-root {
+                width: 100%;
+
+                .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+                  font-size: 12px;
+                }
+                #labelInput {
+                  padding: 10px 10px 14px 10px;
+                }
+              }
+            }
+            &.yourOrders {
+              gap: 20px;
+              .product {
+                width: 100%;
+                gap: 10px;
+                flex-direction: column;
+                align-items: center;
+
+                .product_info {
+                  align-items: start;
+                  flex-direction: column;
+                  gap: 10px;
+                  h3 {
+                    font-size: 14px;
+                  }
+                  p {
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+            &.radio {
+              .MuiFormGroup-root {
+                gap: 10px;
+                .MuiFormControlLabel-root {
+                  width: 100%;
+                  padding: 6px 2px;
+                  .css-ahj2mt-MuiTypography-root {
+                    font-size: 14px;
+                  }
+                  .css-1hbvpl3-MuiSvgIcon-root,
+                  .css-11zohuh-MuiSvgIcon-root {
+                    width: 20px;
+                  }
+                }
+              }
+            }
+            &.getting {
+              gap: 20px;
+              .stage {
+                .sub-title {
+                  margin-bottom: 15px;
+                }
+                .location {
+                  flex-wrap: wrap;
+                  gap: 14px;
+                  .MuiFormControl-root {
+                    width: 100%;
+                  }
+                }
+                &.addressDiv {
+                  flex-wrap: wrap;
+                  gap: 10px;
+                  .address {
+                    &.floor {
+                      &.MuiFormControl-root {
+                        width: 100%;
+                      }
+                    }
+                    &.MuiFormControl-root {
+                      width: 100%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .purchase_right {
+      width: 100%;
+      padding: 14px 14px 20px 14px;
+      margin: 30px 0;
+
+      h3 {
+        font-size: 14px;
+      }
+      .stage {
+        &.line {
+          padding-bottom: 14px;
+        }
+        &.total {
+          margin: 0;
+        }
+        p {
+          font-size: 13px;
+        }
+      }
+      button {
+        font-size: 13px;
+      }
+      .privacy {
+        font-size: 12px;
+        line-height: 18px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 448px) and (max-width: 768px) {
+  .purchase {
+    padding: 0 14px;
+    flex-direction: column;
+    margin: 30px 0;
+
+    .purchase_left {
+      width: 100%;
+      h2 {
+        font-size: 20px;
+        margin: 20px 0;
+      }
+      .sections {
+        gap: 30px;
+        section {
+          .title {
+            gap: 8px;
+            font-size: 17px;
+            margin-bottom: 25px;
+
+            span {
+              padding: 8px 12px;
+            }
+          }
+          .content {
+            &.yourDetails {
+              row-gap: 14px;
+              .MuiTextField-root {
+                width: 100%;
+
+                .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+                  font-size: 12px;
+                }
+                #labelInput {
+                  padding: 12px 12px 14px 12px;
+                }
+              }
+            }
+            &.yourOrders {
+              gap: 20px;
+              .product {
+                width: 100%;
+                gap: 10px;
+                flex-direction: column;
+                align-items: center;
+                img {
+                  width: 130px;
+                }
+                .product_info {
+                  background-color: red;
+                  flex-direction: column;
+                  gap: 10px;
+                  h3 {
+                    font-size: 15px;
+                  }
+                  p {
+                    font-size: 17px;
+                  }
+                }
+              }
+            }
+            &.radio {
+              .MuiFormGroup-root {
+                gap: 12px;
+                .MuiFormControlLabel-root {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .purchase_right {
+      width: 100%;
+      button {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .purchase {
+    padding: 0 14px;
+    .purchase_left {
+      h2 {
+        font-size: 22px;
+        margin: 20px 0;
+      }
+      .sections {
+        gap: 30px;
+        section {
+          .title {
+            font-size: 17px;
+            margin-bottom: 28px;
+
+            span {
+              padding: 10px 14px;
+            }
+          }
+          .content {
+            width: 100%;
+            &.yourDetails {
+              row-gap: 16px;
+              .MuiTextField-root {
+                width: 49%;
+                #labelInput {
+                  padding: 12px 12px 14px 12px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .purchase_right {
+      width: 34%;
+      padding: 14px;
+      margin: 30px 0;
+
+      h3 {
+        font-size: 15px;
+      }
+      .stage {
+        &.line {
+          padding-bottom: 14px;
+        }
+        &.total {
+          margin: 0;
+        }
+        p {
+          font-size: 13px;
+        }
+      }
+      button {
+        font-size: 13px;
+      }
+      .privacy {
+        font-size: 12px;
+        line-height: 18px;
+      }
+    }
+  }
+}

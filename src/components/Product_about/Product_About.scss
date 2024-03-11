@@ -1,0 +1,100 @@
+@import "../../variables";
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Rubik:wght@300;600;800&family=Vina+Sans&display=swap");
+
+.Product_About {
+  width: 100%;
+  height: auto;
+  padding: 20px 0px;
+
+  .TechnicalSpecifications {
+    width: 100%;
+    height: auto;
+    .texta {
+      width: 100%;
+      display: flex;
+      padding: 20px 0px;
+      h3 {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 23px;
+        text-align: center;
+        color: #000000;
+      }
+    }
+
+    .item {
+      display: flex;
+      padding: 15px 7px;
+      border-top: 1px solid #f2f2f2;
+      transition: all ease 0.1s;
+      &:hover {
+        background-color: #f2f2f2;
+      }
+      &:last-child {
+        border-bottom: 1px solid #f2f2f2;
+      }
+      p {
+        width: 50%;
+
+        &:first-child {
+          color: $secondary;
+        }
+      }
+    }
+  }
+
+  .ModeInformation,
+  .Classification,
+  .Audience,
+  .Дисплей,
+  .CPU,
+  .RAM {
+    @extend .TechnicalSpecifications;
+  }
+}
+
+@media screen and (max-width: 447px) {
+  .Product_About {
+    width: 100%;
+
+    .TechnicalSpecifications {
+      .texta {
+        h3 {
+          font-size: 17px;
+        }
+      }
+
+      .item {
+        p:first-child {
+          font-size: 15px;
+        }
+        p:last-child {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 447px) and (max-width: 769px) {
+  .Product_About {
+    width: 100%;
+
+    .TechnicalSpecifications {
+      .texta {
+        h3 {
+          font-size: 18px;
+        }
+      }
+
+      .item {
+        p:first-child {
+          font-size: 16px;
+        }
+        p:last-child {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

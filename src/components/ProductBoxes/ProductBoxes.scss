@@ -1,23 +1,20 @@
 @import "../../variables";
 @import "../../mixins";
 
-.discountBoxes {
+.productBoxes {
   @include alignCenterFlex();
   justify-content: space-between;
   flex-wrap: wrap;
   row-gap: 30px;
-  margin-top: 40px;
+  margin-top: 20px;
 
-  .discountBoxes_box {
-    width: 300px;
+  .productBoxes_box {
+    width: 280px;
     border: 1px solid #f2f2f2;
         border-radius: $borderRadius;
 
-    transition: .1s;
-    &:hover {
-      box-shadow: 0px 0px 20px 0px #0000001a;
-    }
-    .discountBoxes_box_top {
+    @include boxHover;
+    .productBoxes_box_top {
       width: 100%;
       position: relative;
       .box_top_image {
@@ -27,33 +24,17 @@
           width: 144px;
         }
       }
-      .top_image_procent {
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: 15px;
-        right: 18px;
-        border-radius: 50%;
-        background-color: $primary;
-        @include centerFlex();
-        color: $tertiary;
-      }
+
       .box_top_price {
         padding: 10px 16px;
         @include alignCenterFlex();
-        justify-content: center;
+        flex-direction: column;
+
         span {
           font-size: 14px;
           font-weight: 400;
           color: $secondary;
           text-decoration: line-through;
-          &::after {
-            content: "";
-            margin-left: 10px;
-            border: 1px solid $secondary;
-            height: 10px;
-            display: inline-block;
-          }
         }
         p {
           font-size: 18px;
@@ -70,49 +51,13 @@
         text-align: center;
       }
     }
-    .discountBoxes_box_bottom {
-      .disount-counter {
-        @include alignCenterFlex();
-        flex-direction: column;
-        padding-top: 10px;
-
-        p {
-          font-size: 14px;
-          font-weight: 400;
-          color: $secondary;
-        }
-
-        .counter {
-          display: flex;
-          justify-content: space-between;
-          .count {
-            padding: 14px 0 20px 0;
-            @include alignCenterFlex();
-            flex-direction: column;
-            p {
-              font-size: 16px;
-              color: black;
-              line-height: 22px;
-              padding: 0 20px;
-              border-right: 1px solid #e0e0e0;
-            }
-            &.last-child {
-              p {
-                border-right: none;
-              }
-            }
-            span {
-              font-size: 11px;
-              font-weight: 400;
-              color: $secondary;
-            }
-          }
-        }
-      }
+    .productBoxes_box_bottom {
+      margin-top: 20px;
       .box_bottom_icons {
         @include alignCenterFlex();
         justify-content: center;
         border-top: 1px solid #f2f2f2;
+
         .icon {
           padding: 15px 34px;
           font-size: 20px;
@@ -134,40 +79,90 @@
   }
 }
 
-@media screen and (max-width: 448px) {
-  .discountBoxes {
+@media screen and (max-width: 250px) {
+  .productBoxes {
     row-gap: 20px;
     margin-top: 20px;
     justify-content: center;
-    .discountBoxes_box {
-      .discountBoxes_box_top {
-        .box_top_name {
-          font-size: 16px;
-        }
+    .productBoxes_box {
+      display: none;
+      &:nth-child(-n + 6) {
+        display: inline-block;
       }
-      .discountBoxes_box_bottom {
-        .disount-counter {
-          .counter {
-            .count {
-              span {
-                font-size: 8px;
-              }
-            }
+      .productBoxes_box_top {
+        .box_top_name {
+          font-size: 15px;
+        }
+        .box_top_image {
+          img {
+            width: 120px;
           }
         }
+        .box_top_price {
+          p {
+            font-size: 16px;
+            line-height: 22px;
+          }
+          span {
+            font-size: 12px;
+          }
+        }
+      }
+      .productBoxes_box_bottom {
         .box_bottom_icons {
           .icon {
-            font-size: 18px;
+            padding: 15px 26px;
+            font-size: 16px;
           }
         }
       }
     }
   }
 }
+
+@media screen and (min-width: 250px) and (max-width: 448px) {
+  .productBoxes {
+    row-gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    .productBoxes_box {
+      max-width: 350px;
+      width: 100%;
+      display: none;
+      &:nth-child(-n + 6) {
+        display: inline-block;
+      }
+      .productBoxes_box_top {
+        .box_top_name {
+          font-size: 15px;
+        }
+        .box_top_image {
+          img {
+            width: 140px;
+          }
+        }
+        .box_top_price {
+          p {
+            font-size: 17px;
+            line-height: 22px;
+          }
+          span {
+            font-size: 13px;
+          }
+        }
+      }
+      .productBoxes_box_bottom {
+        .box_bottom_icons {
+          justify-content: space-around;
+        }
+      }
+    }
+  }
+}
 @media screen and (min-width: 448px) and (max-width: 600px) {
-  .discountBoxes {
-    .discountBoxes_box {
-      .discountBoxes_box_top {
+  .productBoxes {
+    .productBoxes_box {
+      .productBoxes_box_top {
         .top_image_procent {
           width: 32px;
           height: 32px;
@@ -193,7 +188,7 @@
           line-height: 22px;
         }
       }
-      .discountBoxes_box_bottom {
+      .productBoxes_box_bottom {
         .disount-counter {
           p {
             font-size: 12px;
@@ -223,13 +218,13 @@
   }
 }
 @media screen and (min-width: 448px) and (max-width: 768px) {
-  .discountBoxes {
+  .productBoxes {
     row-gap: 20px;
     margin-top: 20px;
     justify-content: space-around;
-    .discountBoxes_box {
+    .productBoxes_box {
       width: 48%;
-      .discountBoxes_box_top {
+      .productBoxes_box_top {
         .box_top_name {
           font-size: 16px;
         }
@@ -238,12 +233,12 @@
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1200px) {
-  .discountBoxes {
+  .productBoxes {
     row-gap: 20px;
     margin-top: 20px;
-    justify-content: space-around;
-    .discountBoxes_box {
-      .discountBoxes_box_top {
+    .productBoxes_box {
+      width: 240px;
+      .productBoxes_box_top {
         .box_top_name {
           font-size: 17px;
         }

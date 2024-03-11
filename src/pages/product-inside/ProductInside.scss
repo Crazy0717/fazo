@@ -1,0 +1,141 @@
+@import "../../variables";
+@import "../../mixins";
+
+.productInside {
+  .path {
+    padding: 25px 100px;
+    color: $secondary;
+    h3 {
+      font-size: 14px;
+      font-weight: 400;
+      @include alignCenterFlex;
+      gap: 4px;
+    }
+  }
+  .Filter_inside {
+    width: 100%;
+    height: auto;
+    padding: 0px 80px;
+    display: flex;
+    justify-content: space-between;
+
+    .Slider {
+      width: 24%;
+    }
+
+    .right {
+      width: 75%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .Aboute {
+        width: 60%;
+      }
+      .AStarter {
+        width: 38%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 447px) {
+  .productInside {
+    .path {
+      padding: 20px 10px;
+
+      h3 {
+        font-size: 10px;
+        gap: 2px;
+      }
+    }
+    .Filter_inside {
+      width: 100%;
+      height: auto;
+      padding: 0px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .Slider {
+        width: 100%;
+      }
+      .right {
+        width: 100%;
+        .Aboute {
+          width: 100%;
+        }
+        .AStarter {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 447px) and (max-width: 769px) {
+  .productInside {
+    .path {
+      padding: 20px 14px;
+
+      h3 {
+        font-size: 12px;
+        gap: 2px;
+      }
+    }
+    .Filter_inside {
+      width: 100%;
+      height: auto;
+      padding: 0px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .Slider {
+        width: 100%;
+      }
+      .right {
+        width: 100%;
+        .Aboute {
+          width: 100%;
+        }
+        .AStarter {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 990px) {
+  .productInside {
+    .path {
+      padding: 20px 10px;
+
+      h3 {
+        font-size: 12px;
+        gap: 2px;
+      }
+    }
+    .Filter_inside {
+      width: 100%;
+      height: auto;
+      padding: 0px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .Slider {
+        width: 35%;
+      }
+      .right {
+        width: 65%;
+        .Aboute {
+          width: 100%;
+        }
+        .AStarter {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

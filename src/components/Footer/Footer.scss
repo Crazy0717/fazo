@@ -1,0 +1,254 @@
+@import "../../variables";
+@import "../../mixins";
+
+.Footer {
+  width: 100%;
+  height: auto;
+  padding: 50px 80px;
+  background-color: #202020;
+  display: flex;
+  justify-content: space-between;
+
+  .cantact {
+    width: 20%;
+
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 25px;
+      color: $tertiary;
+      margin-top: 40px;
+      letter-spacing: 1px;
+    }
+
+    .networks {
+      width: auto;
+      display: flex;
+      gap: 10px;
+      margin-top: 40px;
+
+      .radio {
+        padding: 8px;
+        @include alignCenterFlex;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid $secondary;
+        font-size: 14px;
+        color: $secondary;
+        transition: all ease 0.1s;
+        cursor: pointer;
+
+        &:hover {
+          color: white;
+          border: 1px solid $primary;
+          background-color: $primary;
+        }
+      }
+    }
+  }
+
+  .data {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+
+    .menu {
+      h3 {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 19px;
+        text-align: left;
+        color: $tertiary;
+      }
+
+      ul {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        a {
+          font-size: 16px;
+          font-weight: 400;
+          color: $secondary;
+          transition: all ease 0.1s;
+          cursor: pointer;
+          &:hover {
+            color: $tertiary;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 447px) {
+  .Footer {
+    padding: 30px 20px 40px 20px;
+    height: auto;
+    flex-wrap: wrap;
+    .cantact {
+      width: 100%;
+      text-align: center;
+      p {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .networks {
+        justify-content: center;
+        margin: 20px 0px;
+      }
+    }
+
+    .data {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .menu {
+        width: 100%;
+        margin-top: 20px;
+        h3 {
+          text-align: center;
+        }
+
+        ul {
+          gap: 16px;
+          a {
+            text-align: center;
+            line-height: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 447px) and (max-width: 769px) {
+  .Footer {
+    padding: 30px 20px 40px 20px;
+    height: auto;
+    flex-wrap: wrap;
+    .cantact {
+      width: 100%;
+      text-align: center;
+      p {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .networks {
+        justify-content: center;
+        margin: 20px 0px;
+      }
+    }
+
+    .data {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .menu {
+        width: 48%;
+        margin-top: 20px;
+        h3 {
+          text-align: center;
+        }
+
+        ul {
+          gap: 18px;
+          a {
+            text-align: center;
+            line-height: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 990px) {
+  .Footer {
+    padding: 30px 20px 40px 20px;
+    height: auto;
+    flex-wrap: wrap;
+    .cantact {
+      width: 100%;
+      text-align: center;
+      p {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .networks {
+        justify-content: center;
+        margin: 20px 0px;
+      }
+    }
+
+    .data {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .menu {
+        width: 31%;
+        margin-top: 20px;
+        h3 {
+          text-align: center;
+        }
+
+        ul {
+          gap: 14px;
+          a {
+            text-align: center;
+            line-height: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 990px) and (max-width: 1200px) {
+  .Footer {
+    padding: 30px 0px 30px 20px;
+    height: auto;
+    gap: 0;
+    .cantact {
+      width: 20%;
+      p {
+        margin-top: 20px;
+      }
+
+      .networks {
+        margin: 20px 0px;
+      }
+    }
+
+    .data {
+      width: 76%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .menu {
+        width: 31%;
+        margin-top: 20px;
+        h3 {
+          font-size: 18px;
+        }
+
+        ul {
+          gap: 12px;
+          a {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

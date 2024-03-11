@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Rubik:wght@300;600;800&family=Vina+Sans&display=swap");
+@import "../../variables";
+@import "../../mixins";
+
+$grey: #bdbdbd;
+
+.AStarters {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  .boxs {
+    width: 100%;
+    height: auto;
+    padding: 20px 15px;
+    background-color: #f2f2f2;
+    border-radius: $borderRadius;
+    margin: 10px 0px;
+
+    .text {
+      width: 100%;
+      @include alignCenterFlex;
+      gap: 20px;
+      svg {
+        color: $secondary;
+      }
+
+      h3 {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 29px;
+        letter-spacing: 0em;
+        text-align: left;
+
+        span {
+          font-size: 17px;
+          font-weight: 400;
+          line-height: 22px;
+          letter-spacing: 0em;
+          text-align: left;
+          color: $secondary;
+        }
+      }
+    }
+    .text2 {
+      @extend .text;
+      margin-top: 10px;
+    }
+    .body {
+      padding: 0px 35px;
+      margin-top: 10px;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        li {
+          list-style-type: disc;
+          flex-direction: column;
+          font-size: 16px;
+          font-weight: 400;
+          letter-spacing: 0em;
+          text-align: left;
+          color: $secondary;
+        }
+      }
+
+      a {
+        color: #2f80ed;
+      }
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: $secondary;
+        margin-bottom: 10px;
+      }
+    }
+
+    .contact {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 447px) {
+  .AStarters {
+    .boxs {
+      width: 100%;
+
+      .text {
+        h3 {
+          font-size: 16px;
+          span {
+            font-size: 15px;
+          }
+        }
+      }
+      .body {
+        a {
+          color: #2f80ed;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 447px) and (max-width: 769px) {
+  .AStarters {
+    display: flex;
+    justify-content: space-around;
+    .boxs {
+      width: 330px;
+      .text {
+        h3 {
+          font-size: 16px;
+          span {
+            font-size: 15px;
+          }
+        }
+      }
+      .body {
+        a {
+          color: #2f80ed;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 990px) {
+  .AStarters {
+    display: flex;
+    justify-content: space-around;
+    .boxs {
+      width: 330px;
+      .text {
+        h3 {
+          font-size: 16px;
+          span {
+            font-size: 15px;
+          }
+        }
+      }
+      .body {
+        a {
+          color: #2f80ed;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

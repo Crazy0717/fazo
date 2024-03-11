@@ -1,8 +1,27 @@
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
 import "./Discount-boxes.scss";
 import { PiScales } from "react-icons/pi";
+import HomeServiceData from "../../service/home";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const DiscountBoxes = () => {
+  const [discountBoxes, setDiscountBoxes] = useState();
+
+  const getData = async () => {
+    try {
+      const response = await HomeServiceData.getData(
+        "categories/get_categories"
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div className="discountBoxes">
       <div className="discountBoxes_box">

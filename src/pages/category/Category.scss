@@ -1,0 +1,480 @@
+@import "../../variables";
+@import "../../mixins";
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  .content {
+    .path {
+      padding: 24px 100px;
+      color: $secondary;
+      h3 {
+        font-size: 14px;
+        font-weight: 400;
+        @include alignCenterFlex;
+        gap: 4px;
+      }
+    }
+    .category_main {
+      padding: 8px 100px;
+      display: flex;
+      align-items: start;
+      gap: 30px;
+      .sidebar {
+        padding: 10px 30px 30px 30px;
+        width: 360px;
+        border: 1px solid #f2f2f2;
+            border-radius: $borderRadius;
+
+        .MuiPaper-root {
+          box-shadow: none;
+          .MuiButtonBase-root {
+            padding: 0;
+            .MuiAccordionSummary-content {
+              color: $black;
+              font-size: 16px;
+              font-weight: 400;
+              letter-spacing: 0em;
+              text-align: left;
+            }
+          }
+          .MuiAccordionSummary-expandIconWrapper {
+            transform: rotate(0deg);
+            &.Mui-expanded {
+              transform: rotate(-90deg);
+            }
+            #icon {
+              color: $black;
+              font-size: 24px;
+            }
+          }
+          .MuiAccordionDetails-root {
+            padding: 0;
+          }
+        }
+        .ant-input-number {
+          border: 1px solid #e0e0e0;
+          font-size: 14px;
+          font-weight: 400;
+          padding: 5px 0;
+          input {
+            color: $black;
+          }
+          &.ant-input-number-focused {
+            box-shadow: 0 0 6px 2px rgb(238, 238, 238);
+          }
+        }
+        .ant-slider {
+          .ant-slider-track {
+            background-color: $primary;
+          }
+          .ant-slider-handle::after {
+            background-color: $primary;
+            box-shadow: none;
+          }
+        }
+        .sidebar_checkbox {
+          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          h2 {
+            font-size: 16px;
+            font-weight: 400;
+            color: $black;
+          }
+          .ant-checkbox-wrapper {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid $primary;
+                border-radius: $borderRadius;
+
+
+            .ant-checkbox {
+              @include alignCenterFlex;
+              justify-content: center;
+
+              .ant-checkbox-inner {
+                width: 24px;
+                height: 24px;
+                border-radius: 6px;
+                border: 1px solid $secondary;
+
+                &::after {
+                  left: 32%;
+                }
+              }
+
+              &.ant-checkbox-checked {
+                outline: none;
+                .ant-checkbox-inner {
+                  border: none;
+                  background-color: $primary;
+                }
+              }
+            }
+            :last-child {
+              color: $black;
+              font-size: 14px;
+              font-weight: 400;
+            }
+          }
+        }
+        #accordion {
+          .MuiAccordionDetails-root {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            .ant-checkbox {
+              @include alignCenterFlex;
+              justify-content: center;
+
+              .ant-checkbox-inner {
+                width: 20px;
+                height: 20px;
+                border-radius: 6px;
+                &::after {
+                  left: 32%;
+                }
+              }
+              &.ant-checkbox-checked {
+                .ant-checkbox-inner {
+                  border: none;
+                  background-color: $primary;
+                }
+              }
+            }
+          }
+        }
+        button {
+          margin-top: 30px;
+          padding: 10px 0;
+          width: 100%;
+          background-color: $primary;
+          font-size: 16px;
+          font-weight: 400;
+          color: $tertiary;
+          border: none;
+              border-radius: $borderRadius;
+
+          transition: all ease 0.1s;
+          cursor: pointer;
+          &:hover {
+            background-color: #d12a2c;
+          }
+          &:active {
+            background-color: $primary;
+          }
+        }
+      }
+    }
+  }
+  .other_content {
+    padding: 80px 100px 80px 0;
+    width: 68%;
+    .popular_categories {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      h2 {
+        font-size: 24px;
+        font-weight: 400;
+        color: $black;
+      }
+      div {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 16px;
+        row-gap: 14px;
+        button {
+          padding: 6px 32px;
+          border: 1px solid #bdbdbd;
+          border-radius: 17px;
+          background-color: $tertiary;
+          color: $black;
+          font-size: 14px;
+          font-weight: 400;
+          transition: background-color ease 0.1s;
+          cursor: pointer;
+          &:hover {
+            background-color: #e0e0e0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 448px) {
+  .category {
+    .content {
+      .path {
+        padding: 20px 10px;
+
+        h3 {
+          font-size: 10px;
+          gap: 2px;
+        }
+      }
+      .category_main {
+        padding: 10px 10px;
+        flex-direction: column;
+        gap: 20px;
+        .sidebar {
+          padding: 8px 16px 16px 16px;
+          width: 100%;
+
+          .MuiPaper-root {
+            .MuiButtonBase-root {
+              .MuiAccordionSummary-content {
+                font-size: 14px;
+              }
+            }
+            .MuiAccordionSummary-expandIconWrapper {
+              #icon {
+                font-size: 16px;
+              }
+            }
+          }
+          .ant-input-number {
+            font-size: 12px;
+          }
+          .sidebar_checkbox {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            h2 {
+              font-size: 14px;
+            }
+            .ant-checkbox-wrapper {
+              padding: 8px 10px;
+
+              .ant-checkbox {
+                .ant-checkbox-inner {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+              :last-child {
+                font-size: 12px;
+              }
+            }
+          }
+
+          button {
+            margin-top: 20px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .other_content {
+      padding: 40px 10px 40px 0;
+      width: 100%;
+
+      .popular_categories {
+        padding: 40px 10px;
+        gap: 30px;
+        h2 {
+          font-size: 22px;
+        }
+        div {
+          column-gap: 10px;
+          row-gap: 16px;
+          button {
+            padding: 6px 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 448px) and (max-width: 768px) {
+  .category {
+    .content {
+      .path {
+        padding: 20px 14px;
+
+        h3 {
+          font-size: 12px;
+          gap: 2px;
+        }
+      }
+      .category_main {
+        padding: 10px 14px;
+        flex-direction: column;
+        gap: 20px;
+        .sidebar {
+          padding: 8px 16px 16px 16px;
+          width: 100%;
+
+          .MuiPaper-root {
+            .MuiAccordionSummary-expandIconWrapper {
+              #icon {
+                font-size: 18px;
+              }
+            }
+          }
+          .ant-input-number {
+            font-size: 14px;
+          }
+          .sidebar_checkbox {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .ant-checkbox-wrapper {
+              padding: 8px 10px;
+
+              .ant-checkbox {
+                .ant-checkbox-inner {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+              :last-child {
+                font-size: 14px;
+              }
+            }
+          }
+
+          button {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+    .other_content {
+      padding: 40px 14px 40px 0;
+      width: 100%;
+      .popular_categories {
+        padding: 40px 10px;
+        gap: 30px;
+        h2 {
+          font-size: 22px;
+        }
+        div {
+          column-gap: 10px;
+          row-gap: 16px;
+          button {
+            padding: 6px 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .category {
+    .content {
+      .path {
+        padding: 20px 10px;
+
+        h3 {
+          font-size: 12px;
+          gap: 2px;
+        }
+      }
+      .category_main {
+        padding: 10px;
+        flex-direction: column;
+        gap: 20px;
+        .sidebar {
+          padding: 8px 16px 16px 16px;
+          width: 100%;
+          display: flex;
+          align-items: start;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          column-gap: 20px;
+          .MuiPaper-root {
+            .MuiAccordionSummary-expandIconWrapper {
+              #icon {
+                font-size: 18px;
+              }
+            }
+          }
+          .ant-input-number {
+            font-size: 14px;
+          }
+          .sidebar_checkbox {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .ant-checkbox-wrapper {
+              padding: 8px 10px;
+
+              .ant-checkbox {
+                .ant-checkbox-inner {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+              :last-child {
+                font-size: 14px;
+              }
+            }
+          }
+          #accordion {
+            width: 250px;
+            .MuiAccordionDetails-root {
+              display: flex;
+              flex-direction: column;
+              gap: 6px;
+              .ant-checkbox {
+                @include alignCenterFlex;
+                justify-content: center;
+
+                .ant-checkbox-inner {
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 6px;
+                  &::after {
+                    left: 32%;
+                  }
+                }
+                &.ant-checkbox-checked {
+                  .ant-checkbox-inner {
+                    border: none;
+                    background-color: $primary;
+                  }
+                }
+              }
+            }
+          }
+          button {
+            padding: 10px 24px;
+            width: auto;
+            height: auto;
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+    .other_content {
+      padding: 40px 14px 40px 0;
+      width: 100%;
+      .popular_categories {
+        padding: 40px 10px;
+        gap: 30px;
+        h2 {
+          font-size: 22px;
+        }
+        div {
+          column-gap: 10px;
+          row-gap: 16px;
+          button {
+            padding: 6px 30px;
+          }
+        }
+      }
+    }
+  }
+}

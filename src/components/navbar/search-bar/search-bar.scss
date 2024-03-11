@@ -1,16 +1,17 @@
-$primary: #ed3729;
+@import "../../../variables";
+@import "../../../mixins";
 
 .searchBar {
   width: 46%;
   display: flex;
   justify-content: space-between;
   border: 2px solid $primary;
-  border-radius: 5px;
+      border-radius: $borderRadius;
+
   .searchBar_left {
     width: 90%;
-    padding: 10px 10px 10px 0;
-    display: flex;
-    align-items: center;
+    padding: 9px 10px 9px 0;
+    @include alignCenterFlex;
     justify-content: space-between;
     .ant-space {
       .ant-select-selection-item {
@@ -28,14 +29,13 @@ $primary: #ed3729;
     }
     .microphone {
       color: #bdbdbd;
-      font-size: 40px;
+      font-size: 30px;
       margin-left: 4px;
     }
   }
   .searchBar_right {
     padding: 0 16px;
-    display: flex;
-    align-items: center;
+    @include alignCenterFlex;
     gap: 12px;
     background-color: $primary;
     color: white;
@@ -88,16 +88,16 @@ $primary: #ed3729;
     width: 80%;
     .searchBar_left {
       width: 90%;
-      padding: 8px 10px 8px 0;
+      padding: 5px 10px 5px 0;
 
       .microphone {
-        font-size: 36px;
+        font-size: 34px;
       }
     }
     .searchBar_right {
       padding: 0px 2vw;
       .magnify-icon {
-        font-size: 20px;
+        font-size: 18px;
       }
       p {
         font-size: 16px;

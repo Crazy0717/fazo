@@ -1,6 +1,6 @@
-$primary: #ed3729;
-$secondary: #909090;
-$tertiary: #ffffff;
+@import "../../variables";
+@import "../../mixins";
+
 @mixin zIndex {
   position: relative;
   z-index: 3;
@@ -8,19 +8,18 @@ $tertiary: #ffffff;
 
 nav {
   .nav_top {
-    padding: 12px 100px;
+    padding: 10px 100px;
     display: flex;
     justify-content: space-between;
     background-color: $primary;
-    color: white;
+    color: $tertiary;
     @include zIndex();
 
     .nav_top_left {
-      display: flex;
+      @include alignCenterFlex;
       gap: 70px;
       .nav_top_left_address {
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         gap: 5px;
         .locationIcon {
           font-size: 20px;
@@ -34,7 +33,8 @@ nav {
           display: flex;
           gap: 32px;
           li {
-            font-weight: 300;
+            font-size: 14px;
+            font-weight: 400;
           }
         }
       }
@@ -43,16 +43,15 @@ nav {
       display: flex;
       gap: 50px;
       .nav_top_right_phoneNumber {
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         gap: 5px;
       }
       .nav_top_right_language {
         select {
           border-radius: 0px;
           background-color: transparent;
-          color: white;
           border: none;
+          color: $tertiary;
           option {
             background-color: $primary;
           }
@@ -72,13 +71,11 @@ nav {
       }
     }
     .nav_top_responsive_right {
-      display: flex;
-      align-items: center;
+      @include alignCenterFlex;
       gap: 8vw;
       color: $secondary;
       .nav_top_responsive_right_number {
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         :first-child {
           font-size: 18px;
         }
@@ -87,8 +84,7 @@ nav {
         }
       }
       .nav_top_responsive_right_address {
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         gap: 5px;
         .locationIcon {
           font-size: 22px;
@@ -103,7 +99,7 @@ nav {
     width: 86%;
     height: 100vh;
     padding: 20px 16px;
-    position: absolute;
+    position: fixed;
     left: -100%;
     top: 0;
     display: flex;
@@ -116,11 +112,10 @@ nav {
       left: 0;
     }
     .nav_center_bars_block_top {
-      display: flex;
-      align-items: center;
+      @include alignCenterFlex;
       justify-content: space-between;
       .bars_block_top_logo {
-        width: 100px;
+        width: 80px;
         img {
           width: 100%;
         }
@@ -130,23 +125,23 @@ nav {
       }
     }
     .nav_center_bars_block_userPart {
-      display: flex;
-      align-items: center;
-      color: #202020;
+      @include alignCenterFlex;
 
       .block_userPart_logIn {
         padding-right: 16px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        :first-child {
-          padding: 10px;
-          font-size: 40px;
-          background-color: #f2f2f2;
-          border-radius: 50%;
-        }
-        p {
-          font-size: 14px;
+        a {
+          @include alignCenterFlex;
+          gap: 10px;
+          color: $black;
+          :first-child {
+            padding: 10px;
+            font-size: 40px;
+            background-color: #f2f2f2;
+            border-radius: 50%;
+          }
+          p {
+            font-size: 14px;
+          }
         }
       }
       .block_userPart_signIn {
@@ -161,8 +156,7 @@ nav {
       flex-direction: column;
       gap: 4vh;
       li {
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         gap: 16px;
         :first-child {
           font-size: 25px;
@@ -179,7 +173,8 @@ nav {
       gap: 10px;
       p {
         padding: 6px 18px;
-        border-radius: 5px;
+            border-radius: $borderRadius;
+
         border: 1px solid $secondary;
         color: #202020;
         cursor: pointer;
@@ -191,8 +186,7 @@ nav {
       }
     }
     .nav_center_bars_block_phoneNumber {
-      display: flex;
-      align-items: center;
+      @include alignCenterFlex;
       gap: 8px;
       font-size: 14px;
       font-weight: 400;
@@ -206,48 +200,54 @@ nav {
   //
   .nav_center {
     padding: 25px 100px;
-    display: flex;
-    align-items: center;
+    @include alignCenterFlex;
     justify-content: space-between;
     background-color: #ffffff;
     @include zIndex();
     .bars-mobile {
       display: none;
-      border-radius: 5px;
+          border-radius: $borderRadius;
+
       background-color: $primary;
       color: white;
     }
     .nav_center_icons {
       display: flex;
       gap: 36px;
+
       .icon {
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         flex-direction: column;
         font-size: 14px;
         line-height: 20px;
         cursor: pointer;
-        :first-child {
-          font-size: 26px;
+        p {
+          font-size: 14px;
         }
+        :first-child {
+          font-size: 22px;
+        }
+      }
+      a {
+        @extend .icon;
+        color: $black;
       }
     }
   }
   //
   .nav_bottom {
     padding: 0px 100px;
-    display: flex;
-    align-items: center;
+    @include alignCenterFlex;
     justify-content: space-between;
     background-color: #ffffff;
     @include zIndex();
     .nav_bottom_category {
       padding: 10px 48px;
-      display: flex;
-      align-items: center;
+      @include alignCenterFlex;
       gap: 10px;
       background-color: $primary;
-      border-radius: 5px;
+          border-radius: $borderRadius;
+
       color: $tertiary;
       cursor: pointer;
 
@@ -269,13 +269,19 @@ nav {
     }
 
     ul {
-      display: flex;
-      align-items: center;
+      @include alignCenterFlex;
       gap: 40px;
+      &::-webkit-scrollbar {
+        height: 2px;
+      }
 
+      &::-webkit-scrollbar-thumb {
+        width: 2px;
+      }
       li {
         font-size: 16px;
         font-weight: 400;
+        transition: color ease 0.1s;
         cursor: pointer;
         &:hover {
           color: $primary;
@@ -285,16 +291,20 @@ nav {
   }
   .bottom_category_block {
     width: 100%;
-    padding: 0px 80px 108px 80px;
+    padding: 0px 80px 0px 80px;
     display: flex;
-    background-color: #ffffff;
-    transition: all linear 0.4s;
+    background-color: $tertiary;
+    transition: all ease-in-out 0.6s;
     position: absolute;
     top: -100%;
     left: 0;
     z-index: 2;
+    box-shadow: 0px 4.1px 2.7px rgba(0, 0, 0, 0.019),
+      0px 10.3px 6.9px rgba(0, 0, 0, 0.025),
+      0px 21.1px 14.2px rgba(0, 0, 0, 0.032),
+      0px 43.4px 29.2px rgba(0, 0, 0, 0.044), 0px 119px 80px rgba(0, 0, 0, 0.07);
     &.active {
-      top: 32vh;
+      top: 205px;
     }
     ul {
       max-width: 360px;
@@ -305,11 +315,11 @@ nav {
       li {
         padding: 12px 20px;
         width: 100%;
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         justify-content: space-between;
         gap: 16px;
-        border-radius: 5px;
+            border-radius: $borderRadius;
+
         &:hover,
         &.onhover {
           background-color: #f2f2f2;
@@ -317,8 +327,7 @@ nav {
         }
 
         .left_part {
-          display: flex;
-          align-items: center;
+          @include alignCenterFlex;
           gap: 14px;
           font-size: 16px;
           color: #202020;
@@ -339,7 +348,7 @@ nav {
     width: 100%;
     height: 100vh;
     padding: 20px 16px;
-    position: absolute;
+    position: fixed;
     left: -100%;
     top: 0;
     display: flex;
@@ -352,8 +361,7 @@ nav {
       left: 0;
     }
     .bottom_category_block_responsive_top {
-      display: flex;
-      align-items: center;
+      @include alignCenterFlex;
       justify-content: space-between;
       .category_block_top_logo {
         width: 100px;
@@ -373,13 +381,11 @@ nav {
       gap: 3.6vh;
       li {
         width: 100%;
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         justify-content: space-between;
         gap: 16px;
         .left_part {
-          display: flex;
-          align-items: center;
+          @include alignCenterFlex;
           gap: 14px;
           font-size: 14px;
           color: #202020;
@@ -403,8 +409,7 @@ nav {
         flex-direction: column;
         gap: 16px;
         .block_inside_top {
-          display: flex;
-          align-items: center;
+          @include alignCenterFlex;
           gap: 10%;
           :first-child {
             font-size: 22px;
@@ -438,8 +443,7 @@ nav {
         }
       }
       .nav_top_responsive_right {
-        display: flex;
-        align-items: center;
+        @include alignCenterFlex;
         gap: 8vw;
         color: $secondary;
         .nav_top_responsive_right_number {
@@ -452,8 +456,7 @@ nav {
           }
         }
         .nav_top_responsive_right_address {
-          display: flex;
-          align-items: center;
+          @include alignCenterFlex;
           gap: 5px;
           .locationIcon {
             font-size: 22px;
@@ -611,6 +614,7 @@ nav {
       ul {
         gap: 30px;
         overflow: scroll;
+
         li {
           font-size: 15px;
         }
@@ -704,6 +708,12 @@ nav {
             color: $primary;
           }
         }
+      }
+    }
+    .bottom_category_block {
+      padding: 0px 14px;
+      &.active {
+        top: 190px;
       }
     }
     .bottom_category_block_responsive {
