@@ -173,7 +173,7 @@ nav {
       gap: 10px;
       p {
         padding: 6px 18px;
-            border-radius: $borderRadius;
+        border-radius: $borderRadius;
 
         border: 1px solid $secondary;
         color: #202020;
@@ -206,7 +206,7 @@ nav {
     @include zIndex();
     .bars-mobile {
       display: none;
-          border-radius: $borderRadius;
+      border-radius: $borderRadius;
 
       background-color: $primary;
       color: white;
@@ -246,8 +246,7 @@ nav {
       @include alignCenterFlex;
       gap: 10px;
       background-color: $primary;
-          border-radius: $borderRadius;
-
+      border-radius: $borderRadius;
       color: $tertiary;
       cursor: pointer;
 
@@ -278,15 +277,19 @@ nav {
       &::-webkit-scrollbar-thumb {
         width: 2px;
       }
-      li {
-        font-size: 16px;
-        font-weight: 400;
-        transition: color ease 0.1s;
-        cursor: pointer;
-        &:hover {
-          color: $primary;
+      a {
+        color: $black;
+        li {
+          font-size: 16px;
+          font-weight: 400;
+          transition: color ease 0.1s;
+          cursor: pointer;
+          &:hover {
+            color: $primary;
+          }
         }
       }
+      
     }
   }
   .bottom_category_block {
@@ -318,7 +321,7 @@ nav {
         @include alignCenterFlex;
         justify-content: space-between;
         gap: 16px;
-            border-radius: $borderRadius;
+        border-radius: $borderRadius;
 
         &:hover,
         &.onhover {
@@ -443,7 +446,6 @@ nav {
         }
       }
       .nav_top_responsive_right {
-        @include alignCenterFlex;
         gap: 8vw;
         color: $secondary;
         .nav_top_responsive_right_number {
@@ -456,7 +458,6 @@ nav {
           }
         }
         .nav_top_responsive_right_address {
-          @include alignCenterFlex;
           gap: 5px;
           .locationIcon {
             font-size: 22px;
@@ -488,12 +489,16 @@ nav {
       padding: 0px 10px;
 
       .nav_bottom_category {
+        padding: 8px 0;
         width: 100%;
         justify-content: center;
         gap: 10px;
         display: none;
         &.response {
           display: flex;
+        }
+        :first-child {
+          font-size: 24px;
         }
       }
       ul {

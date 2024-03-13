@@ -1,9 +1,11 @@
 import "./Footer.scss";
+
 import { Link, NavLink } from "react-router-dom";
 import { IoLogoInstagram } from "react-icons/io";
 import { FaYoutube } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+
 const Footer = () => {
   return (
     <div className="Footer">
@@ -34,23 +36,22 @@ const Footer = () => {
         </div>
       </div>
       <div className="data">
-        {/*  */}
         <div className="cotegoty menu">
           <h3>Категории</h3>
           <ul>
-            <NavLink>
+            <NavLink to={"/category/slug"}>
               <li>Ноутбуки</li>
             </NavLink>
-            <NavLink>
+            <NavLink to={"/category/acasdcsdas"}>
               <li>Игровые кресла</li>
             </NavLink>
-            <NavLink>
+            <NavLink to={"/category/vfvf"}>
               <li>Телефоны</li>
             </NavLink>
-            <NavLink>
+            <NavLink to={"/category/slasdcug"}>
               <li>Моноблоки</li>
             </NavLink>
-            <NavLink>
+            <NavLink to={"/category/slug"}>
               <li>Модули памяти</li>
             </NavLink>
           </ul>

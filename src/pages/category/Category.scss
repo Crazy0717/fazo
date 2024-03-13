@@ -25,7 +25,7 @@
         padding: 10px 30px 30px 30px;
         width: 360px;
         border: 1px solid #f2f2f2;
-            border-radius: $borderRadius;
+        border-radius: $borderRadius;
 
         .MuiPaper-root {
           box-shadow: none;
@@ -88,8 +88,7 @@
             width: 100%;
             padding: 10px 14px;
             border: 1px solid $primary;
-                border-radius: $borderRadius;
-
+            border-radius: $borderRadius;
 
             .ant-checkbox {
               @include alignCenterFlex;
@@ -156,7 +155,7 @@
           font-weight: 400;
           color: $tertiary;
           border: none;
-              border-radius: $borderRadius;
+          border-radius: $borderRadius;
 
           transition: all ease 0.1s;
           cursor: pointer;
@@ -173,6 +172,42 @@
   .other_content {
     padding: 80px 100px 80px 0;
     width: 68%;
+    .pagination {
+      @include alignCenterFlex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 60px;
+      .pagination_button {
+        color: $black;
+        font-size: 24px;
+        transition: 0.1s;
+        cursor: pointer;
+        &:hover {
+          color: $primary;
+        }
+        &:active {
+          color: $black;
+        }
+      }
+      ul {
+        @include alignCenterFlex;
+        align-items: start;
+        gap: 2px;
+        padding-bottom: 6px;
+        li {
+          padding: 10px 14px;
+          font-size: 16px;
+          font-weight: 400;
+          color: $black;
+          border: 1px solid transparent;
+          border-radius: $borderRadius;
+          &.active {
+            color: $primary;
+            border: 1px solid $primary;
+          }
+        }
+      }
+    }
     .popular_categories {
       display: flex;
       flex-direction: column;
@@ -206,6 +241,11 @@
   }
 }
 
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
 @media screen and (max-width: 448px) {
   .category {
     .content {
@@ -273,7 +313,21 @@
     .other_content {
       padding: 40px 10px 40px 0;
       width: 100%;
-
+      .pagination {
+        gap: 1px;
+        margin-bottom: 10px;
+        .pagination_button {
+          font-size: 16px;
+        }
+        ul {
+          gap: 0px;
+          padding-bottom: 6px;
+          li {
+            padding: 8px 12px;
+            font-size: 11px;
+          }
+        }
+      }
       .popular_categories {
         padding: 40px 10px;
         gap: 30px;
@@ -351,6 +405,21 @@
     .other_content {
       padding: 40px 14px 40px 0;
       width: 100%;
+      .pagination {
+        gap: 1px;
+        margin-bottom: 20px;
+        .pagination_button {
+          font-size: 18px;
+        }
+        ul {
+          gap: 0px;
+          padding-bottom: 6px;
+          li {
+            padding: 9px 13px;
+            font-size: 12px;
+          }
+        }
+      }
       .popular_categories {
         padding: 40px 10px;
         gap: 30px;
@@ -461,6 +530,20 @@
     .other_content {
       padding: 40px 14px 40px 0;
       width: 100%;
+      .pagination {
+        gap: 1px;
+        margin-bottom: 30px;
+        .pagination_button {
+          font-size: 21px;
+        }
+        ul {
+          gap: 0px;
+          padding-bottom: 6px;
+          li {
+            font-size: 13px;
+          }
+        }
+      }
       .popular_categories {
         padding: 40px 10px;
         gap: 30px;

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { BlackBackground, Footer, Main_menu, Navbar } from "./components";
 import {
   Category,
+  Compare,
   Favorite,
   Home,
   Login,
@@ -25,6 +26,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign" element={<SignUp />} />
         <Route path="/cabinet" element={<PersonalCabinet />} />
+        <Route path="/compare" element={<Compare />} />
+        Compare
       </Routes>
       <Footer />
       <Main_menu />

@@ -1,6 +1,6 @@
 import "./Category.scss";
 // icons
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 //
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { Checkbox, InputNumber, Slider } from "antd";
@@ -77,6 +77,23 @@ const Category = () => {
         </div>
       </div>
       <div className="other_content">
+        <div className="pagination">
+          <div className="pagination_button previous">
+            <FiChevronLeft />
+          </div>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li className="active">3</li>
+            <li>...</li>
+            <li>26</li>
+            <li>27</li>
+            <li>28</li>
+          </ul>
+          <div className="pagination_button next">
+            <FiChevronRight />
+          </div>
+        </div>
         <div className="popular_categories">
           <h2>Популярные категории и модели</h2>
           <div>

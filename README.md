@@ -12,6 +12,7 @@ npm i swiper
 npm install antd --save
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
+npm i axios
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

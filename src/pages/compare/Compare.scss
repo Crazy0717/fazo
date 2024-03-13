@@ -1,0 +1,154 @@
+@import "../../variables";
+@import "../../mixins";
+
+.compare {
+  padding: 0px 100px;
+  .map {
+    padding: 26px 0;
+    color: $secondary;
+    p {
+      @include alignCenterFlex;
+    }
+  }
+  .content {
+    .characteristics {
+      padding: 60px 0;
+      width: 74%;
+      h2 {
+        font-size: 18px;
+        font-weight: 500;
+        color: $black;
+      }
+      .stages {
+        padding: 15px 0;
+        .stage {
+          padding-bottom: 25px;
+          margin-bottom: 25px;
+          color: $secondary;
+          font-weight: 400;
+          border-bottom: 1px solid #f2f2f2;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          span {
+            font-size: 14px;
+          }
+          .product-info {
+            margin-top: 8px;
+            @include alignCenterFlex;
+            justify-content: space-between;
+            p {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (width < 448px) {
+  .compare {
+    padding: 0px 10px;
+    .map {
+      padding: 12px 0;
+    }
+    .content {
+      .characteristics {
+        padding: 40px 0;
+        width: 100%;
+        h2 {
+          font-size: 15px;
+        }
+        .stages {
+          padding: 10px 0;
+          .stage {
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+
+            span {
+              font-size: 13px;
+            }
+            .product-info {
+              margin-top: 6px;
+
+              p {
+                text-wrap: balance;
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (448px < width < 769px) {
+  .compare {
+    padding: 0px 14px;
+    .map {
+      padding: 12px 0;
+    }
+    .content {
+      .characteristics {
+        padding: 40px 0;
+        width: 100%;
+        h2 {
+          font-size: 15px;
+        }
+        .stages {
+          padding: 10px 0;
+          .stage {
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+
+            span {
+              font-size: 13px;
+            }
+            .product-info {
+              margin-top: 6px;
+
+              p {
+                text-wrap: balance;
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (769px < width < 1200px) {
+  .compare {
+    padding: 0px 14px;
+    .map {
+      padding: 18px 0;
+    }
+    .content {
+      .characteristics {
+        padding: 50px 0;
+        width: 100%;
+        max-width: 900px;
+        h2 {
+          font-size: 16px;
+        }
+        .stages {
+          padding: 10px 0;
+          .stage {
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+
+            .product-info {
+              p {
+                text-wrap: balance;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -99,7 +99,6 @@ const Navbar = () => {
           onClick={() => dispatch(enableNavBarsBlock())}
           className="bars-mobile"
         />
-
         <SearchBar />
         <div className="nav_center_icons">
           <div className="icon">
@@ -109,8 +108,10 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="icon">
-            <PiScales />
-            <p>Сравнение</p>
+            <Link to={"/compare"}>
+              <PiScales />
+              <p>Сравнение</p>
+            </Link>
           </div>
           <div className="icon">
             <Link to={"/favorite"}>
@@ -208,13 +209,27 @@ const Navbar = () => {
         </div>
 
         <ul>
-          <li>Наши магазины</li>
-          <li>Моноблоки</li>
-          <li>Телефоны, планшеты</li>
-          <li>Ноутбуки</li>
-          <li>Комплектующие</li>
-          <li>Сетевое оборудование</li>
-          <li>Оргтехника</li>
+          <Link to={"/category/slug"}>
+            <li>Наши магазины</li>
+          </Link>
+          <Link to={"/category/slug"}>
+            <li>Моноблоки</li>
+          </Link>
+          <Link to={"/category/slug"}>
+            <li>Телефоны, планшеты</li>
+          </Link>
+          <Link to={"/category/slug"}>
+            <li>Ноутбуки</li>
+          </Link>
+          <Link to={"/category/slug"}>
+            <li>Комплектующие</li>
+          </Link>
+          <Link to={"/category/slug"}>
+            <li>Сетевое оборудование</li>
+          </Link>
+          <Link to={"/category/slug"}>
+            <li>Оргтехника</li>
+          </Link>
         </ul>
       </div>
       {/* bottom_category_block */}

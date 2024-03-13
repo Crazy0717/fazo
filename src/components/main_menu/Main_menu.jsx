@@ -3,7 +3,9 @@ import "./Main_menu.scss";
 import { IoHomeOutline } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
+import { PiScales } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const Main_menu = () => {
   return (
@@ -30,6 +32,12 @@ const Main_menu = () => {
         <NavLink to={"/login"}>
           <FaRegUser className="icon" />
           <p>Войти</p>
+        </NavLink>
+      </div>
+      <div className="menu">
+        <NavLink to={"/compare"}>
+          <PiScales className="icon" />
+          <p>Сравнение</p>
         </NavLink>
       </div>
     </div>

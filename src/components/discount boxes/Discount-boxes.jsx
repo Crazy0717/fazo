@@ -1,7 +1,7 @@
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
 import "./Discount-boxes.scss";
 import { PiScales } from "react-icons/pi";
-import HomeServiceData from "../../service/home";
+import ServiceData from "../../service/service";
 import { useEffect, useState } from "react";
 
 const DiscountBoxes = () => {
@@ -9,14 +9,24 @@ const DiscountBoxes = () => {
 
   const getData = async () => {
     try {
-      const response = await HomeServiceData.getData(
-        "categories/get_categories"
-      );
+      const response = await ServiceData.getData("/Laptops/get_random_laptop");
       console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
+
+  // const getData = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://4bf1-45-150-26-213.ngrok-free.app/Laptops/get_random_laptop"
+  //     );
+  //     const daat = await response.json();
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
     getData();
