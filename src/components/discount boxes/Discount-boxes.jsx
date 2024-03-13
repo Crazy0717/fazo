@@ -3,7 +3,6 @@ import "./Discount-boxes.scss";
 import { PiScales } from "react-icons/pi";
 import HomeServiceData from "../../service/home";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const DiscountBoxes = () => {
   const [discountBoxes, setDiscountBoxes] = useState();
