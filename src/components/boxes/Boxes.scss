@@ -1,7 +1,6 @@
 @import "../../variables";
 @import "../../mixins";
 
-
 @keyframes shine {
   to {
     background-position-x: -200%;
@@ -12,7 +11,17 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  row-gap: 30px;
+  gap: 30px;
+  .notFound {
+    display: none;
+    position: absolute;
+    top: 0;
+    color: $black;
+    font-size: 24px;
+    &.active {
+      display: inline-block;
+    }
+  }
   .boxes_box {
     width: 280px;
     border: 1px solid #f2f2f2;
@@ -122,7 +131,7 @@
       }
     }
   }
-} 
+}
 
 @media screen and (max-width: 448px) {
   .boxes {

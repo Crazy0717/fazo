@@ -1,0 +1,211 @@
+@import "../../../variables";
+@import "../../../mixins";
+
+@mixin zIndex {
+  position: relative;
+  z-index: 3;
+}
+
+.navtop {
+  .nav_top {
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-between;
+    background-color: $primary;
+    color: $tertiary;
+    @include zIndex();
+
+    .nav_top_left {
+      @include alignCenterFlex;
+      gap: 70px;
+      .nav_top_left_address {
+        @include alignCenterFlex;
+        gap: 5px;
+        .locationIcon {
+          font-size: 20px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+      .nav_top_left_category {
+        ul {
+          display: flex;
+          gap: 32px;
+          li {
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    .nav_top_right {
+      display: flex;
+      gap: 50px;
+      .nav_top_right_phoneNumber {
+        @include alignCenterFlex;
+        gap: 5px;
+      }
+      .nav_top_right_language {
+        select {
+          border-radius: 0px;
+          background-color: transparent;
+          border: none;
+          color: $tertiary;
+          option {
+            background-color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  .nav_top_responsive {
+    padding: 15px 12px;
+    display: none;
+    justify-content: space-between;
+    .nav_top_responsive_logo {
+      width: 20%;
+      img {
+        width: 100%;
+      }
+    }
+    .nav_top_responsive_right {
+      @include alignCenterFlex;
+      gap: 8vw;
+      color: $secondary;
+      .nav_top_responsive_right_number {
+        @include alignCenterFlex;
+        :first-child {
+          font-size: 18px;
+        }
+        p {
+          display: none;
+        }
+      }
+      .nav_top_responsive_right_address {
+        @include alignCenterFlex;
+        gap: 5px;
+        .locationIcon {
+          font-size: 22px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (width < 448px) {
+  .navtop {
+    .nav_top {
+      display: none;
+    }
+
+    .nav_top_responsive {
+      padding: 15px 12px;
+      display: flex;
+      justify-content: space-between;
+      .nav_top_responsive_logo {
+        width: 20%;
+        img {
+          width: 100%;
+        }
+      }
+      .nav_top_responsive_right {
+        gap: 8vw;
+        color: $secondary;
+        .nav_top_responsive_right_number {
+          display: flex;
+          :first-child {
+            font-size: 18px;
+          }
+          p {
+            display: none;
+          }
+        }
+        .nav_top_responsive_right_address {
+          gap: 5px;
+          .locationIcon {
+            font-size: 22px;
+          }
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (448px < width < 768px) {
+  .navtop {
+    .nav_top {
+      display: none;
+    }
+    .nav_top_responsive {
+      padding: 18px 16px;
+      display: flex;
+      .nav_top_responsive_logo {
+        img {
+          width: 100px;
+        }
+      }
+      .nav_top_responsive_right {
+        gap: 8vw;
+        .nav_top_responsive_right_number {
+          gap: 10px;
+
+          p {
+            display: inline-block;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (768px < width < 1200px) {
+  .navtop {
+    .nav_top {
+      padding: 12px 10px;
+
+      .nav_top_left {
+        gap: 2vw;
+        .nav_top_left_address {
+          gap: 0.6vw;
+          .locationIcon {
+            font-size: 18px;
+          }
+          p {
+            font-size: 12px;
+          }
+        }
+        .nav_top_left_category {
+          ul {
+            gap: 2vw;
+            li {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      .nav_top_right {
+        gap: 2vw;
+        .nav_top_right_phoneNumber {
+          gap: 1vw;
+          p {
+            font-size: 12px;
+          }
+        }
+        .nav_top_right_language {
+          select {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

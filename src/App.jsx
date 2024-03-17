@@ -19,7 +19,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/category/:slug" element={<Category />} />
+        <Route path="/category/:subCategory/:theme" element={<Category />} />
         <Route path="/product/:slug" element={<ProductInside />} />
         <Route path="/purchase" element={<Purchase />} />
         <Route path="/favorite" element={<Favorite />} />

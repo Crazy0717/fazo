@@ -1,11 +1,21 @@
 @import "../../variables";
 @import "../../mixins";
 
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
 .category {
   display: flex;
   flex-direction: column;
   align-items: end;
   .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     .path {
       padding: 24px 100px;
       color: $secondary;
@@ -24,6 +34,7 @@
       .sidebar {
         padding: 10px 30px 30px 30px;
         width: 360px;
+        min-width: 360px;
         border: 1px solid #f2f2f2;
         border-radius: $borderRadius;
 
@@ -120,7 +131,27 @@
             }
           }
         }
+        .MuiFormGroup-root {
+          padding-left: 10px;
+          // gap: 1px;
+          .MuiFormControlLabel-root {
+            width: 100%;
+            gap: 8px;
+            padding: 4px 8px;
+            border-radius: $borderRadius;
+            color: $black;
+            .css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+              color: #e0e0e0;
+              &.Mui-checked {
+                color: $primary;
+              }
+            }
+          }
+        }
         #accordion {
+          &::before {
+            display: none;
+          }
           .MuiAccordionDetails-root {
             display: flex;
             flex-direction: column;
@@ -241,11 +272,6 @@
   }
 }
 
-@keyframes shine {
-  to {
-    background-position-x: -200%;
-  }
-}
 @media screen and (max-width: 448px) {
   .category {
     .content {

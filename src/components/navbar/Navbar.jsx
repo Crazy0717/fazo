@@ -1,6 +1,5 @@
 import "./Navbar.scss";
 // icons
-import { CiLocationOn } from "react-icons/ci";
 import {
   FiArrowLeft,
   FiChevronRight,
@@ -21,7 +20,7 @@ import { IoIosList } from "react-icons/io";
 import SearchBar from "./search-bar/search-bar";
 import HoverDropdown from "./hover-dropdown/hover-dropdown";
 //
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   disableNavBarsBlock,
@@ -31,6 +30,8 @@ import {
 } from "../../slices/transparent-black-background";
 import { categoryThemes, categoryThemesInside } from "../../data/category";
 import { Link } from "react-router-dom";
+import ServiceData from "../../service/service";
+import Navtop from "./nav top/navtop";
 
 const Navbar = () => {
   const { navBarsBlockState, categoryBlockResState } = useSelector(
@@ -38,56 +39,23 @@ const Navbar = () => {
   );
   const [categoryBlockState, setCategoryBlockState] = useState(false);
   const [categorySubmenuId, setCategorySubmenuId] = useState();
+  const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
+
+  const getApi = async () => {
+    const { data } = await ServiceData.getData("categories/get_categories");
+    setCategories(data);
+    // console.log(data);
+  };
+
+  useEffect(() => {
+    getApi();
+  }, []);
 
   return (
     <nav>
-      <div className="nav_top">
-        <div className="nav_top_left">
-          <div className="nav_top_left_address">
-            <CiLocationOn className="locationIcon" />
-            <p>Ташкент</p>
-          </div>
-          <div className="nav_top_left_category">
-            <ul>
-              <li>Наши магазины</li>
-              <li>B2B продажи</li>
-              <li>Покупка в рассрочку</li>
-              <li>Способы оплаты</li>
-              <li>Гарантия на товары</li>
-            </ul>
-          </div>
-        </div>
-        <div className="nav_top_right">
-          <div className="nav_top_right_phoneNumber">
-            <FiPhone />
-            <p>+998 95 123 55 88</p>
-          </div>
-          <div className="nav_top_right_language">
-            <select>
-              <option value="">Рус</option>
-              <option value="">Eng</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div className="nav_top_responsive">
-        <div className="nav_top_responsive_logo">
-          <Link to={"/"}>
-            <img src="/images/logo (2).png" alt="" />
-          </Link>
-        </div>
-        <div className="nav_top_responsive_right">
-          <div className="nav_top_responsive_right_number">
-            <FiPhone />
-            <p>+998 95 123 55 88</p>
-          </div>
-          <div className="nav_top_responsive_right_address">
-            <CiLocationOn className="locationIcon" />
-            <p>Ташкент</p>
-          </div>
-        </div>
-      </div>
+      {/* top of navbar */}
+      <Navtop />
 
       <div className="nav_center">
         <div className="nav_center_logo">
@@ -209,27 +177,20 @@ const Navbar = () => {
         </div>
 
         <ul>
-          <Link to={"/category/slug"}>
-            <li>Наши магазины</li>
+          <Link to={"/category/Laptops/get_laptops"}>
+            <li>noutbuklar</li>
           </Link>
-          <Link to={"/category/slug"}>
-            <li>Моноблоки</li>
+          <Link to={"/category/Planshets/get_all_planshets"}>
+            <li>planshetlar</li>
           </Link>
-          <Link to={"/category/slug"}>
-            <li>Телефоны, планшеты</li>
+          <Link to={"/category/Telephones/get_all_phones"}>
+            <li>telefonlar</li>
           </Link>
-          <Link to={"/category/slug"}>
-            <li>Ноутбуки</li>
-          </Link>
-          <Link to={"/category/slug"}>
-            <li>Комплектующие</li>
-          </Link>
-          <Link to={"/category/slug"}>
-            <li>Сетевое оборудование</li>
-          </Link>
-          <Link to={"/category/slug"}>
-            <li>Оргтехника</li>
-          </Link>
+          {/* {categories.map((item) => (
+            <Link key={item.id} to={"/category/slug"}>            
+              <li>{item.name}</li>
+            </Link>
+          ))} */}
         </ul>
       </div>
       {/* bottom_category_block */}
@@ -258,7 +219,7 @@ const Navbar = () => {
         </ul>
         <HoverDropdown categorySubmenuId={categorySubmenuId} />
       </div>
-      {/* responsive */}
+      {/* bottom_category_block_responsive */}
       <div
         className={
           categoryBlockResState

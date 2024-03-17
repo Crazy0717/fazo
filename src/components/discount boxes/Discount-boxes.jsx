@@ -7,14 +7,14 @@ import { useEffect, useState } from "react";
 const DiscountBoxes = () => {
   const [discountBoxes, setDiscountBoxes] = useState();
 
-  const getData = async () => {
-    try {
-      const response = await ServiceData.getData("/Laptops/get_random_laptop");
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     const response = await ServiceData.getData("/Laptops/get_random_laptop");
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // const getData = async () => {
   //   try {
@@ -28,9 +28,9 @@ const DiscountBoxes = () => {
   //   }
   // };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
   return (
     <div className="discountBoxes">
       <div className="discountBoxes_box">

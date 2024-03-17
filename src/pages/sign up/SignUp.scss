@@ -74,7 +74,7 @@
     width: 530px;
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 44px;
     border: 1px solid #9090903d;
     border-radius: $borderRadius;
     box-shadow: 0px 1.9px 3.3px rgba(0, 0, 0, 0.024),
@@ -97,33 +97,7 @@
     form {
       display: flex;
       flex-direction: column;
-      gap: 25px;
-      .content {
-        .sub_title {
-          @include alignCenterFlex;
-          gap: 6px;
-          margin-bottom: 5px;
-          :first-child {
-            font-size: 20px;
-          }
-        }
-        .input {
-          padding: 10px;
-          width: 100%;
-          height: 60px;
-          background-color: #ededed;
-          border-radius: $borderRadius;
-
-          input {
-            font-size: 14px;
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
-            outline: none;
-            border: none;
-          }
-        }
-      }
+      gap: 15px;
     }
     .buttons {
       display: flex;
@@ -163,7 +137,7 @@
     .box {
       padding: 20px;
       width: 94%;
-      gap: 40px;
+      gap: 24px;
 
       .title {
         img {
@@ -174,24 +148,7 @@
         }
       }
       form {
-        gap: 20px;
-        .content {
-          .sub_title {
-            gap: 5px;
-            margin-bottom: 5px;
-            font-size: 13px;
-            :first-child {
-              font-size: 16px;
-            }
-          }
-          .input {
-            height: 42px;
-
-            input {
-              font-size: 12px;
-            }
-          }
-        }
+        gap: 14px;
       }
       .buttons {
         a {
@@ -201,7 +158,7 @@
           }
         }
         button {
-          width: 45%;
+          width: 50%;
           padding: 12px 0%;
           font-size: 12px;
         }
@@ -225,23 +182,6 @@
       }
       form {
         gap: 22px;
-        .content {
-          .sub_title {
-            gap: 5px;
-            margin-bottom: 5px;
-            font-size: 13px;
-            :first-child {
-              font-size: 16px;
-            }
-          }
-          .input {
-            height: 44px;
-
-            input {
-              font-size: 13px;
-            }
-          }
-        }
       }
       .buttons {
         button {

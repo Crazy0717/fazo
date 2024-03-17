@@ -1,16 +1,63 @@
-import "./Category.scss";
+import "./Category.scss"
 // icons
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
 //
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import { Checkbox, InputNumber, Slider } from "antd";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material"
+import { Checkbox, InputNumber, Slider } from "antd"
 import {
   Boxes,
   Category_Accordion,
   InterestingProducts,
-} from "../../components";
+} from "../../components"
+import { useParams } from "react-router-dom"
+import ServiceData from "../../service/service"
+import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { boxesError, boxesStart, boxesSuccessfully } from "../../slices/boxes"
 
 const Category = () => {
+  const { subCategory, theme } = useParams()
+  const [boxes, setBoxes] = useState([])
+  const [price, setPrice] = useState(0)
+  const [ram_size, setRam_size] = useState(0)
+  const [rom_size, setRom_size] = useState(0)
+  const [submit, setSubmit] = useState(true)
+  const dispatch = useDispatch()
+  
+  const handleInputChange = (e) => {
+    setPrice(e)
+  }
+  const handleRamSize = (e) => {
+    setRam_size(e.target.value)
+  }
+  const handleRomSize = (e) => {
+    setRom_size(e.target.value)
+  }
+
+  const getData = async () => {
+    dispatch(boxesStart())
+    try {
+      const { data } = await ServiceData.getData(
+        `${subCategory}/${theme}?page=1&limit=25&rom_size=${rom_size}&year=0&ram_size=${ram_size}&price=${price}&display=0`
+      )
+      setBoxes(data)
+      dispatch(boxesSuccessfully())
+    } catch (error) {
+      dispatch(boxesError(error))
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [subCategory, theme, submit])
+
   return (
     <div className="category">
       <div className="content">
@@ -32,24 +79,16 @@ const Category = () => {
               </AccordionSummary>
               <AccordionDetails>
                 <InputNumber
+                  onChange={handleInputChange}
                   min={0}
-                  placeholder="от 300 000"
+                  placeholder="до"
                   type="number"
                   style={{
-                    width: "50%",
-                    borderRadius: "5px 0 0 5px",
+                    width: "100%",
+                    borderRadius: "5px",
                   }}
                 />
-                <InputNumber
-                  min={0}
-                  placeholder="до 103 300 000"
-                  type="number"
-                  style={{
-                    width: "50%",
-                    borderRadius: "0 5px 5px 0",
-                  }}
-                />
-                <Slider range defaultValue={[20, 50]} />
+                <Slider onChange={handleInputChange} defaultValue={[20, 50]} />
               </AccordionDetails>
             </Accordion>
             <div className="sidebar_checkbox">
@@ -62,18 +101,85 @@ const Category = () => {
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
-                Бренд
+                RAM
               </AccordionSummary>
-              <AccordionDetails>
-                <Checkbox>LG </Checkbox>
-                <Checkbox>Samsung</Checkbox>
-                <Checkbox>LG </Checkbox>
-                <Checkbox>Samsung</Checkbox>
-              </AccordionDetails>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  onClick={handleRamSize}
+                  value="2"
+                  control={<Radio />}
+                  label="2 GB"
+                />
+
+                <FormControlLabel
+                  onClick={handleRamSize}
+                  value="4"
+                  control={<Radio />}
+                  label="4 GB"
+                />
+                <FormControlLabel
+                  onClick={handleRamSize}
+                  value="8"
+                  control={<Radio />}
+                  label="8 GB"
+                />
+                <FormControlLabel
+                  onClick={handleRamSize}
+                  value="16"
+                  control={<Radio />}
+                  label="16 GB"
+                />
+              </RadioGroup>
             </Accordion>
-            <button>Показать</button>
+            <Accordion id="accordion">
+              <AccordionSummary
+                expandIcon={<FiChevronRight id="icon" />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                ROM
+              </AccordionSummary>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+              >
+                <FormControlLabel
+                  onClick={handleRomSize}
+                  value="64"
+                  control={<Radio />}
+                  label="64 GB"
+                />
+
+                <FormControlLabel
+                  onClick={handleRomSize}
+                  value="128"
+                  control={<Radio />}
+                  label="128 GB"
+                />
+                <FormControlLabel
+                  onClick={handleRomSize}
+                  value="256"
+                  control={<Radio />}
+                  label="256 GB"
+                />
+                <FormControlLabel
+                  onClick={handleRomSize}
+                  value="512"
+                  control={<Radio />}
+                  label="512 GB"
+                />
+              </RadioGroup>
+            </Accordion>
+            <button onClick={() => setSubmit(!submit)}>Показать</button>
           </div>
-          <Boxes width={"70%"} />
+          <div className="category_boxes">
+            <Boxes boxesData={boxes} width={"70%"} />
+          </div>
         </div>
       </div>
       <div className="other_content">
@@ -114,7 +220,7 @@ const Category = () => {
         <Category_Accordion />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Category;
+export default Category
