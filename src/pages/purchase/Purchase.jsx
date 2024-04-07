@@ -1,4 +1,4 @@
-import "./Purchase.scss";
+import "./Purchase.scss"
 //
 import {
   FormControl,
@@ -10,10 +10,41 @@ import {
   Radio,
   RadioGroup,
   TextField,
-} from "@mui/material";
-import { FiCalendar } from "react-icons/fi";
+} from "@mui/material"
+import { FiCalendar } from "react-icons/fi"
+import ServiceData from "../../service/service"
+import { useEffect, useState } from "react"
 
 const Purchase = () => {
+  const [cartsData, setCartsData] = useState()
+  // const [cartsImage, setCartsImage] = useState()
+  // const [cartsImageFileName, setCartsImageFileName] = useState()
+  let totalPrice = 0
+
+  const getCarts = async () => {
+    try {
+      const response = await ServiceData.getData("/trade/get_trades")
+      setCartsData(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  // files[0].new_files
+  // const getImages = async (fileName) => {
+  //   try {
+  //     const cartImage = await ServiceData.getData(
+  //       `/files/${response?.data?.files[0].new_files}`
+  //     )
+  //     setCartsImage(response)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
+  useEffect(() => {
+    getCarts()
+  }, [])
   return (
     <div className="purchase">
       <div className="purchase_left">
@@ -40,6 +71,20 @@ const Purchase = () => {
               <p>Ваш заказ</p>
             </div>
             <div className="content yourOrders">
+              {cartsData &&
+                cartsData.data.map((item) => {
+                  totalPrice = item.price
+                  return (
+                    <div key={item.id} className="product">
+                      <img src="/images/computer 2.png" alt="image" />
+                      <div className="product_info">
+                        <h3>{item.laptop.description}</h3>
+                        <span>1 шт</span>
+                        <p>{item.laptop.price} cум</p>
+                      </div>
+                    </div>
+                  )
+                })}
               <div className="product">
                 <img src="/images/computer 2.png" alt="" />
                 <div className="product_info">
@@ -120,6 +165,7 @@ const Purchase = () => {
                     id="labelInput"
                     label="Регион / Область*"
                     variant="outlined"
+                    defaultValue={"Toshkent"}
                   >
                     <MenuItem value="Farg'ona">Farg'ona</MenuItem>
                     <MenuItem value="Toshkent">Toshkent</MenuItem>
@@ -130,6 +176,7 @@ const Purchase = () => {
                     id="labelInput"
                     label="Город  / Район*"
                     variant="outlined"
+                    defaultValue={"Toshkent"}
                   >
                     <MenuItem value="Toshkent">Toshkent</MenuItem>
                     <MenuItem value="Namangan">Namangan</MenuItem>
@@ -182,7 +229,7 @@ const Purchase = () => {
         </div>
         <div className="stage total">
           <p>Всего к оплате</p>
-          <span>5 262 000 cум</span>
+          <span>{totalPrice} cум</span>
         </div>
         <button>Оформить покупку</button>
         <div className="privacy">
@@ -191,7 +238,7 @@ const Purchase = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Purchase;
+export default Purchase

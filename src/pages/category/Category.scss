@@ -1,11 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
-
-@keyframes shine {
-  to {
-    background-position-x: -200%;
-  }
-}
+@use "../../mixins" as *;
 
 .category {
   display: flex;
@@ -24,6 +17,9 @@
         font-weight: 400;
         @include alignCenterFlex;
         gap: 4px;
+        a {
+          color: $secondary;
+        }
       }
     }
     .category_main {
@@ -206,8 +202,8 @@
     .pagination {
       @include alignCenterFlex;
       justify-content: center;
-      gap: 18px;
       margin-bottom: 60px;
+
       .pagination_button {
         color: $black;
         font-size: 24px;
@@ -226,15 +222,33 @@
         gap: 2px;
         padding-bottom: 6px;
         li {
-          padding: 10px 14px;
+          padding: 6px 10px;
           font-size: 16px;
           font-weight: 400;
           color: $black;
           border: 1px solid transparent;
           border-radius: $borderRadius;
-          &.active {
+          cursor: pointer;
+          &.activePage {
             color: $primary;
             border: 1px solid $primary;
+          }
+          &.next {
+            color: $black;
+            font-size: 20px;
+            transition: 0.1s;
+            cursor: pointer;
+            margin-left: 20px;
+            &:hover {
+              color: $primary;
+            }
+            &:active {
+              color: $black;
+            }
+          }
+          &.previous {
+            @extend .next;
+            margin-right: 20px;
           }
         }
       }
@@ -284,13 +298,13 @@
         }
       }
       .category_main {
-        padding: 10px 10px;
+        padding: 10px;
         flex-direction: column;
         gap: 20px;
         .sidebar {
           padding: 8px 16px 16px 16px;
           width: 100%;
-
+          min-width: 10px;
           .MuiPaper-root {
             .MuiButtonBase-root {
               .MuiAccordionSummary-content {
@@ -384,6 +398,7 @@
         }
       }
       .category_main {
+        width: 100%;
         padding: 10px 14px;
         flex-direction: column;
         gap: 20px;

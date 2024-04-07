@@ -2,17 +2,19 @@
 
 project start date: 13.02.2024
 
+i
+
 i = install
 
-installation:
-npm i sass
-npm i react-router-dom
-npm install @reduxjs/toolkit react-redux
-npm i swiper
-npm install antd --save
-npm install @mui/material @emotion/react @emotion/styled
-npm install @mui/icons-material
-npm i axios
+installation: <br/>
+npm i sass <br/>
+npm i react-router-dom <br/>
+npm install @reduxjs/toolkit react-redux <br/>
+npm i swiper <br/>
+npm install antd --save <br/>
+npm install @mui/material @emotion/react @emotion/styled <br/>
+npm install @mui/icons-material <br/>
+npm i axios <br/>
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

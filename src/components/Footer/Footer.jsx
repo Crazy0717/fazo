@@ -1,12 +1,25 @@
-import "./Footer.scss";
+import "./Footer.scss"
 
-import { Link, NavLink } from "react-router-dom";
-import { IoLogoInstagram } from "react-icons/io";
-import { FaYoutube } from "react-icons/fa";
-import { FaTelegramPlane } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom"
+import { IoLogoInstagram } from "react-icons/io"
+import { FaYoutube } from "react-icons/fa"
+import { FaTelegramPlane } from "react-icons/fa"
+import { FaFacebook } from "react-icons/fa"
+import ServiceData from "../../service/service"
+import { useEffect, useState } from "react"
 
 const Footer = () => {
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    getApi()
+  }, [])
+
+  const getApi = async () => {
+    const { data } = await ServiceData.getData("categories/get_categories")
+    setCategories(data)
+  }
+
   return (
     <div className="Footer">
       <div className="cantact">
@@ -39,21 +52,12 @@ const Footer = () => {
         <div className="cotegoty menu">
           <h3>Категории</h3>
           <ul>
-            <NavLink to={"/category/slug"}>
-              <li>Ноутбуки</li>
-            </NavLink>
-            <NavLink to={"/category/acasdcsdas"}>
-              <li>Игровые кресла</li>
-            </NavLink>
-            <NavLink to={"/category/vfvf"}>
-              <li>Телефоны</li>
-            </NavLink>
-            <NavLink to={"/category/slasdcug"}>
-              <li>Моноблоки</li>
-            </NavLink>
-            <NavLink to={"/category/slug"}>
-              <li>Модули памяти</li>
-            </NavLink>
+            {categories &&
+              categories.map((item) => (
+                <NavLink key={item.id} to={`/category${item.link}`}>
+                  <li>{item.name}</li>
+                </NavLink>
+              ))}
           </ul>
         </div>
         <div className="all menu">
@@ -101,7 +105,7 @@ const Footer = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

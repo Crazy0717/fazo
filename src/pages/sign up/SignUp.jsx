@@ -1,40 +1,46 @@
-import { useState } from "react";
-import "./SignUp.scss";
+import { useState } from "react"
+import "./SignUp.scss"
 // icons
-import { LuLock } from "react-icons/lu";
-import { MdDriveFileRenameOutline } from "react-icons/md";
-import { TbUserEdit } from "react-icons/tb";
-import { FiPhone } from "react-icons/fi";
+import { LuLock } from "react-icons/lu"
+import { MdDriveFileRenameOutline } from "react-icons/md"
+import { TbUserEdit } from "react-icons/tb"
+import { FiPhone } from "react-icons/fi"
 //
-import { AuthInput } from "../../ui";
-import authService from "../../service/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { AuthInput } from "../../ui"
+import authService from "../../service/auth"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { authUserStart, authUserSuccess } from "../../slices/auth"
 
 const SignUp = () => {
-  const [name, setName] = useState();
-  const [userName, setUserName] = useState();
-  const [userPhoneNumber, setUserPhoneNumber] = useState();
-  const [userPassword, setUserPasword] = useState();
-  const navigate = useNavigate();
-
-  const user = {
-    name: name,
-    username: userName,
-    password: userPassword,
-    phone_number: userPhoneNumber,
-  };
-  console.log(user);
+  const [name, setName] = useState("")
+  const [userName, setUserName] = useState("")
+  const [userPhoneNumber, setUserPhoneNumber] = useState()
+  const [userPassword, setUserPasword] = useState("")
+  const { isLoading } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    dispatch(authUserStart())
+
+    const user = {
+      name: name,
+      username: userName,
+      password: userPassword,
+      phone_number: userPhoneNumber,
+    }
 
     try {
-      const response = await authService.registerUser(user);
-      navigate("/");
+      const response = await authService.registerUser(user)
+      navigate("/login")
+      dispatch(authUserSuccess(response.config.data))
+      console.log(user)
     } catch (error) {
-      console.log(error);
+      console.log("Error")
     }
-  };
+  }
 
   return (
     <div className="signUp">
@@ -66,6 +72,7 @@ const SignUp = () => {
             title={"Пароль"}
             icon={<LuLock />}
             id={"password"}
+            password={true}
           />
           <AuthInput
             state={userPhoneNumber}
@@ -73,7 +80,6 @@ const SignUp = () => {
             title={"Номер телефона"}
             icon={<FiPhone />}
             id={"phoneNumber"}
-            type={"number"}
           />
         </form>
         <div className="buttons">
@@ -81,12 +87,12 @@ const SignUp = () => {
             <button>Войти</button>
           </Link>
           <button form="form" type="submit">
-            Зарегистрироваться
+            {isLoading ? "Загрузка..." : "Зарегистрироваться"}
           </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

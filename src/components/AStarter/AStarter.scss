@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Rubik:wght@300;600;800&family=Vina+Sans&display=swap");
-@import "../../variables";
-@import "../../mixins";
+@use "../../variables";
+@use "../../mixins" as *;
 
 $grey: #bdbdbd;
 
@@ -8,12 +7,13 @@ $grey: #bdbdbd;
   width: 100%;
   height: auto;
   display: flex;
-  flex-wrap: wrap;
+  align-items: end;
+  flex-direction: column;
 
   .boxs {
     width: 100%;
     height: auto;
-    padding: 20px 15px;
+    padding: 18px 15px;
     background-color: #f2f2f2;
     border-radius: $borderRadius;
     margin: 10px 0px;
@@ -27,14 +27,14 @@ $grey: #bdbdbd;
       }
 
       h3 {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 700;
         line-height: 29px;
         letter-spacing: 0em;
         text-align: left;
 
         span {
-          font-size: 17px;
+          font-size: 15px;
           font-weight: 400;
           line-height: 22px;
           letter-spacing: 0em;
@@ -58,7 +58,7 @@ $grey: #bdbdbd;
         li {
           list-style-type: disc;
           flex-direction: column;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 400;
           letter-spacing: 0em;
           text-align: left;
@@ -70,7 +70,7 @@ $grey: #bdbdbd;
         color: #2f80ed;
       }
       p {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 400;
         line-height: 22px;
         letter-spacing: 0em;

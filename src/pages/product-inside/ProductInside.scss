@@ -1,5 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
+@use "../../mixins" as *;
 
 .productInside {
   .path {
@@ -10,17 +9,43 @@
       font-weight: 400;
       @include alignCenterFlex;
       gap: 4px;
+      a {
+        color: $secondary;
+      }
     }
   }
   .Filter_inside {
     width: 100%;
     height: auto;
-    padding: 0px 80px;
+    padding: 0px 100px;
     display: flex;
     justify-content: space-between;
 
     .Slider {
       width: 24%;
+      height: 270px;
+      .swiper {
+        border-radius: $borderRadius;
+      }
+      .mySwiper1 {
+        height: 100%;
+      }
+      .mySwiper2 {
+        height: 74px;
+        margin-top: 16px;
+        .swiper-slide {
+          img {
+            width: 78px;
+          }
+        }
+      }
+      .swiper-slide {
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: $borderRadius;
+        }
+      }
     }
 
     .right {
@@ -29,10 +54,10 @@
       flex-wrap: wrap;
       justify-content: space-between;
       .Aboute {
-        width: 60%;
+        width: 66%;
       }
       .AStarter {
-        width: 38%;
+        max-width: 300px;
       }
     }
   }
@@ -50,7 +75,6 @@
     }
     .Filter_inside {
       width: 100%;
-      height: auto;
       padding: 0px 20px;
       display: flex;
       flex-wrap: wrap;
@@ -58,6 +82,30 @@
 
       .Slider {
         width: 100%;
+        height: auto;
+        .swiper {
+          border-radius: $borderRadius;
+        }
+        .mySwiper1 {
+          height: 220px;
+        }
+        .mySwiper2 {
+          height: 78px;
+          margin-top: 10px;
+          .swiper-slide {
+            img {
+              width: 70px;
+              height: 64px;
+            }
+          }
+        }
+        .swiper-slide {
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: $borderRadius;
+          }
+        }
       }
       .right {
         width: 100%;
@@ -92,6 +140,34 @@
 
       .Slider {
         width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        .swiper {
+          border-radius: $borderRadius;
+        }
+        .mySwiper1 {
+          height: 290px;
+          width: 70%;
+        }
+        .mySwiper2 {
+          height: 290px;
+          margin-top: 0;
+          .swiper-slide {
+            width: 70px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        .swiper-slide {
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: $borderRadius;
+          }
+        }
       }
       .right {
         width: 100%;
@@ -106,7 +182,7 @@
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 990px) {
+@media screen and (min-width: 769px) and (max-width: 1200px) {
   .productInside {
     .path {
       padding: 20px 10px;
@@ -125,7 +201,18 @@
       justify-content: space-between;
 
       .Slider {
-        width: 35%;
+        width: 32%;
+        height: 200px;
+        .mySwiper2 {
+          margin-top: 12px;
+          .swiper-slide {
+            height: 60px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
       }
       .right {
         width: 65%;

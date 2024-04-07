@@ -1,5 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
+@use "../../mixins" as *;
 
 .parentInput {
   .sub_title {
@@ -17,7 +16,7 @@
     height: 44px;
     background-color: #ededed;
     border-radius: $borderRadius;
-
+    display: flex;
     input {
       font-size: 14px;
       width: 100%;
@@ -25,6 +24,16 @@
       background-color: transparent;
       outline: none;
       border: none;
+    }
+    .show_password {
+      display: none;
+      border: none;
+      font-size: 20px;
+      color: $black;
+      cursor: pointer;
+      &.active {
+        display: inline-block;
+      }
     }
   }
 }

@@ -1,5 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
+@use "../../mixins" as *;
 
 .login {
   width: 100%;
@@ -69,6 +68,10 @@
   background-size: 38px 38px;
   background-color: $tertiary;
   @include centerFlex();
+
+  .Toastify__toast{
+    border-radius: $borderRadius;
+  }
   .box {
     background-color: $tertiary;
     padding: 30px;

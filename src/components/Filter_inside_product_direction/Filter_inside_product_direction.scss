@@ -1,6 +1,5 @@
+@use "../../mixins" as *;
 @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Rubik:wght@300;600;800&family=Vina+Sans&display=swap");
-@import "../../variables";
-@import "../../mixins";
 $grey: #bdbdbd;
 
 .Filter_inside_product_direction {
@@ -84,7 +83,7 @@ $grey: #bdbdbd;
 
     button {
       padding: 15px 15px;
-          border-radius: $borderRadius;
+      border-radius: $borderRadius;
 
       border: none;
       cursor: pointer;

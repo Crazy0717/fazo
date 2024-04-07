@@ -1,5 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
+@use "../../mixins" as *;
 
 .compare {
   padding: 0px 100px;

@@ -1,5 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
+@use "../../mixins" as *;
 
 .discountBoxes {
   @include alignCenterFlex();

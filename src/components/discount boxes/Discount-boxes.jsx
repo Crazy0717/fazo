@@ -5,7 +5,7 @@ import ServiceData from "../../service/service";
 import { useEffect, useState } from "react";
 
 const DiscountBoxes = () => {
-  const [discountBoxes, setDiscountBoxes] = useState();
+  // const [discountBoxes, setDiscountBoxes] = useState();
 
   // const getData = async () => {
   //   try {
@@ -31,6 +31,7 @@ const DiscountBoxes = () => {
   // useEffect(() => {
   //   getData();
   // }, []);
+
   return (
     <div className="discountBoxes">
       <div className="discountBoxes_box">

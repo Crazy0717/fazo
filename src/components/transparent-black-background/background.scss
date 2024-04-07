@@ -5,6 +5,7 @@
   height: 100vh;
   display: none;
   z-index: 4;
+  
   &.active {
     display: inline-block;
   }

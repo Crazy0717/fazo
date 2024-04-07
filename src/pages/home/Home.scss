@@ -1,5 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
+@use "../../mixins" as *;
 
 .home {
   header {
@@ -760,7 +759,8 @@
         .swiper {
           padding: 14px 10px;
           .swiper-slide {
-            height: 63vh;
+            height: 365px;
+            // height: 63vh;
             .header_swiper_image {
               height: 100%;
               img {

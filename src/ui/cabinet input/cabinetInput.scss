@@ -1,0 +1,22 @@
+$grey2: #494949;
+
+.cabinetInput {
+  h3 {
+    font-size: 15px;
+    font-weight: 550;
+    color: $grey2;
+  }
+  input {
+    max-width: 70%;
+    min-width: 50%;
+    width: 60%;
+    margin-left: 10px;
+    background-color: transparent;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    &[type="number"]{
+        margin-left: 3px;
+    }
+  }
+}

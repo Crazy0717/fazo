@@ -1,5 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
+@use "../../mixins" as *;
 
 @mixin zIndex {
   position: relative;
@@ -125,14 +124,22 @@ nav {
     }
     .nav_center_icons {
       display: flex;
-      gap: 36px;
-
+      gap: 30px;
+      #user-icon {
+        max-width: 8vw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       .icon {
         @include alignCenterFlex;
         flex-direction: column;
         font-size: 14px;
         line-height: 20px;
         cursor: pointer;
+        &.hidden {
+          display: none;
+        }
         p {
           font-size: 14px;
         }
@@ -206,7 +213,7 @@ nav {
   }
   .bottom_category_block {
     width: 100%;
-    padding: 0px 80px 0px 80px;
+    padding: 0 100px;
     display: flex;
     background-color: $tertiary;
     transition: all ease-in-out 0.6s;
@@ -227,18 +234,18 @@ nav {
       align-items: start;
       flex-direction: column;
       gap: 0;
-      li {
-        padding: 12px 20px;
+      a {
+        padding: 12px 10px;
         width: 100%;
         @include alignCenterFlex;
         justify-content: space-between;
         gap: 16px;
         border-radius: $borderRadius;
+        color: $black;
 
         &:hover,
         &.onhover {
           background-color: #f2f2f2;
-          color: #202020;
         }
 
         .left_part {
@@ -492,6 +499,9 @@ nav {
       }
       .nav_center_icons {
         gap: 10px;
+        #user-icon {
+          width: 5vw;
+        }
         .icon {
           font-size: 12px;
           :first-child {
@@ -526,9 +536,9 @@ nav {
       }
     }
     .bottom_category_block {
-      padding: 0px 14px;
+      padding: 10px 14px;
       &.active {
-        top: 190px;
+        top: 170px;
       }
     }
     .bottom_category_block_responsive {

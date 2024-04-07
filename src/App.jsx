@@ -1,5 +1,5 @@
-import { Route, Routes } from "react-router-dom";
-import { BlackBackground, Footer, Main_menu, Navbar } from "./components";
+import { Route, Routes } from "react-router-dom"
+import { BlackBackground, Footer, Main_menu, Navbar } from "./components"
 import {
   Category,
   Compare,
@@ -10,7 +10,8 @@ import {
   ProductInside,
   Purchase,
   SignUp,
-} from "./pages";
+} from "./pages"
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
       <Footer />
       <Main_menu />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,4 +1,4 @@
-import "./Home.scss";
+import "./Home.scss"
 // swiper
 import {
   Navigation,
@@ -7,22 +7,22 @@ import {
   A11y,
   EffectFade,
   Autoplay,
-} from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/effect-fade";
+} from "swiper/modules"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import "swiper/css/scrollbar"
+import "swiper/css/effect-fade"
 // icons
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { IoIosArrowRoundForward } from "react-icons/io";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import { IoIosArrowRoundForward } from "react-icons/io"
 import {
   DiscountBoxes,
   ProductBoxes,
   RecommendBoxes,
-} from "../../components/index";
-import { MdArrowRightAlt } from "react-icons/md";
+} from "../../components/index"
+import { MdArrowRightAlt } from "react-icons/md"
 
 const Home = () => {
   return (
@@ -399,7 +399,7 @@ const Home = () => {
         </div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

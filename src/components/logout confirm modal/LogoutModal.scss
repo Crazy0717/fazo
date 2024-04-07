@@ -1,0 +1,76 @@
+@use "../../mixins" as *;
+
+.logoutModal {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 290px;
+  width: 500px;
+  background-color: $tertiary;
+  position: fixed;
+  top: 31%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $borderRadius;
+  z-index: 4;
+  color: $black;
+  font-size: 17px;
+
+  &.active {
+    @include alignCenterFlex;
+  }
+  #icon {
+    font-size: 90px;
+    color: $secondary;
+  }
+  .buttons {
+    width: 100%;
+    @include alignCenterFlex;
+    justify-content: space-around;
+  }
+  button {
+    width: 42%;
+    padding: 14px;
+    border-radius: $borderRadius;
+    border: none;
+    transition: 0.1s;
+    cursor: pointer;
+    font-size: 15px;
+    &:first-child {
+      background-color: $primary;
+      color: $tertiary;
+      &:hover {
+        background-color: #d12a2c;
+      }
+      &:active {
+        background-color: $primary;
+      }
+    }
+    &:last-child {
+      background-color: #e0e0e0;
+      color: $black;
+      &:hover {
+        background-color: #cfcece;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .logoutModal {
+    height: 260px;
+    width: 93%;
+    top: 35%;
+    #icon {
+      font-size: 70px;
+    }
+    p {
+      font-size: 19px;
+      margin-left: 10px;
+    }
+    button {
+      width: 45%;
+      padding: 13px;
+    }
+  }
+}

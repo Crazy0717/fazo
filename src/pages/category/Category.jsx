@@ -16,21 +16,28 @@ import {
   Category_Accordion,
   InterestingProducts,
 } from "../../components"
-import { useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import ServiceData from "../../service/service"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { boxesError, boxesStart, boxesSuccessfully } from "../../slices/boxes"
+import {
+  boxesError,
+  boxesStart,
+  boxesSuccessfully,
+} from "../../slices/boxesLoading"
+import ReactPaginate from "react-paginate"
 
 const Category = () => {
   const { subCategory, theme } = useParams()
   const [boxes, setBoxes] = useState([])
+  const [totalPages, setTotalPages] = useState(50)
+  const [currentPage, setCurrentPage] = useState(1)
   const [price, setPrice] = useState(0)
   const [ram_size, setRam_size] = useState(0)
   const [rom_size, setRom_size] = useState(0)
   const [submit, setSubmit] = useState(true)
   const dispatch = useDispatch()
-  
+
   const handleInputChange = (e) => {
     setPrice(e)
   }
@@ -45,26 +52,28 @@ const Category = () => {
     dispatch(boxesStart())
     try {
       const { data } = await ServiceData.getData(
-        `${subCategory}/${theme}?page=1&limit=25&rom_size=${rom_size}&year=0&ram_size=${ram_size}&price=${price}&display=0`
+        `${subCategory}/${theme}?page=${currentPage}&limit=25&rom_size=${rom_size}&year=0&ram_size=${ram_size}&price=${price}&display=0`
       )
       setBoxes(data)
       dispatch(boxesSuccessfully())
+      setTotalPages(data.pages)
     } catch (error) {
       dispatch(boxesError(error))
     }
   }
-
+  
   useEffect(() => {
     getData()
-  }, [subCategory, theme, submit])
+  }, [subCategory, theme, submit, currentPage])
 
   return (
     <div className="category">
       <div className="content">
         <div className="path">
           <h3>
-            Главная <FiChevronRight /> Телефоны, планшеты <FiChevronRight />{" "}
-            Телефоны и гаджеты
+            <Link to={"/"}>Главная</Link>
+            <FiChevronRight /> Телефоны, планшеты <FiChevronRight /> Телефоны и
+            гаджеты
           </h3>
         </div>
         <div className="category_main">
@@ -88,7 +97,7 @@ const Category = () => {
                     borderRadius: "5px",
                   }}
                 />
-                <Slider onChange={handleInputChange} defaultValue={[20, 50]} />
+                <Slider onChange={handleInputChange} min={0} max={1000} />
               </AccordionDetails>
             </Accordion>
             <div className="sidebar_checkbox">
@@ -178,27 +187,39 @@ const Category = () => {
             <button onClick={() => setSubmit(!submit)}>Показать</button>
           </div>
           <div className="category_boxes">
-            <Boxes boxesData={boxes} width={"70%"} />
+            <Boxes boxesData={boxes} width={"100%"} />
           </div>
         </div>
       </div>
       <div className="other_content">
         <div className="pagination">
-          <div className="pagination_button previous">
-            <FiChevronLeft />
-          </div>
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li className="active">3</li>
-            <li>...</li>
-            <li>26</li>
-            <li>27</li>
-            <li>28</li>
-          </ul>
-          <div className="pagination_button next">
-            <FiChevronRight />
-          </div>
+          <ReactPaginate
+            breakLabel="..."
+            previousLabel={<FiChevronLeft />}
+            nextLabel={<FiChevronRight />}
+            onPageChange={(e) => setCurrentPage(e.selected + 1)}
+            pageRangeDisplayed={3}
+            pageCount={totalPages}
+            renderOnZeroPageCount={null}
+            activeClassName="activePage"
+          />
+          {/* <div>
+            <div className="pagination_button previous">
+              <FiChevronLeft />
+            </div>
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li className="active">3</li>
+              <li>...</li>
+              <li>26</li>
+              <li>27</li>
+              <li>28</li>
+            </ul>
+            <div className="pagination_button next">
+              <FiChevronRight />
+            </div>
+          </div> */}
         </div>
         <div className="popular_categories">
           <h2>Популярные категории и модели</h2>

@@ -1,5 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
+@use "../../mixins" as *;
 
 $grey2: #494949;
 $grey3: #f2f2f2;
@@ -81,7 +80,7 @@ $grey4: #585858d8;
         color: $grey4;
         border-radius: $borderRadius;
         cursor: pointer;
-        transition: .1s;
+        transition: 0.1s;
         &:hover {
           background-color: #f2f2f2;
         }
@@ -101,8 +100,7 @@ $grey4: #585858d8;
       width: 100%;
       height: auto;
       border: 1px solid #f2f2f2;
-          border-radius: $borderRadius;
-
+      border-radius: $borderRadius;
 
       .contact {
         width: 100%;
@@ -140,12 +138,6 @@ $grey4: #585858d8;
         padding: 15px 15px 25px 15px;
         line-height: 40px;
         border-bottom: 1px solid #f2f2f2;
-
-        h3 {
-          font-size: 15px;
-          font-weight: 550;
-          color: $grey2;
-        }
 
         p {
           font-size: 14px;

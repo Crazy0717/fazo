@@ -1,5 +1,4 @@
-@import "../../../variables";
-@import "../../../mixins";
+@use "../../../mixins" as *;
 
 @mixin zIndex {
   position: relative;
@@ -139,7 +138,7 @@
   }
 }
 
-@media screen and (448px < width < 768px) {
+@media screen and (448px < width < 769px) {
   .navtop {
     .nav_top {
       display: none;

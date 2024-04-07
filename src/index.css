@@ -13,6 +13,10 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --toastify-color-error: #ed3729;
+}
+
 .container {
   position: relative;
   overflow-x: hidden;
@@ -35,3 +39,11 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #828080;
 }
+
+@media screen and (width < 768px) {
+  .select_option {
+    font-size: 12px;
+  }
+}
+
+/* kiss: keep it simple, stupid  */

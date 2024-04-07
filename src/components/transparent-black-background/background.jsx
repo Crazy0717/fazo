@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
 import "./background.scss";
+import { useDispatch, useSelector } from "react-redux";
 import { disablEveryThing } from "../../slices/transparent-black-background";
 
 const BlackBackground = () => {

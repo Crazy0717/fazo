@@ -1,11 +1,4 @@
-@import "../../variables";
-@import "../../mixins";
-
-@keyframes shine {
-  to {
-    background-position-x: -200%;
-  }
-}
+@use "../../variables" as *;
 
 .boxes {
   display: flex;
@@ -22,115 +15,6 @@
       display: inline-block;
     }
   }
-  .boxes_box {
-    width: 280px;
-    border: 1px solid #f2f2f2;
-    border-radius: $borderRadius;
-    transition: 0.1s;
-    &:hover {
-      box-shadow: 0px 0px 20px 0px #0000001a;
-    }
-
-    .boxes_box_top {
-      width: 100%;
-      position: relative;
-      .box_top_image {
-        width: 100%;
-        @include centerFlex();
-        @include Loading();
-        .productDel {
-          display: none;
-          position: absolute;
-          top: 15px;
-          right: 15px;
-          width: 30px;
-          height: 30px;
-          border: 0.3px solid #bdbdbd;
-          border-radius: 50%;
-          color: #bdbdbd;
-          font-size: 20px;
-          transition: 0.1s;
-          cursor: pointer;
-
-          &.active {
-            @include centerFlex();
-          }
-          &:hover {
-            background-color: rgb(238, 234, 234);
-          }
-        }
-        img {
-          width: 144px;
-          height: 144px;
-          z-index: -1;
-        }
-      }
-      .box_top_price {
-        padding: 10px 16px;
-        @include alignCenterFlex();
-        flex-direction: column;
-
-        span {
-          font-size: 12px;
-          font-weight: 400;
-          color: $secondary;
-          text-decoration: line-through;
-          @include Loading();
-          &.isLoading {
-            color: transparent;
-          }
-        }
-        p {
-          font-size: 17px;
-          font-weight: 500;
-          color: $primary;
-          padding-left: 10px;
-          @include Loading();
-          &.isLoading {
-            color: transparent;
-          }
-        }
-      }
-      .box_top_name {
-        padding: 0 20px;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 24px;
-        text-align: center;
-        p {
-          @include Loading();
-          &.isLoading {
-            color: transparent;
-          }
-        }
-      }
-    }
-    .boxes_box_bottom {
-      margin-top: 20px;
-      .box_bottom_icons {
-        @include alignCenterFlex();
-        justify-content: center;
-        border-top: 1px solid #f2f2f2;
-
-        .icon {
-          padding: 15px 34px;
-          font-size: 18px;
-          color: #bdbdbd;
-          cursor: pointer;
-          transition: all ease 0.1s;
-          &:hover {
-            color: $primary;
-          }
-        }
-        hr {
-          width: 1px;
-          height: 24px;
-          background-color: #f2f2f2;
-          border: none;
-        }
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 448px) {
@@ -138,87 +22,14 @@
     width: 100% !important;
     justify-content: center;
     row-gap: 20px;
-    .boxes_box {
-      width: 100%;
-
-      .boxes_box_top {
-        width: 100%;
-
-        .box_top_image {
-          img {
-            width: 130px;
-          }
-        }
-
-        .box_top_price {
-          padding: 10px 16px;
-
-          span {
-            font-size: 12px;
-          }
-          p {
-            font-size: 16px;
-            padding-left: 10px;
-          }
-        }
-        .box_top_name {
-          font-size: 14px;
-          line-height: 20px;
-        }
-      }
-      .boxes_box_bottom {
-        margin-top: 20px;
-        .box_bottom_icons {
-          justify-content: space-around;
-          .icon {
-            padding: 15px 34px;
-          }
-        }
-      }
-    }
   }
 }
 
 @media screen and (min-width: 448px) and (max-width: 768px) {
   .boxes {
     width: 100% !important;
-    justify-content: space-around;
+    gap: 0;
     row-gap: 20px;
-    .boxes_box {
-      width: 230px;
-      .boxes_box_top {
-        .box_top_image {
-          img {
-            width: 130px;
-          }
-        }
-
-        .box_top_price {
-          padding: 10px 16px;
-
-          span {
-            font-size: 12px;
-          }
-          p {
-            font-size: 16px;
-            padding-left: 10px;
-          }
-        }
-        .box_top_name {
-          font-size: 14px;
-          line-height: 20px;
-        }
-      }
-      .boxes_box_bottom {
-        margin-top: 20px;
-        .box_bottom_icons {
-          justify-content: space-around;
-          .icon {
-            padding: 15px 34px;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -227,40 +38,5 @@
     width: 100% !important;
     justify-content: space-around;
     row-gap: 20px;
-    .boxes_box {
-      width: 260px;
-      .boxes_box_top {
-        .box_top_image {
-          img {
-            width: 130px;
-          }
-        }
-
-        .box_top_price {
-          padding: 10px 16px;
-
-          span {
-            font-size: 12px;
-          }
-          p {
-            font-size: 16px;
-            padding-left: 10px;
-          }
-        }
-        .box_top_name {
-          font-size: 14px;
-          line-height: 20px;
-        }
-      }
-      .boxes_box_bottom {
-        margin-top: 20px;
-        .box_bottom_icons {
-          justify-content: space-around;
-          .icon {
-            padding: 15px 34px;
-          }
-        }
-      }
-    }
   }
 }

@@ -1,6 +1,15 @@
-import axios from "axios";
+import axios from "axios"
+import { getItem } from "../helpers/persistance-storage"
 
-axios.defaults.baseURL = "http://192.168.0.153:8765";
+axios.defaults.baseURL = "http://127.0.0.1:8000/"
 // axios.defaults.headers.post['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
 
-export default axios;
+axios.interceptors.request.use((config) => {
+  const token = getItem("token")
+  const authorization = token ? `Bearer ${token}` : ""
+  config.headers.Authorization = authorization
+  return config
+})
+
+
+export default axios

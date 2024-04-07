@@ -1,21 +1,35 @@
-import "./PersonalCabinet.scss";
+import "./PersonalCabinet.scss"
 // icons
-import { IoIosArrowForward, IoIosTimer } from "react-icons/io";
-import { FiUser } from "react-icons/fi";
-import { HiOutlineShoppingCart } from "react-icons/hi2";
-import { GrNotes } from "react-icons/gr";
-import { CiCreditCard1, CiLogout } from "react-icons/ci";
-import { FaRegEnvelope } from "react-icons/fa";
-import { PiTruckLight } from "react-icons/pi";
+import { IoIosArrowForward, IoIosTimer } from "react-icons/io"
+import { FiUser } from "react-icons/fi"
+import { HiOutlineShoppingCart } from "react-icons/hi2"
+import { GrNotes } from "react-icons/gr"
+import { CiCreditCard1, CiLogout } from "react-icons/ci"
+import { FaRegEnvelope } from "react-icons/fa"
+import { PiTruckLight } from "react-icons/pi"
 // ui
-import Switch from "@mui/material/Switch";
-import { alpha, styled } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
-import { Button, TextField } from "@mui/material";
-import { Checkbox } from "antd";
+import Switch from "@mui/material/Switch"
+import { alpha, styled } from "@mui/material/styles"
+import { red } from "@mui/material/colors"
+import { Button, TextField } from "@mui/material"
+import { Checkbox } from "antd"
+import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
+import { CabinetInput } from "../../ui"
+import authService from "../../service/auth"
+import { LogoutModal } from "../../components"
+import { enableLogoutModal } from "../../slices/transparent-black-background"
+import { authUserSuccess } from "../../slices/auth"
 
 const PersonalCabinet = () => {
-  const label = { inputProps: { "aria-label": "Color switch demo" } };
+  const label = { inputProps: { "aria-label": "Color switch demo" } }
+  const { user } = useSelector((state) => state.auth)
+  const [change, setchange] = useState(false)
+  const [name, setName] = useState(user?.name)
+  const [userName, setUserName] = useState(user?.username)
+  const [phoneNumber, setPhoneNumber] = useState(user?.phone_number)
+  const [password, setPassword] = useState()
+  const dispatch = useDispatch()
 
   const RedSwitch = styled(Switch)(({ theme }) => ({
     "& .MuiSwitch-switchBase.Mui-checked": {
@@ -27,10 +41,32 @@ const PersonalCabinet = () => {
     "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
       backgroundColor: red[500],
     },
-  }));
-  
+  }))
+
+  const updateUser = async () => {
+    const newUser = {
+      name,
+      username: userName,
+      password,
+      phone_number: phoneNumber,
+    }
+    try {
+      const response = await authService.updateUser(newUser)
+      console.log(response)
+      getUser()
+      alert(9)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const getUser = async () => {
+    const response = await authService.getUser()
+    dispatch(authUserSuccess(response.data))
+  }
+
   return (
     <>
+      <LogoutModal />
       <div className="map">
         <p>
           Главная <IoIosArrowForward /> Личный кобинет
@@ -39,12 +75,12 @@ const PersonalCabinet = () => {
       <div className="Cobinet">
         <div className="left res">
           <div className="Me">
-            <div className="radio">
+            <div className="Me_radio">
               <FiUser />
             </div>
             <div className="text">
-              <h4>Shukurillo Tojonazarov</h4>
-              <p>+998 99 0333848</p>
+              <h4>{user?.name}</h4>
+              <p>+{user?.phone_number}</p>
             </div>
           </div>
           <div className="items">
@@ -68,7 +104,7 @@ const PersonalCabinet = () => {
               </div>
               <p>Онлайн заказы</p>
             </div>
-            <div className="item">
+            <div onClick={() => dispatch(enableLogoutModal())} className="item">
               <div className="radio">
                 <CiLogout />
               </div>
@@ -85,11 +121,38 @@ const PersonalCabinet = () => {
                 </div>
                 <h3>Личные данные</h3>
               </div>
-              <button>Изменит</button>
+              <button onClick={() => setchange(!change)}>
+                {change ? (<div onClick={updateUser}>Готова</div>) : "Изменит"}
+              </button>
             </div>
             <div className="direction">
-              <h3>Shukurillo Tojinazarov</h3>
-              <p>Телефон: +998 99 0333848</p>
+              <CabinetInput
+                title={"имя"}
+                state={name}
+                setState={setName}
+                change={change}
+              />
+
+              <CabinetInput
+                title={"пароль"}
+                state={password}
+                setState={setPassword}
+                change={change}
+                placeholder={"Новый пароль или предыдущий"}
+              />
+              <CabinetInput
+                title={"имя пользователя"}
+                state={userName}
+                setState={setUserName}
+                change={change}
+              />
+              <CabinetInput
+                title={"телефон"}
+                state={phoneNumber}
+                setState={setPhoneNumber}
+                change={change}
+                isPhoneNumber={true}
+              />
             </div>
           </div>
           <div className="carta">
@@ -165,7 +228,7 @@ const PersonalCabinet = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default PersonalCabinet;
+export default PersonalCabinet

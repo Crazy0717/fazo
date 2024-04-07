@@ -11,3 +11,4 @@ export { default as Product_About } from "./Product_about/Product_About";
 export { default as AStarter } from "./AStarter/AStarter";
 export { default as InterestingProducts } from "./interesting-products/InterestingProducts";
 export { default as Main_menu } from "./main_menu/Main_menu";
+export { default as LogoutModal } from "./logout confirm modal/logoutModal";

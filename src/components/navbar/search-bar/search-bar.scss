@@ -1,19 +1,20 @@
-@import "../../../variables";
-@import "../../../mixins";
+@use "../../../mixins" as *;
 
 .searchBar {
   width: 46%;
   display: flex;
   justify-content: space-between;
   border: 2px solid $primary;
-      border-radius: $borderRadius;
+  border-radius: $borderRadius;
 
   .searchBar_left {
     width: 90%;
     padding: 9px 10px 9px 0;
     @include alignCenterFlex;
     justify-content: space-between;
-    .ant-space {
+    .ant-select {
+      display: flex;
+      gap: 10px;
       .ant-select-selection-item {
         font-size: 14px;
       }
@@ -91,7 +92,18 @@
       padding: 5px 10px 5px 0;
 
       .microphone {
-        font-size: 34px;
+        font-size: 36px;
+      }
+
+      .ant-select {
+        width: 100px !important;
+
+        .ant-select-selection-item {
+          font-size: 12px;
+        }
+        .ant-select-arrow {
+          font-size: 18px;
+        }
       }
     }
     .searchBar_right {
@@ -106,9 +118,9 @@
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1200px) {
+@media screen and (min-width: 768px) and (max-width: 1000px) {
   .searchBar {
-    width: 56%;
+    width: 50%;
     .searchBar_left {
       width: 90%;
       padding: 8px 10px 8px 0;
@@ -139,5 +151,11 @@
         font-size: 14px;
       }
     }
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+  .searchBar {
+    width: 56%;
   }
 }

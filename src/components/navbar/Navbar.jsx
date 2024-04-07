@@ -1,4 +1,4 @@
-import "./Navbar.scss";
+import "./Navbar.scss"
 // icons
 import {
   FiArrowLeft,
@@ -7,56 +7,71 @@ import {
   FiPhone,
   FiShoppingCart,
   FiUser,
-} from "react-icons/fi";
-import { PiScales } from "react-icons/pi";
-import { HiBars3 } from "react-icons/hi2";
-import { IoCloseOutline, IoShieldCheckmarkOutline } from "react-icons/io5";
-import { LuBookMarked } from "react-icons/lu";
-import { MdOutlineCurrencyExchange } from "react-icons/md";
-import { FaMoneyBills } from "react-icons/fa6";
-import { BiWallet } from "react-icons/bi";
-import { IoIosList } from "react-icons/io";
+} from "react-icons/fi"
+import { PiScales } from "react-icons/pi"
+import { HiBars3 } from "react-icons/hi2"
+import { IoAddCircleOutline, IoCloseOutline, IoShieldCheckmarkOutline } from "react-icons/io5"
+import { LuBookMarked } from "react-icons/lu"
+import { MdOutlineCurrencyExchange } from "react-icons/md"
+import { FaMoneyBills } from "react-icons/fa6"
+import { BiWallet } from "react-icons/bi"
+import { IoIosList } from "react-icons/io"
 // components
-import SearchBar from "./search-bar/search-bar";
-import HoverDropdown from "./hover-dropdown/hover-dropdown";
+import SearchBar from "./search-bar/search-bar"
+import HoverDropdown from "./hover-dropdown/hover-dropdown"
+import Navtop from "./nav top/navtop"
 //
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import {
   disableNavBarsBlock,
   disableNavCategoryResBlock,
   enableNavBarsBlock,
   enableNavCategoryResBlock,
-} from "../../slices/transparent-black-background";
-import { categoryThemes, categoryThemesInside } from "../../data/category";
-import { Link } from "react-router-dom";
-import ServiceData from "../../service/service";
-import Navtop from "./nav top/navtop";
+} from "../../slices/transparent-black-background"
+import { categoryThemes, categoryThemesInside } from "../../data/category"
+import { Link } from "react-router-dom"
+import ServiceData from "../../service/service"
+import { getItem } from "../../helpers/persistance-storage"
+import authService from "../../service/auth"
+import { authUserSuccess } from "../../slices/auth"
 
 const Navbar = () => {
   const { navBarsBlockState, categoryBlockResState } = useSelector(
     (state) => state.background
-  );
-  const [categoryBlockState, setCategoryBlockState] = useState(false);
-  const [categorySubmenuId, setCategorySubmenuId] = useState();
-  const [categories, setCategories] = useState([]);
-  const dispatch = useDispatch();
+  )
+  const { user, loggedIn } = useSelector((state) => state.auth)
+  const [categoryBlockState, setCategoryBlockState] = useState(false)
+  const [categorySubmenuId, setCategorySubmenuId] = useState()
+  const [categories, setCategories] = useState([])
+  const dispatch = useDispatch()
+  const token = getItem("token")
 
   const getApi = async () => {
-    const { data } = await ServiceData.getData("categories/get_categories");
-    setCategories(data);
-    // console.log(data);
-  };
+    const { data } = await ServiceData.getData("categories/get_categories")
+    setCategories(data)
+  }
+
+  const getUser = async () => {
+    try {
+      const response = await authService.getUser()
+      dispatch(authUserSuccess(response.data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
-    getApi();
-  }, []);
+    if (token) {
+      getUser()
+    }
+    getApi()
+  }, [])
 
   return (
     <nav>
       {/* top of navbar */}
       <Navtop />
-
       <div className="nav_center">
         <div className="nav_center_logo">
           <Link to={"/"}>
@@ -67,12 +82,12 @@ const Navbar = () => {
           onClick={() => dispatch(enableNavBarsBlock())}
           className="bars-mobile"
         />
-        <SearchBar />
+        <SearchBar categories={categories} />
         <div className="nav_center_icons">
           <div className="icon">
-            <Link to={"/login"}>
+            <Link to={token ? "/cabinet" : "/login"}>
               <FiUser />
-              <p>Войти</p>
+              <p id="user-icon">{token ? `${user?.name}` : "Войти"}</p>
             </Link>
           </div>
           <div className="icon">
@@ -91,6 +106,12 @@ const Navbar = () => {
             <Link to={"/purchase"}>
               <FiShoppingCart />
               <p>Корзина</p>
+            </Link>
+          </div>
+          <div className={user?.role == "admin" ? "icon" : "icon hidden"}>
+            <Link to={"/purchase"}>
+              <IoAddCircleOutline />
+              <p>Админ</p>
             </Link>
           </div>
         </div>
@@ -114,7 +135,10 @@ const Navbar = () => {
             <IoCloseOutline />
           </div>
         </div>
-        <div className="nav_center_bars_block_userPart">
+        <div
+          style={{ display: loggedIn ? "none" : "" }}
+          className="nav_center_bars_block_userPart"
+        >
           <div className="block_userPart_logIn">
             <Link to={"/login"}>
               <FiUser />
@@ -160,7 +184,7 @@ const Navbar = () => {
       <div className="nav_bottom">
         <div
           onClick={() => {
-            setCategoryBlockState(!categoryBlockState);
+            setCategoryBlockState(!categoryBlockState)
           }}
           className="nav_bottom_category"
         >
@@ -177,20 +201,11 @@ const Navbar = () => {
         </div>
 
         <ul>
-          <Link to={"/category/Laptops/get_laptops"}>
-            <li>noutbuklar</li>
-          </Link>
-          <Link to={"/category/Planshets/get_all_planshets"}>
-            <li>planshetlar</li>
-          </Link>
-          <Link to={"/category/Telephones/get_all_phones"}>
-            <li>telefonlar</li>
-          </Link>
-          {/* {categories.map((item) => (
-            <Link key={item.id} to={"/category/slug"}>            
+          {categories.map((item) => (
+            <Link key={item.id} to={`/category${item.link}`}>
               <li>{item.name}</li>
             </Link>
-          ))} */}
+          ))}
         </ul>
       </div>
       {/* bottom_category_block */}
@@ -201,7 +216,7 @@ const Navbar = () => {
             : "bottom_category_block"
         }
       >
-        <ul>
+        {/* <ul>
           {categoryThemes.map((item) => (
             <li
               onMouseEnter={() => setCategorySubmenuId(item.id)}
@@ -216,6 +231,14 @@ const Navbar = () => {
               <FiChevronRight />
             </li>
           ))}
+        </ul> */}
+        <ul>
+          {categories &&
+            categories.map((item) => (
+              <Link key={item.id} to={item.link}>
+                {item.name}
+              </Link>
+            ))}
         </ul>
         <HoverDropdown categorySubmenuId={categorySubmenuId} />
       </div>
@@ -249,7 +272,6 @@ const Navbar = () => {
                 <item.icon />
                 <p>{item.name}</p>
               </div>
-
               <FiChevronRight />
             </li>
           ))}
@@ -272,7 +294,7 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
