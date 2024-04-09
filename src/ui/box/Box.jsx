@@ -21,6 +21,18 @@ const Box = ({ item, favorite }) => {
       console.log(error)
     }
   }
+
+  const handleRemoveFavorite = async () => {
+    try {
+      const data = await ServiceData.postData(
+        `likes/create_likes?source=${item.name}&source_id=${item.category_id}`
+      )
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleAddCartBox = async (itemDetail) => {
     try {
       const data = await ServiceData.postData(
@@ -37,7 +49,7 @@ const Box = ({ item, favorite }) => {
         <div
           className={isloading ? "box_top_image isLoading" : "box_top_image"}
         >
-          <div className={favorite ? "productDel active" : "productDel"}>
+          <div  className={favorite ? "productDel active" : "productDel"}>
             <IoCloseOutline />
           </div>
           <img loading="lazy" src="/images/phone.png" alt="" />

@@ -17,34 +17,32 @@ import { useEffect, useState } from "react"
 
 const Purchase = () => {
   const [cartsData, setCartsData] = useState()
-  // const [cartsImage, setCartsImage] = useState()
-  // const [cartsImageFileName, setCartsImageFileName] = useState()
+  const [cartsImageData, setCartsImageData] = useState([])
   let totalPrice = 0
-
-  const getCarts = async () => {
-    try {
-      const response = await ServiceData.getData("/trade/get_trades")
-      setCartsData(response)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  // files[0].new_files
-  // const getImages = async (fileName) => {
-  //   try {
-  //     const cartImage = await ServiceData.getData(
-  //       `/files/${response?.data?.files[0].new_files}`
-  //     )
-  //     setCartsImage(response)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   useEffect(() => {
     getCarts()
   }, [])
+
+  const getCarts = async () => {
+    try {
+      const response = await ServiceData.getData("/trade/get_trades")
+      // get images ⬇
+      const imagePromises = response.data.map(async (item) => {
+        const imageUrl = await ServiceData.getImages(
+          item.laptop.files[0].new_files
+        )
+        return { imageName: item.laptop.files[0].new_files, blobLink: imageUrl }
+      })
+      const images = await Promise.all(imagePromises)
+
+      setCartsData(response)
+      setCartsImageData(images)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
   return (
     <div className="purchase">
       <div className="purchase_left">
@@ -73,34 +71,35 @@ const Purchase = () => {
             <div className="content yourOrders">
               {cartsData &&
                 cartsData.data.map((item) => {
-                  totalPrice = item.price
+                  totalPrice = item.laptop.discount_price
+
                   return (
                     <div key={item.id} className="product">
-                      <img src="/images/computer 2.png" alt="image" />
+                      <img
+                        src={cartsImageData.map((imageLink) =>
+                          item.laptop.files[0].new_files == imageLink.imageName
+                            ? imageLink.blobLink
+                            : ""
+                        )}
+                        alt="image"
+                      />
                       <div className="product_info">
                         <h3>{item.laptop.description}</h3>
-                        <span>1 шт</span>
-                        <p>{item.laptop.price} cум</p>
+                        <span>{item.amount} шт</span>
+                        <p>{item.laptop.discount_price} cум</p>
                       </div>
                     </div>
                   )
                 })}
-              <div className="product">
+
+              {/* <div className="product">
                 <img src="/images/computer 2.png" alt="" />
                 <div className="product_info">
                   <h3>Galaxy A03 Core 2/32Gb Black</h3>
                   <span>1 шт</span>
                   <p>1 334 000 cум</p>
                 </div>
-              </div>
-              <div className="product">
-                <img src="/images/computer 2.png" alt="" />
-                <div className="product_info">
-                  <h3>Galaxy A03 Core 2/32Gb Black</h3>
-                  <span>1 шт</span>
-                  <p>1 334 000 cум</p>
-                </div>
-              </div>
+              </div> */}
             </div>
           </section>
           <section>

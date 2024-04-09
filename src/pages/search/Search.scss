@@ -1,0 +1,80 @@
+@use '../../mixins' as *;
+
+.search {
+  padding: 20px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .pagination {
+    @include alignCenterFlex;
+    justify-content: center;
+    margin-bottom: 60px;
+
+    .pagination_button {
+      color: $black;
+      font-size: 24px;
+      transition: 0.1s;
+      cursor: pointer;
+      &:hover {
+        color: $primary;
+      }
+      &:active {
+        color: $black;
+      }
+    }
+    ul {
+      @include alignCenterFlex;
+      align-items: start;
+      gap: 2px;
+      padding-bottom: 6px;
+      li {
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: 400;
+        color: $black;
+        border: 1px solid transparent;
+        border-radius: $borderRadius;
+        cursor: pointer;
+        &.activePage {
+          color: $primary;
+          border: 1px solid $primary;
+        }
+        &.next {
+          color: $black;
+          font-size: 20px;
+          transition: 0.1s;
+          cursor: pointer;
+          margin-left: 20px;
+          &:hover {
+            color: $primary;
+          }
+          &:active {
+            color: $black;
+          }
+        }
+        &.previous {
+          @extend .next;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (width < 448px) {
+  .search {
+    padding: 20px 10px 80px 10px;
+  }
+}
+
+@media screen and (448px < width < 768px) {
+  .search {
+    padding: 20px 14px 80px 14px;
+  }
+}
+
+@media screen and (768px < width < 1200px) {
+  .search {
+    padding: 25px 14px 80px 14px;
+  }
+}

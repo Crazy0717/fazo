@@ -28,7 +28,7 @@ const Favorite = () => {
       {favoritiesData?.data?.length == 0 ? (
         <p>Вы еще не добавили продукты</p>
       ) : (
-        <Boxes boxesData={favoritiesData} favorite={true} />
+        <Boxes boxesData={favoritiesData?.data} favorite={true} />
       )}
     </div>
   )

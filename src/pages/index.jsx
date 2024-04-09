@@ -7,3 +7,4 @@ export { default as Login } from "./login/Login";
 export { default as SignUp } from "./sign up/SignUp";
 export { default as PersonalCabinet } from "./PersonalCabinet/PersonalCabinet";
 export { default as Compare } from "./compare/Compare";
+export { default as Search } from "./search/Search";

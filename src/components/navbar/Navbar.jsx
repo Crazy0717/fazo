@@ -10,7 +10,11 @@ import {
 } from "react-icons/fi"
 import { PiScales } from "react-icons/pi"
 import { HiBars3 } from "react-icons/hi2"
-import { IoAddCircleOutline, IoCloseOutline, IoShieldCheckmarkOutline } from "react-icons/io5"
+import {
+  IoAddCircleOutline,
+  IoCloseOutline,
+  IoShieldCheckmarkOutline,
+} from "react-icons/io5"
 import { LuBookMarked } from "react-icons/lu"
 import { MdOutlineCurrencyExchange } from "react-icons/md"
 import { FaMoneyBills } from "react-icons/fa6"
@@ -235,7 +239,11 @@ const Navbar = () => {
         <ul>
           {categories &&
             categories.map((item) => (
-              <Link key={item.id} to={item.link}>
+              <Link
+                onClick={() => setCategoryBlockState(false)}
+                key={item.id}
+                to={`/category${item.link}`}
+              >
                 {item.name}
               </Link>
             ))}

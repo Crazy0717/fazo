@@ -9,9 +9,10 @@ import {
   PersonalCabinet,
   ProductInside,
   Purchase,
+  Search,
   SignUp,
 } from "./pages"
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css"
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="/sign" element={<SignUp />} />
         <Route path="/cabinet" element={<PersonalCabinet />} />
         <Route path="/compare" element={<Compare />} />
-        Compare
+        <Route path="/search/:word" element={<Search />} />
       </Routes>
       <Footer />
       <Main_menu />

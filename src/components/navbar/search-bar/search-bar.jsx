@@ -4,9 +4,16 @@ import "./search-bar.scss"
 import { HiMagnifyingGlass, HiOutlineMicrophone } from "react-icons/hi2"
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 const SearchBar = ({ categories }) => {
+  const [searchWord, setSearchWord] = useState()
   const navigate = useNavigate()
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    navigate(`/search/${searchWord}`)
+  }
 
   const handleChange = (e) => {
     navigate(`/category${e}`)
@@ -32,10 +39,14 @@ const SearchBar = ({ categories }) => {
             ))}
           </Select>
         </Space>
-        <input type="text" placeholder="Телефоны и бытовая" />
+        <input
+          onChange={(e) => setSearchWord(e.target.value)}
+          type="text"
+          placeholder="Телефоны и бытовая"
+        />
         <HiOutlineMicrophone className="microphone" />
       </div>
-      <button type="submit" className="searchBar_right">
+      <button onClick={handleSearch} className="searchBar_right">
         <HiMagnifyingGlass className="magnify-icon" />
         <p>Поиск</p>
       </button>

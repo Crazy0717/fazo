@@ -16,7 +16,7 @@ import {
   Category_Accordion,
   InterestingProducts,
 } from "../../components"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import ServiceData from "../../service/service"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
@@ -187,7 +187,7 @@ const Category = () => {
             <button onClick={() => setSubmit(!submit)}>Показать</button>
           </div>
           <div className="category_boxes">
-            <Boxes boxesData={boxes} width={"100%"} />
+            <Boxes boxesData={boxes.data} width={"100%"} />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import "./Boxes.scss"
 import Box from "../../ui/box/Box"
 
 const Boxes = ({ boxesData, width, favorite }) => {
+  console.log(boxesData)
   return (
     <div style={{ width: width }} className="boxes">
       {/* <h1
@@ -9,8 +10,8 @@ const Boxes = ({ boxesData, width, favorite }) => {
       >
         Результатов не найдено
       </h1> */}
-      {boxesData?.data &&
-        boxesData?.data.map((item) => (
+      {boxesData && 
+        boxesData.map((item) => (
           <Box item={item} favorite={favorite} key={item.id} />
         ))}
     </div>

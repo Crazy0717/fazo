@@ -1,39 +1,27 @@
 import "./RecommendBoxes.scss"
-import Box from "../../ui/box/Box"
+import Boxes from "../boxes/Boxes"
+import { useEffect, useState } from "react"
+import ServiceData from "../../service/service"
 
 const RecommendBoxes = () => {
+  const [recommendProducts, setRecommendProducts] = useState()
+
+  useEffect(() => {
+    getRecommendProducts()
+  }, [])
+
+  const getRecommendProducts = async () => {
+    try {
+      const response = await ServiceData.getData("/main/get_cheap_product")
+      setRecommendProducts(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="recommendBoxes">
-      <Box
-        title={"Телефон TECNO Spark 6 Go KE5j 3/64GB Ice Jadeite "}
-        price={"7 250 000 сум/мес"}
-        discount_price={"9 500 000"}
-      />
-      <Box
-        title={"Телефон TECNO Spark 6 Go KE5j 3/64GB Ice Jadeite "}
-        price={"7 250 000 сум/мес"}
-        discount_price={"9 500 000"}
-      />
-      <Box
-        title={"Телефон TECNO Spark 6 Go KE5j 3/64GB Ice Jadeite "}
-        price={"7 250 000 сум/мес"}
-        discount_price={"9 500 000"}
-      />
-      <Box
-        title={"Телефон TECNO Spark 6 Go KE5j 3/64GB Ice Jadeite "}
-        price={"7 250 000 сум/мес"}
-        discount_price={"9 500 000"}
-      />
-      <Box
-        title={"Телефон TECNO Spark 6 Go KE5j 3/64GB Ice Jadeite "}
-        price={"7 250 000 сум/мес"}
-        discount_price={"9 500 000"}
-      />
-      <Box
-        title={"Телефон TECNO Spark 6 Go KE5j 3/64GB Ice Jadeite "}
-        price={"7 250 000 сум/мес"}
-        discount_price={"9 500 000"}
-      />
+      <Boxes boxesData={recommendProducts?.data.slice(0, 6)} />
     </div>
   )
 }
