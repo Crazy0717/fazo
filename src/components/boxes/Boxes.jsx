@@ -1,8 +1,7 @@
 import "./Boxes.scss"
 import Box from "../../ui/box/Box"
 
-const Boxes = ({ boxesData, width, favorite }) => {
-  console.log(boxesData)
+const Boxes = ({ boxesData, width, favorite, helper,setHelper }) => {
   return (
     <div style={{ width: width }} className="boxes">
       {/* <h1
@@ -12,15 +11,16 @@ const Boxes = ({ boxesData, width, favorite }) => {
       </h1> */}
       {boxesData && 
         boxesData.map((item) => (
-          <Box item={item} favorite={favorite} key={item.id} />
+          <Box item={item} favorite={favorite} key={item.id} helper={helper} setHelper={setHelper}/>
         ))}
     </div>
   )
 }
 
 export default Boxes
-
+{/* deleteFromProject */}
 {
+  // InterestingProducts
   /* <div className="boxes_box">
 <div className="boxes_box_top">
   <div

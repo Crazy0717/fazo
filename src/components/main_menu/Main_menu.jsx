@@ -1,6 +1,6 @@
 import "./Main_menu.scss"
 // icons
-import { IoHomeOutline } from "react-icons/io5"
+import { IoAddCircleOutline, IoHomeOutline } from "react-icons/io5"
 import { FiShoppingCart } from "react-icons/fi"
 import { FaRegHeart, FaRegUser } from "react-icons/fa"
 import { PiScales } from "react-icons/pi"
@@ -40,6 +40,12 @@ const Main_menu = () => {
         <NavLink to={"/compare"}>
           <PiScales className="icon" />
           <p>Сравнение</p>
+        </NavLink>
+      </div>
+      <div className={user?.role == "admin" ? "menu is-admin" : "menu hidden"}>
+        <NavLink to={"/admin/dashboard"}>
+          <IoAddCircleOutline />
+          <p>Админ</p>
         </NavLink>
       </div>
     </div>

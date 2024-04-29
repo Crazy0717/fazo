@@ -6,10 +6,11 @@ import { useEffect, useState } from "react"
 
 const Favorite = () => {
   const [favoritiesData, setFavoritiesData] = useState()
+  const [helper, setHelper] = useState(true)
 
   useEffect(() => {
     getFavorities()
-  }, [])
+  }, [helper])
 
   const getFavorities = async () => {
     try {
@@ -19,7 +20,7 @@ const Favorite = () => {
       console.log(error)
     }
   }
-
+  
   return (
     <div className="favorite">
       <div className="title">
@@ -28,7 +29,12 @@ const Favorite = () => {
       {favoritiesData?.data?.length == 0 ? (
         <p>Вы еще не добавили продукты</p>
       ) : (
-        <Boxes boxesData={favoritiesData?.data} favorite={true} />
+        <Boxes
+          boxesData={favoritiesData?.data}
+          favorite={true}
+          helper={helper}
+          setHelper={setHelper}
+        />
       )}
     </div>
   )

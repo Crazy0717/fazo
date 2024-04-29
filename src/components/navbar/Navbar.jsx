@@ -101,19 +101,21 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="icon">
+            <div className="tag">3</div>
             <Link to={"/favorite"}>
               <FiHeart />
               <p>Избранное</p>
             </Link>
           </div>
           <div className="icon">
+          <div className="tag two">3</div>
             <Link to={"/purchase"}>
               <FiShoppingCart />
               <p>Корзина</p>
             </Link>
           </div>
           <div className={user?.role == "admin" ? "icon" : "icon hidden"}>
-            <Link to={"/purchase"}>
+            <Link to={"/admin/dashboard"}>
               <IoAddCircleOutline />
               <p>Админ</p>
             </Link>
@@ -236,6 +238,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul> */}
+        {/* deleteFromProject */}
         <ul>
           {categories &&
             categories.map((item) => (

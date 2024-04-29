@@ -36,7 +36,6 @@ const SignUp = () => {
       const response = await authService.registerUser(user)
       navigate("/login")
       dispatch(authUserSuccess(response.config.data))
-      console.log(user)
     } catch (error) {
       console.log("Error")
     }
@@ -80,6 +79,9 @@ const SignUp = () => {
             title={"Номер телефона"}
             icon={<FiPhone />}
             id={"phoneNumber"}
+            type={"number"}
+            minValue={10}
+            maxValue={11}
           />
         </form>
         <div className="buttons">

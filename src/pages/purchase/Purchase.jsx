@@ -14,30 +14,46 @@ import {
 import { FiCalendar } from "react-icons/fi"
 import ServiceData from "../../service/service"
 import { useEffect, useState } from "react"
+import { IoCloseOutline } from "react-icons/io5"
 
 const Purchase = () => {
   const [cartsData, setCartsData] = useState()
+  const [CartError, setCartError] = useState()
   const [cartsImageData, setCartsImageData] = useState([])
+
   let totalPrice = 0
 
   useEffect(() => {
-    getCarts()
+    getCartsData()
   }, [])
 
-  const getCarts = async () => {
+  const getCartsData = async () => {
     try {
       const response = await ServiceData.getData("/trade/get_trades")
       // get images ⬇
       const imagePromises = response.data.map(async (item) => {
         const imageUrl = await ServiceData.getImages(
-          item.laptop.files[0].new_files
+          item.laptop.files[0]?.new_files
         )
-        return { imageName: item.laptop.files[0].new_files, blobLink: imageUrl }
+        return {
+          imageName: item?.laptop?.files[0]?.new_files,
+          blobLink: imageUrl,
+        }
       })
       const images = await Promise.all(imagePromises)
 
       setCartsData(response)
       setCartsImageData(images)
+    } catch (error) {
+      setCartError(error?.response?.data?.detail)
+      console.log(error)
+    }
+  }
+  const handleRemoveCart = async (id) => {
+    try {
+      const data = await ServiceData.deleteData(
+        `trade/delete_trades?ident=${id}`
+      )
     } catch (error) {
       console.log(error)
     }
@@ -69,6 +85,7 @@ const Purchase = () => {
               <p>Ваш заказ</p>
             </div>
             <div className="content yourOrders">
+              {!cartsData && <p>{CartError}</p>}
               {cartsData &&
                 cartsData.data.map((item) => {
                   totalPrice = item.laptop.discount_price
@@ -77,7 +94,8 @@ const Purchase = () => {
                     <div key={item.id} className="product">
                       <img
                         src={cartsImageData.map((imageLink) =>
-                          item.laptop.files[0].new_files == imageLink.imageName
+                          item.laptop?.files[0]?.new_files ==
+                          imageLink.imageName
                             ? imageLink.blobLink
                             : ""
                         )}
@@ -87,6 +105,12 @@ const Purchase = () => {
                         <h3>{item.laptop.description}</h3>
                         <span>{item.amount} шт</span>
                         <p>{item.laptop.discount_price} cум</p>
+                      </div>
+                      <div
+                        onClick={() => handleRemoveCart(item, id)}
+                        className="productDel"
+                      >
+                        <IoCloseOutline />
                       </div>
                     </div>
                   )
@@ -100,6 +124,7 @@ const Purchase = () => {
                   <p>1 334 000 cум</p>
                 </div>
               </div> */}
+              {/* deleteFromProject */}
             </div>
           </section>
           <section>

@@ -27,15 +27,12 @@ html {
 ::-webkit-scrollbar {
   width: 12px;
 }
-
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #909090;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #828080;
 }
@@ -45,5 +42,3 @@ html {
     font-size: 12px;
   }
 }
-
-/* kiss: keep it simple, stupid  */

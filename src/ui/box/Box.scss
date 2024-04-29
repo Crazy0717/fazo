@@ -36,7 +36,6 @@
         font-size: 20px;
         transition: 0.1s;
         cursor: pointer;
-
         &.active {
           @include centerFlex();
         }
@@ -87,7 +86,7 @@
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         overflow: hidden;
-
+        color: $black;
         @include Loading();
         &.isLoading {
           color: transparent;
@@ -109,6 +108,9 @@
         cursor: pointer;
         transition: all ease 0.1s;
         &:hover {
+          color: $primary;
+        }
+        &.active {
           color: $primary;
         }
       }

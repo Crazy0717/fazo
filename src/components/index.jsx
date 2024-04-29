@@ -12,3 +12,7 @@ export { default as AStarter } from "./AStarter/AStarter";
 export { default as InterestingProducts } from "./interesting-products/InterestingProducts";
 export { default as Main_menu } from "./main_menu/Main_menu";
 export { default as LogoutModal } from "./logout confirm modal/logoutModal";
+export { default as Asidebar } from "./asidebar/Asidebar";
+export { default as NotFound } from "./404 not found/notFound";
+export { default as C } from "./404 not found/notFound";
+

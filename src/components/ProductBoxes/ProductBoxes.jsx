@@ -7,6 +7,7 @@ import Boxes from "../boxes/Boxes"
 
 const ProductBoxes = () => {
   const [cheapProducts, setCheapProducts] = useState()
+  
   useEffect(() => {
     getCheapProducts()
   }, [])
@@ -28,7 +29,7 @@ const ProductBoxes = () => {
         price={"7 250 000 сум/мес"}
         discount_price={"9 500 000 сум"}
       /> */}
-
+      {/* deleteFromProject */}
     </div>
   )
 }

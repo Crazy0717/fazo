@@ -1,0 +1,26 @@
+@use "../../mixins" as *;
+
+aside {
+  width: 220px;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  border-right: $secondary 1px solid;
+  .tab {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    color: $black;
+    border-radius: $borderRadius;
+    cursor: pointer;
+    transition: 0.1s;
+    &:hover {
+      background-color: #f2f2f2;
+    }
+    &.active {
+      color: $primary;
+    }
+  }
+}

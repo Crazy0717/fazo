@@ -63,7 +63,7 @@ const PersonalCabinet = () => {
     const response = await authService.getUser()
     dispatch(authUserSuccess(response.data))
   }
-
+  
   return (
     <>
       <LogoutModal />
@@ -207,12 +207,11 @@ const PersonalCabinet = () => {
                   variant="outlined"
                 />
                 <div className="House_Or_apartment">
-                  <TextField id="labelInput" label="Дом " variant="outlined" />
+                  <TextField id="labelInput" label="Дом" variant="outlined" />
                   <TextField
                     id="labelInput"
                     label="Квартира "
                     variant="outlined"
-                    style={{}}
                   />
                 </div>
                 <div className="checkbox">

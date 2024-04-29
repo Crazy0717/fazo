@@ -10,6 +10,8 @@ const AuthInput = ({
   state,
   setState,
   password,
+  minValue = 0,
+  maxValue = 100,
 }) => {
   const [isPassword, setIsPassword] = useState(password)
 
@@ -23,8 +25,10 @@ const AuthInput = ({
         <input
           onChange={(e) => setState(e.target.value)}
           value={state}
-          type={isPassword ? "password" : "text"}
+          type={isPassword ? "password" : type}
           id={id}
+          minLength={minValue}
+          maxLength={maxValue}
           required
         />
         <button

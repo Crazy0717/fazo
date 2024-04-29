@@ -7,13 +7,32 @@ import {
   InterestingProducts,
   Product_About,
 } from "../../components"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { FreeMode, Navigation, Thumbs } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import ServiceData from "../../service/service"
 
 const ProductInside = () => {
+  const { category, id } = useParams()
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const [productData, setProductData] = useState()
+
+  const getProductData = async () => {
+    try {
+      const { data } = await ServiceData.getData(
+        `main/get_one_source?name=${category}&ident=${id}`
+      )
+      console.log(data)
+      setProductData(data[0])
+    } catch (error) {
+      console.log("Product inside" + error)
+    }
+  }
+
+  useEffect(() => {
+    getProductData()
+  }, [])
 
   return (
     <div className="productInside">
@@ -97,13 +116,14 @@ const ProductInside = () => {
         </div>
         <div className="right">
           <div className="Aboute">
-            <Filter_inside_product_direction />
-            <Product_About />
+            <Filter_inside_product_direction item={productData} />
+            <Product_About item={productData} />
           </div>
           <div className="AStarter">
             <AStarter />
           </div>
-          <InterestingProducts title={"Недавно просмотренные"} />
+          <InterestingProducts title={"Недавно просмотренные"} />{" "}
+          {/* deleteFromProject */}
         </div>
       </div>
     </div>

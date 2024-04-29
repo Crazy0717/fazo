@@ -8,3 +8,7 @@ export { default as SignUp } from "./sign up/SignUp";
 export { default as PersonalCabinet } from "./PersonalCabinet/PersonalCabinet";
 export { default as Compare } from "./compare/Compare";
 export { default as Search } from "./search/Search";
+export { default as Admin } from "./admin/Admin";
+export { default as CreateLaptop } from "./admin/create/createLaptop";
+export { default as CreatePhone } from "./admin/create/createPhone";
+export { default as CreateTablet } from "./admin/create/createTablet";

@@ -1,0 +1,115 @@
+@use "../../../mixins" as *;
+
+.create {
+  padding: 20px 100px 90px 100px;
+  display: flex;
+  gap: 20px;
+
+  .main {
+    width: 82%;
+    padding: 20px 0 10px 0;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+    h1 {
+      font-size: 20px;
+      color: $black;
+    }
+    .inputs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      row-gap: 20px;
+      column-gap: 26px;
+    }
+    .image-stage {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    button {
+      padding: 8px 28px;
+      border-radius: $borderRadius;
+      border: none;
+      transition: 0.1s;
+      cursor: pointer;
+      background-color: $primary;
+      color: $tertiary;
+      font-size: 14px;
+      text-transform: none;
+
+      &:hover {
+        background-color: #d12a2c;
+      }
+    }
+    img {
+      width: 100px;
+      padding: 6px;
+      border: 1px solid $secondary;
+      border-radius: $borderRadius;
+    }
+    #fileInput {
+      display: none;
+    }
+    #fileLabel {
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid $secondary;
+      border-radius: $borderRadius;
+      color: $black;
+      transition: all ease 0.1s;
+      cursor: pointer;
+      &:hover {
+        border: 1px solid $primary;
+      }
+      &:active {
+        color: $secondary;
+      }
+      #icon {
+        font-size: 20px;
+      }
+    }
+  }
+  .MuiTextField-root {
+    .MuiOutlinedInput-root {
+      &.Mui-focused fieldset {
+        border: 1px solid $primary;
+      }
+    }
+    .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+      color: $secondary;
+    }
+  }
+  #name {
+    width: 40vw;
+  }
+  .ant-input-number {
+    width: 20vw;
+  }
+  #row-two,
+  #row-three {
+    width: 18.8vw;
+  }
+  #row-four {
+    width: 250px;
+  }
+}
+
+@media screen and (700px < width < 1200px) {
+  .create {
+    padding: 20px 10px 90px 10px;
+    #name {
+      width: 60vw;
+    }
+    #row-two,
+    #row-three {
+      width: 26vw;
+    }
+    #row-four {
+      width: 250px;
+    }
+  }
+}

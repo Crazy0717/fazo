@@ -12,7 +12,7 @@ const SearchBar = ({ categories }) => {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    navigate(`/search/${searchWord}`)
+    navigate(`/search/${searchWord.trim()}`)
   }
 
   const handleChange = (e) => {
@@ -20,7 +20,7 @@ const SearchBar = ({ categories }) => {
   }
 
   return (
-    <form className="searchBar">
+    <form onSubmit={handleSearch} className="searchBar">
       <div className="searchBar_left">
         <Space wrap>
           <Select
@@ -43,10 +43,11 @@ const SearchBar = ({ categories }) => {
           onChange={(e) => setSearchWord(e.target.value)}
           type="text"
           placeholder="Телефоны и бытовая"
+          required
         />
         <HiOutlineMicrophone className="microphone" />
       </div>
-      <button onClick={handleSearch} className="searchBar_right">
+      <button className="searchBar_right">
         <HiMagnifyingGlass className="magnify-icon" />
         <p>Поиск</p>
       </button>

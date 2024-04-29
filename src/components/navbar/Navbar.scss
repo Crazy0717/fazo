@@ -132,11 +132,28 @@ nav {
         text-overflow: ellipsis;
       }
       .icon {
+        position: relative;
         @include alignCenterFlex;
         flex-direction: column;
         font-size: 14px;
         line-height: 20px;
         cursor: pointer;
+        .tag{
+          position: absolute;
+          top: -5px;
+          right: 14px;
+          z-index: 1;
+          width: 20px;
+          height: 20px;
+          @include centerFlex;
+          border-radius: 50%;
+          background-color: $primary;
+          font-size: 15px !important;
+          color: $tertiary;
+          &.two{
+            right: 5px;
+          }
+        }
         &.hidden {
           display: none;
         }
@@ -365,7 +382,6 @@ nav {
         display: none;
       }
     }
-
     .nav_bottom {
       padding: 0px 10px;
 

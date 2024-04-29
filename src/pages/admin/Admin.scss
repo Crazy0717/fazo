@@ -1,0 +1,13 @@
+@use "../../mixins" as *;
+
+.admin {
+  padding: 20px 100px 50px 100px;
+  display: flex;
+  gap: 20px;
+}
+
+@media screen and (700px < width < 1200px) {
+  .admin {
+    padding: 20px 10px 50px 10px;
+  }
+}

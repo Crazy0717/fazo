@@ -23,8 +23,32 @@ import {
   RecommendBoxes,
 } from "../../components/index"
 import { MdArrowRightAlt } from "react-icons/md"
+import { useEffect, useState } from "react"
+import ServiceData from "../../service/service"
 
 const Home = () => {
+  const [brandsImageURLs, setBrandsImageURLs] = useState([])
+
+  useEffect(() => {
+    getBrands()
+  }, [])
+
+  const getBrands = async () => {
+    try {
+      const response = await ServiceData.getData(
+        "/main/get_brands_for_main?page=1&limit=25"
+      )
+      const imagePromises = response.data.data.map(async (item) => {
+        const imageUrl = await ServiceData.getImages(item.files[0]?.new_files)
+        return { name: item.name, blobLink: imageUrl }
+      })
+      const images = await Promise.all(imagePromises)
+      setBrandsImageURLs(images)
+    } catch (error) {
+      console.log("error getBrands" + error)
+    }
+  }
+
   return (
     <div className="home">
       <header>
@@ -331,69 +355,18 @@ const Home = () => {
                 },
               }}
             >
-              <SwiperSlide>
-                <div className="swiper_slider_image">
-                  <img
-                    loading="lazy"
-                    src="./images/brands (canon).png"
-                    alt=""
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="swiper_slider_image">
-                  <img
-                    loading="lazy"
-                    src="./images/brands (canon).png"
-                    alt=""
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="swiper_slider_image">
-                  <img
-                    loading="lazy"
-                    src="./images/brands (canon).png"
-                    alt=""
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="swiper_slider_image">
-                  <img
-                    loading="lazy"
-                    src="./images/brands (canon).png"
-                    alt=""
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="swiper_slider_image">
-                  <img
-                    loading="lazy"
-                    src="./images/brands (canon).png"
-                    alt=""
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="swiper_slider_image">
-                  <img
-                    loading="lazy"
-                    src="./images/brands (canon).png"
-                    alt=""
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="swiper_slider_image">
-                  <img
-                    loading="lazy"
-                    src="./images/brands (canon).png"
-                    alt=""
-                  />
-                </div>
-              </SwiperSlide>
+              {brandsImageURLs &&
+                brandsImageURLs.map((image) => (
+                  <SwiperSlide>
+                    <div className="swiper_slider_image">
+                      <img
+                        loading="lazy"
+                        src={image.blobLink}
+                        alt={image.name}
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
             </Swiper>
           </div>
         </div>

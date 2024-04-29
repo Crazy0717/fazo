@@ -52,7 +52,7 @@ const Category = () => {
     dispatch(boxesStart())
     try {
       const { data } = await ServiceData.getData(
-        `${subCategory}/${theme}?page=${currentPage}&limit=25&rom_size=${rom_size}&year=0&ram_size=${ram_size}&price=${price}&display=0`
+        `${subCategory}/${theme}?page=${currentPage}&limit=24&rom_size=${rom_size}&year=0&ram_size=${ram_size}&price=${price}&display=0`
       )
       setBoxes(data)
       dispatch(boxesSuccessfully())
@@ -61,7 +61,7 @@ const Category = () => {
       dispatch(boxesError(error))
     }
   }
-  
+
   useEffect(() => {
     getData()
   }, [subCategory, theme, submit, currentPage])
