@@ -6,14 +6,23 @@ import { PiScales } from "react-icons/pi"
 import { useDispatch, useSelector } from "react-redux"
 import ServiceData from "../../service/service"
 import { useEffect, useState } from "react"
-import { addFavorite } from "../../slices/notifications"
+import { addFavorite, changeCounts } from "../../slices/notifications"
 import { Link } from "react-router-dom"
+import { MdDeleteOutline } from "react-icons/md"
+import axios from "axios"
+import { FaRegEdit } from "react-icons/fa"
 
 const Box = ({ item, favorite, helper, setHelper }) => {
   const { isloading } = useSelector((state) => state.boxes)
+  const { user } = useSelector((state) => state.auth)
   const { favoriteDeterminer } = useSelector((state) => state.notifications)
   const [imageUrl, setImageUrl] = useState()
+  const [isProductDeleted, setIsProductDeleted] = useState(false)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    getImage()
+  }, [])
 
   const getImage = async () => {
     try {
@@ -23,9 +32,9 @@ const Box = ({ item, favorite, helper, setHelper }) => {
       console.log("get image in box.js:" + error)
     }
   }
-
   const handleFavorite = async () => {
     try {
+      getCounts()
       if (favoriteDeterminer.includes(`${item?.id}${item?.category_id}`)) {
         handleRemoveFavorite()
       } else {
@@ -40,6 +49,7 @@ const Box = ({ item, favorite, helper, setHelper }) => {
   }
   const handleRemoveFavorite = async () => {
     try {
+      getCounts()
       const data = await ServiceData.deleteData(
         `likes/delete_likes?delete_all=false&source=${item.name}&source_id=${item.id}`
       )
@@ -50,21 +60,60 @@ const Box = ({ item, favorite, helper, setHelper }) => {
   }
   const handleAddCartBox = async (itemDetail) => {
     try {
+      getCounts()
       const data = await ServiceData.postData(
-        `create_trades?source=${itemDetail.name}&source_id=${itemDetail.id}`
+        `trade/create_trades?source=${itemDetail.name}&source_id=${itemDetail.id}`
+      )
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const handleDeleteProduct = async () => {
+    try {
+      setIsProductDeleted(true)
+      const response = await axios.delete(
+        item.name === "laptop"
+          ? "Laptops/delete_laptops"
+          : "tablet"
+          ? "Tablets/delete_tablets"
+          : "phone"
+          ? "Phones/delete_phones"
+          : "",
+        { data: [item.id] },
+        {
+          headers: {
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const getCounts = async () => {
+    try {
+      const cartCountRes = await ServiceData.getData("main/get_count_trade")
+      const favoriteCountRes = await ServiceData.getData("main/get_count_likes")
+      dispatch(
+        changeCounts({
+          cartCounts: cartCountRes.data,
+          favCounts: favoriteCountRes.data,
+        })
       )
     } catch (error) {
       console.log(error)
     }
   }
 
-  useEffect(() => {
-    getImage()
-  }, [])
-
   if (item) {
     return (
       <div className="box">
+        <div className={isProductDeleted ? "deleted active" : "deleted"}>
+          Deleted Product
+        </div>
         <div className="box_top">
           <div
             className={isloading ? "box_top_image isLoading" : "box_top_image"}
@@ -75,6 +124,26 @@ const Box = ({ item, favorite, helper, setHelper }) => {
             >
               <IoCloseOutline />
             </div>
+            <div
+              onClick={handleDeleteProduct}
+              className={
+                user?.role === "admin"
+                  ? "deleteProduct active"
+                  : "deleteProduct"
+              }
+            >
+              <MdDeleteOutline />
+            </div>
+            <Link
+              to={`/admin/update/${item.name}?source=${item.name}&id=${item.id}`}
+              className={
+                user?.role === "admin"
+                  ? "updateProduct active"
+                  : "updateProduct"
+              }
+            >
+              <FaRegEdit />
+            </Link>
             <Link to={`/product/${item.name}/${item.id}`}>
               <img loading="lazy" src={imageUrl} alt="" />
             </Link>

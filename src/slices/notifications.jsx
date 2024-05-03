@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   favoriteDeterminer: [],
+  cartCount: 0,
+  favoriteCount: 0,
 }
 
 const authService = createSlice({
@@ -20,9 +22,13 @@ const authService = createSlice({
         state.favoriteDeterminer = [...state.favoriteDeterminer, action.payload]
       }
     },
+    changeCounts: (state, action) => {
+      state.cartCount = action.payload.cartCounts
+      state.favoriteCount = action.payload.favCounts
+    },
   },
 })
 
-export const { addFavorite } = authService.actions
+export const { addFavorite, changeCounts } = authService.actions
 
 export default authService.reducer

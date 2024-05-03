@@ -1,7 +1,7 @@
 import "./create.scss"
 import { Asidebar } from "../../../components"
 import { Button, TextField } from "@mui/material"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { AiOutlineUpload } from "react-icons/ai"
@@ -13,7 +13,6 @@ const createLaptop = () => {
   const [productImages, setProductImages] = useState([])
   const [productImagesObj, setProductImagesObj] = useState([])
   const navigate = useNavigate()
-
   const [formData, setFormData] = useState({ discount_time: "2024-04-23" })
 
   const handleChange = (e, type = "text") => {
@@ -59,8 +58,6 @@ const createLaptop = () => {
   }
 
   const handleImage = (e) => {
-    console.log(e.target.files)
-
     setProductImages([
       ...productImages,
       {
@@ -70,11 +67,9 @@ const createLaptop = () => {
     setProductImagesObj([...productImagesObj, e.target.files[0]])
   }
 
-  useEffect(() => {
-    if (user?.role === "user") {
-      navigate("/")
-    }
-  }, [])
+  if (user?.role === "user") {
+    navigate("/")
+  }
 
   return (
     <div className="create">
@@ -106,61 +101,32 @@ const createLaptop = () => {
             variant="outlined"
             required
           />
-          {/* <TextField
-            onChange={(e) => setPrice(e.target.value)}
-            id="price"
-            label="Цена товара"
-            variant="outlined"
-            type="number"
-            
-          /> */}
-          {/* deleteFromProject */}
-          {/* <InputNumber
-            onChange={(e) => setPrice(e)}
-            placeholder="Цена товара"
-            id="price"
-            // required
-            min={1}
-          /> */}
+
           <input
             onChange={(e) => handleChange(e, "number")}
             name="price"
             type="number"
             min={0}
             placeholder="Цена товара"
+            required
           />
-          {/* <TextField
-            onChange={(e) => setCount(e.target.value)}
-            label="Количество товара"
-            variant="outlined"
-            type="number"
-            
-          /> */}
-          {/* <InputNumber
-            onChange={(e) => setCount(e)}
-            placeholder="Количество товара"
-            min={0}
-            // required
-          /> */}
+
           <input
             onChange={(e) => handleChange(e, "number")}
             name="count"
             type="number"
             min={1}
             placeholder="Количество товара"
+            required
           />
-          {/* <TextField
-            onChange={handleChange}
-            id="row-two"
-            label="Дата изготовления товара"
-            variant="outlined"
-          /> */}
+
           <input
             onChange={(e) => handleChange(e, "number")}
             name="year"
             type="number"
             min={1}
             placeholder="Дата изготовления товара"
+            required
           />
           <TextField
             onChange={handleChange}
@@ -168,21 +134,8 @@ const createLaptop = () => {
             id="row-two"
             label="Место изготовления товара"
             variant="outlined"
-            // required
+            required
           />
-          {/* <TextField
-            onChange={(e) => setWeight(e.target.value)}
-            id="row-two"
-            label="Весь товара"
-            variant="outlined"
-            
-          /> */}
-          {/* <InputNumber
-            onChange={(e) => setWeight(e)}
-            placeholder="Весь товара"
-            min={1}
-            // required
-          />{" "} */}
           <input
             onChange={(e) => handleChange(e, "number")}
             name="weight"
@@ -215,14 +168,7 @@ const createLaptop = () => {
             variant="outlined"
             required
           />
-          {/* <TextField
-            onChange={(e) => setDisplay(e.target.value)}
-            label="Количество дисплея товара"
-            variant="outlined"
-            type="number"
-            min={0}
-            
-          /> */}
+
           <input
             onChange={(e) => handleChange(e, "number")}
             name="display"
@@ -247,33 +193,7 @@ const createLaptop = () => {
             variant="outlined"
             required
           />
-          {/* <TextField
-            onChange={(e) => setRam_size(e.target.value)}
-            label="RAM"
-            variant="outlined"
-            type="number"
-            
-          />
-          <TextField
-            onChange={(e) => setRom_size(e.target.value)}
-            label="ROM"
-            variant="outlined"
-            type="number"
-            min={0}
-            
-          /> */}
-          {/* <InputNumber
-            onChange={(e) => setRam_size(e)}
-            placeholder="RAM"
-            // required
-            min={1}
-          />
-          <InputNumber
-            onChange={(e) => setRom_size(e)}
-            placeholder="ROM"
-            // required
-            min={1}
-          /> */}
+
           <input
             onChange={(e) => handleChange(e, "number")}
             name="ram_size"
@@ -298,19 +218,7 @@ const createLaptop = () => {
             variant="outlined"
             required
           />
-          {/* <TextField
-            onChange={(e) => setDiscount(e.target.value)}
-            id="row-four"
-            label="Скидка"
-            variant="outlined"
-            
-          />
-          <InputNumber
-            onChange={(e) => setDiscount(e)}
-            placeholder="Скидка"
-            min={1}
-            // required
-          /> */}
+
           <input
             onChange={(e) => handleChange(e, "number")}
             name="discount"
@@ -327,20 +235,3 @@ const createLaptop = () => {
 }
 
 export default createLaptop
-// description,
-// price,
-// year: 2020,
-// brand,
-// screen_type,
-// weight,
-// country,
-// color,
-// ram_size,
-// rom_size,
-// display,
-// videocard,
-// rom_type,
-// processor,
-// discount,
-// count,
-// discount_time: "2024-04-23",

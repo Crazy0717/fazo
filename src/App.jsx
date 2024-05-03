@@ -21,10 +21,38 @@ import {
   Purchase,
   Search,
   SignUp,
+  UpdateLaptop,
+  UpdatePhone,
+  UpdateTablet,
 } from "./pages"
 import "react-toastify/dist/ReactToastify.css"
+import axios from "axios"
+import { getItem, setItem } from "./helpers/persistance-storage"
+import { useEffect } from "react"
 
 function App() {
+  useEffect(() => {
+    refreshToken()
+  }, [])
+
+  const refreshToken = async () => {
+    try {
+      const response = await axios.post(
+        `refresh_token?token=${getItem("token")}`
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Bearer ${refreshToken}`,
+        //   },
+        // }
+      )
+      removeItem("token")
+      setItem("token", response.data)
+    } catch (error) {
+      console.error("Error refreshing token:", error)
+    }
+  }
+
   return (
     <div className="container">
       <BlackBackground />
@@ -46,6 +74,9 @@ function App() {
         <Route path="/admin/create/laptop" element={<CreateLaptop />} />
         <Route path="/admin/create/phone" element={<CreatePhone />} />
         <Route path="/admin/create/tablet" element={<CreateTablet />} />
+        <Route path="/admin/update/laptop" element={<UpdateLaptop />} />
+        <Route path="/admin/update/tablet" element={<UpdateTablet />} />
+        <Route path="/admin/update/phone" element={<UpdatePhone />} />
       </Routes>
       <Footer />
       <Main_menu />

@@ -12,3 +12,6 @@ export { default as Admin } from "./admin/Admin";
 export { default as CreateLaptop } from "./admin/create/createLaptop";
 export { default as CreatePhone } from "./admin/create/createPhone";
 export { default as CreateTablet } from "./admin/create/createTablet";
+export { default as UpdateLaptop } from "./admin/update/updateLaptop";
+export { default as UpdateTablet } from "./admin/update/updateTablet";
+export { default as UpdatePhone } from "./admin/update/updatePhone";

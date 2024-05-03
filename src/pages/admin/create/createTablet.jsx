@@ -67,11 +67,9 @@ const createTablet = () => {
     setProductImagesObj([...productImagesObj, e.target.files[0]])
   }
 
-  useEffect(() => {
-    if (user?.role === "user") {
-      navigate("/")
-    }
-  }, [])
+  if (user?.role === "user") {
+    navigate("/")
+  }
 
   return (
     <div className="create">

@@ -37,7 +37,7 @@ const SignUp = () => {
       navigate("/login")
       dispatch(authUserSuccess(response.config.data))
     } catch (error) {
-      console.log("Error")
+      console.log(error)
     }
   }
 

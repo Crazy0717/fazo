@@ -17,22 +17,28 @@ const ProductInside = () => {
   const { category, id } = useParams()
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [productData, setProductData] = useState()
+  const [productImages, setProductImages] = useState([])
+
+  useEffect(() => {
+    getProductData()
+  }, [])
 
   const getProductData = async () => {
     try {
       const { data } = await ServiceData.getData(
         `main/get_one_source?name=${category}&ident=${id}`
       )
-      console.log(data)
       setProductData(data[0])
+      const imagePromises = data[0]?.files.map(async (item) => {
+        const imageUrl = await ServiceData.getImages(item.new_files)
+        return { blobLink: imageUrl }
+      })
+      const images = await Promise.all(imagePromises)
+      setProductImages(images)
     } catch (error) {
       console.log("Product inside" + error)
     }
   }
-
-  useEffect(() => {
-    getProductData()
-  }, [])
 
   return (
     <div className="productInside">
@@ -53,21 +59,12 @@ const ProductInside = () => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper1"
           >
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://retailminded.com/wp-content/uploads/2016/03/EN_GreenOlive-1.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg" />
-            </SwiperSlide>
+            {productImages &&
+              productImages.map((image) => (
+                <SwiperSlide key={image}>
+                  <img src={image.blobLink} />
+                </SwiperSlide>
+              ))}
           </Swiper>
           <Swiper
             onSwiper={setThumbsSwiper}
@@ -97,21 +94,12 @@ const ProductInside = () => {
               },
             }}
           >
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://retailminded.com/wp-content/uploads/2016/03/EN_GreenOlive-1.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?cs=srgb&dl=pexels-math-90946.jpg&fm=jpg" />
-            </SwiperSlide>
+            {productImages &&
+              productImages.map((image) => (
+                <SwiperSlide key={image}>
+                  <img src={image.blobLink} />
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
         <div className="right">

@@ -1,23 +1,11 @@
 export const setItem = (key, data) => {
-  try {
-    localStorage.setItem(key, data)
-  } catch (error) {
-    // console.log("error saving token")
-  }
+  localStorage.setItem(key, data)
 }
 
 export const getItem = (key) => {
-  try {
-    return localStorage.getItem(key)
-  } catch (error) {
-    // console.log("error getting token")
-  }
+  return localStorage.getItem(key)
 }
 
 export const removeItem = (key) => {
-  try {
-    localStorage.removeItem(key)
-  } catch (error) {
-    // console.log("error removing token")
-  }
+  localStorage.removeItem(key)
 }

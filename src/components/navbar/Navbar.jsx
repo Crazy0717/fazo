@@ -39,17 +39,29 @@ import ServiceData from "../../service/service"
 import { getItem } from "../../helpers/persistance-storage"
 import authService from "../../service/auth"
 import { authUserSuccess } from "../../slices/auth"
+import { changeCounts } from "../../slices/notifications"
 
 const Navbar = () => {
   const { navBarsBlockState, categoryBlockResState } = useSelector(
     (state) => state.background
   )
   const { user, loggedIn } = useSelector((state) => state.auth)
+  const { cartCount, favoriteCount } = useSelector(
+    (state) => state.notifications
+  )
   const [categoryBlockState, setCategoryBlockState] = useState(false)
   const [categorySubmenuId, setCategorySubmenuId] = useState()
   const [categories, setCategories] = useState([])
   const dispatch = useDispatch()
   const token = getItem("token")
+
+  useEffect(() => {
+    if (token) {
+      getUser()
+    }
+    getApi()
+    getCounts()
+  }, [])
 
   const getApi = async () => {
     const { data } = await ServiceData.getData("categories/get_categories")
@@ -65,12 +77,20 @@ const Navbar = () => {
     }
   }
 
-  useEffect(() => {
-    if (token) {
-      getUser()
+  const getCounts = async () => {
+    try {
+      const cartCountRes = await ServiceData.getData("main/get_count_trade")
+      const favoriteCountRes = await ServiceData.getData("main/get_count_likes")
+      dispatch(
+        changeCounts({
+          cartCounts: cartCountRes.data,
+          favCounts: favoriteCountRes.data,
+        })
+      )
+    } catch (error) {
+      console.log(error)
     }
-    getApi()
-  }, [])
+  }
 
   return (
     <nav>
@@ -101,14 +121,14 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="icon">
-            <div className="tag">3</div>
+            <div className="tag">{favoriteCount}</div>
             <Link to={"/favorite"}>
               <FiHeart />
               <p>Избранное</p>
             </Link>
           </div>
           <div className="icon">
-          <div className="tag two">3</div>
+            <div className="tag two">{cartCount}</div>
             <Link to={"/purchase"}>
               <FiShoppingCart />
               <p>Корзина</p>

@@ -27,27 +27,28 @@ import { useEffect, useState } from "react"
 import ServiceData from "../../service/service"
 
 const Home = () => {
-  const [brandsImageURLs, setBrandsImageURLs] = useState([])
+  // const [brandsImageURLs, setBrandsImageURLs] = useState([])
 
-  useEffect(() => {
-    getBrands()
-  }, [])
+  // useEffect(() => {
+  //   getBrands()
+  // }, [])
 
-  const getBrands = async () => {
-    try {
-      const response = await ServiceData.getData(
-        "/main/get_brands_for_main?page=1&limit=25"
-      )
-      const imagePromises = response.data.data.map(async (item) => {
-        const imageUrl = await ServiceData.getImages(item.files[0]?.new_files)
-        return { name: item.name, blobLink: imageUrl }
-      })
-      const images = await Promise.all(imagePromises)
-      setBrandsImageURLs(images)
-    } catch (error) {
-      console.log("error getBrands" + error)
-    }
-  }
+  // const getBrands = async () => {
+  //   try {
+  //     const response = await ServiceData.getData(
+  //       "/main/get_brands_for_main?page=1&limit=25"
+  //     )
+  //     const imagePromises = response.data.data.map(async (item) => {
+  //       const imageUrl = await ServiceData.getImages(item.files[0]?.new_files)
+  //       return { name: item.name, blobLink: imageUrl }
+  //     })
+  //     const images = await Promise.all(imagePromises)
+  //     setBrandsImageURLs(images)
+  //   } catch (error) {
+  //     console.log("error getBrands" + error)
+  //   }
+  // }
+  {/* deleteFromProject*/}
 
   return (
     <div className="home">
@@ -312,7 +313,7 @@ const Home = () => {
             <RecommendBoxes />
           </div>
         </div>
-        <div className="brands">
+        {/* <div className="brands">
           <div className="brands_top">
             <h2>Бренды</h2>
             <div className="arrows">
@@ -369,7 +370,7 @@ const Home = () => {
                 ))}
             </Swiper>
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   )

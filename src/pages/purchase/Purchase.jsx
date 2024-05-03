@@ -18,9 +18,7 @@ import { IoCloseOutline } from "react-icons/io5"
 
 const Purchase = () => {
   const [cartsData, setCartsData] = useState()
-  const [CartError, setCartError] = useState()
   const [cartsImageData, setCartsImageData] = useState([])
-
   let totalPrice = 0
 
   useEffect(() => {
@@ -54,11 +52,12 @@ const Purchase = () => {
       const data = await ServiceData.deleteData(
         `trade/delete_trades?ident=${id}`
       )
+      getCartsData()
     } catch (error) {
       console.log(error)
     }
   }
-  
+
   return (
     <div className="purchase">
       <div className="purchase_left">
@@ -85,11 +84,12 @@ const Purchase = () => {
               <p>Ваш заказ</p>
             </div>
             <div className="content yourOrders">
-              {!cartsData && <p>{CartError}</p>}
+              {cartsData?.data.length == 0 && (
+                <div>Товары еще не добавлены</div>
+              )}
               {cartsData &&
                 cartsData.data.map((item) => {
                   totalPrice = item.laptop.discount_price
-
                   return (
                     <div key={item.id} className="product">
                       <img
@@ -107,7 +107,7 @@ const Purchase = () => {
                         <p>{item.laptop.discount_price} cум</p>
                       </div>
                       <div
-                        onClick={() => handleRemoveCart(item, id)}
+                        onClick={() => handleRemoveCart(item.id)}
                         className="productDel"
                       >
                         <IoCloseOutline />
@@ -243,10 +243,7 @@ const Purchase = () => {
       </div>
       <div className="purchase_right">
         <h3>Ваши данные</h3>
-        <div className="stage">
-          <p>4 товара на сумму</p>
-          <span>5 262 000 cум</span>
-        </div>
+
         <div className="stage line">
           <p>Доставка</p>
           <span>бесплатно</span>

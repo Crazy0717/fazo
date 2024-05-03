@@ -1,11 +1,10 @@
-import "./create.scss"
+import "../create/create.scss"
 import { Asidebar } from "../../../components"
 import { Button, TextField } from "@mui/material"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { AiOutlineUpload } from "react-icons/ai"
-import ServiceData from "../../../service/service"
 import axios from "axios"
 
 const createPhone = () => {
@@ -13,7 +12,12 @@ const createPhone = () => {
   const [productImages, setProductImages] = useState([])
   const [productImagesObj, setProductImagesObj] = useState([])
   const navigate = useNavigate()
-  const [formData, setFormData] = useState({ discount_time: "2024-04-23" })
+  const [queryParams] = useSearchParams()
+  const ProductId = Number(queryParams.get("id"))
+  const [formData, setFormData] = useState({
+    ident: ProductId,
+    discount_time: "2024-04-23",
+  })
 
   const handleChange = (e, type = "text") => {
     const { name, value } = e.target
@@ -23,38 +27,21 @@ const createPhone = () => {
     }))
   }
 
-  const createProduct = async (e) => {
+  const updateProduct = async (e) => {
     e.preventDefault()
-    try {
-      const createResponse = await ServiceData.createData(
-        `Phones/create_phones`,
-        [formData]
-      )
-      const response = await ServiceData.getData(`Phones/get_phones`)
-      putImages(response.data.data[0])
-    } catch (error) {
-      console.log("error in createProduct()" + error)
-    }
+    const updateResponse = await axios.put(`Phones/update_phones`, [formData])
+    putImages()
   }
 
-  const putImages = async (product) => {
-    try {
-      productImagesObj.forEach(async (imageObj) => {
-        const imageFormData = new FormData()
-        imageFormData.append("new_files", imageObj)
-        const image = await axios.post(
-          `files/create_file?source=phone&source_id=${product.id}`,
-          imageFormData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-      })
-    } catch (error) {
-      console.log("putImages " + error)
-    }
+  const putImages = async () => {
+    productImagesObj.forEach(async (imageObj) => {
+      const imageFormData = new FormData()
+      imageFormData.append("new_files", imageObj)
+      const image = await axios.put(
+        `files/update_file?source=phone&source_id=${ProductId}`,
+        imageFormData
+      )
+    })
   }
 
   const handleImage = (e) => {
@@ -75,7 +62,7 @@ const createPhone = () => {
     <div className="create">
       <Asidebar />
       <div className="main">
-        <h1>Create smartphone:</h1>
+        <h1>Update smartphone:</h1>
         <div className="image-stage">
           <label id="fileLabel" htmlFor="fileInput">
             <AiOutlineUpload id="icon" />
@@ -92,7 +79,7 @@ const createPhone = () => {
               <img key={index} src={image.blobLink} alt="" />
             ))}
         </div>
-        <form onSubmit={createProduct} className="inputs">
+        <form onSubmit={updateProduct} className="inputs">
           <TextField
             id="name"
             name="description"
@@ -229,7 +216,7 @@ const createPhone = () => {
             placeholder="Задняя камера"
             required
           />
-          <Button type="submit">Создать</Button>
+          <Button type="submit">Обновит</Button>
         </form>
       </div>
     </div>
