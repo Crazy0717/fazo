@@ -1,6 +1,13 @@
 import "./cabinetInput.scss"
 
-const cabinetInput = ({ state, setState, title, change, isPhoneNumber, placeholder="" }) => {
+const cabinetInput = ({
+  state,
+  setState,
+  title,
+  change,
+  isPhoneNumber,
+  placeholder = "",
+}) => {
   return (
     <div className="cabinetInput">
       <h3>
@@ -12,6 +19,7 @@ const cabinetInput = ({ state, setState, title, change, isPhoneNumber, placehold
           onChange={(e) => setState(e.target.value)}
           id={title}
           placeholder={placeholder}
+          required
         />
       </h3>
     </div>

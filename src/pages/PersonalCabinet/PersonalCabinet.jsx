@@ -14,7 +14,7 @@ import { red } from "@mui/material/colors"
 import { Button, TextField } from "@mui/material"
 import { Checkbox } from "antd"
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { CabinetInput } from "../../ui"
 import authService from "../../service/auth"
 import { LogoutModal } from "../../components"
@@ -27,9 +27,13 @@ const PersonalCabinet = () => {
   const [change, setchange] = useState(false)
   const [name, setName] = useState(user?.name)
   const [userName, setUserName] = useState(user?.username)
-  const [phoneNumber, setPhoneNumber] = useState(user?.phone_number)
+  const [phoneNumber, setPhoneNumber] = useState(`${user?.phone_number}`)
   const [password, setPassword] = useState()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    getUser()
+  }, [])
 
   const RedSwitch = styled(Switch)(({ theme }) => ({
     "& .MuiSwitch-switchBase.Mui-checked": {
@@ -43,27 +47,29 @@ const PersonalCabinet = () => {
     },
   }))
 
-  const updateUser = async () => {
+  const updateUser = async (e) => {
+    e.preventDefault()
     const newUser = {
       name,
       username: userName,
       password,
-      phone_number: phoneNumber,
+      phone_number: `${phoneNumber}`,
     }
     try {
       const response = await authService.updateUser(newUser)
-      console.log(response)
       getUser()
-      alert(9)
     } catch (error) {
       console.log(error)
     }
   }
   const getUser = async () => {
     const response = await authService.getUser()
+    setPhoneNumber(`${response.data.phone_number}`)
+    setName(response.data.name)
+    setUserName(response.data.username)
     dispatch(authUserSuccess(response.data))
   }
-  
+
   return (
     <>
       <LogoutModal />
@@ -121,18 +127,21 @@ const PersonalCabinet = () => {
                 </div>
                 <h3>Личные данные</h3>
               </div>
-              <button onClick={() => setchange(!change)}>
-                {change ? (<div onClick={updateUser}>Готова</div>) : "Изменит"}
-              </button>
+              {change ? (
+                <label htmlFor="fakeButton">Готова</label>
+              ) : (
+                <div id="like-button" onClick={() => setchange(!change)}>
+                  Изменит
+                </div>
+              )}
             </div>
-            <div className="direction">
+            <form onSubmit={updateUser} className="direction">
               <CabinetInput
                 title={"имя"}
                 state={name}
                 setState={setName}
                 change={change}
               />
-
               <CabinetInput
                 title={"пароль"}
                 state={password}
@@ -153,7 +162,8 @@ const PersonalCabinet = () => {
                 change={change}
                 isPhoneNumber={true}
               />
-            </div>
+              <button type="submit" id="fakeButton"></button>
+            </form>
           </div>
           <div className="carta">
             <div className="Carta">
@@ -164,7 +174,6 @@ const PersonalCabinet = () => {
                 <h3>Моя карта</h3>
               </div>
             </div>
-
             <div className="Carta_direction">
               <p>Отсутствует</p>
             </div>

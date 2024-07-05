@@ -2,20 +2,6 @@
 
 project start date: 13.02.2024
 
-i
-
-i = install
-
-installation: <br/>
-npm i sass <br/>
-npm i react-router-dom <br/>
-npm install @reduxjs/toolkit react-redux <br/>
-npm i swiper <br/>
-npm install antd --save <br/>
-npm install @mui/material @emotion/react @emotion/styled <br/>
-npm install @mui/icons-material <br/>
-npm i axios <br/>
-
 get images from api and create blob url ⬇
 
 ```js

@@ -8,11 +8,7 @@ import { TbUserEdit } from "react-icons/tb"
 import authService from "../../service/auth"
 import { AuthInput } from "../../ui"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  authUserError,
-  authUserStart,
-  authUserSuccess,
-} from "../../slices/auth"
+import { authUserStart, authUserSuccess } from "../../slices/auth"
 import { setItem } from "../../helpers/persistance-storage"
 import { ToastContainer, Zoom, toast } from "react-toastify"
 
@@ -46,11 +42,8 @@ const Login = () => {
       setItem("token", response.data.access_token)
       getUser()
       navigate("/")
-      console.log(response)
     } catch (error) {
-      dispatch(authUserError(error))
-      notifyError(error.request.response)
-      console.log(error.request.response)
+      notifyError(error.response.data.detail)
     }
   }
 

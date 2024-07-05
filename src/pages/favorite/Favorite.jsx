@@ -14,7 +14,7 @@ const Favorite = () => {
 
   const getFavorities = async () => {
     try {
-      const response = await ServiceData.getData("/likes/get_likes")
+      const response = await ServiceData.getData("likes/get_likes_product")
       setFavoritiesData(response)
     } catch (error) {
       console.log(error)

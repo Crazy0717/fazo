@@ -124,7 +124,8 @@ $grey4: #585858d8;
           }
         }
 
-        button {
+        label,
+        #like-button {
           padding: 10px 15px;
           color: $primary;
           background-color: transparent;
@@ -132,13 +133,14 @@ $grey4: #585858d8;
           @include btnHover;
         }
       }
-
       .direction {
         width: 100%;
         padding: 15px 15px 25px 15px;
         line-height: 40px;
         border-bottom: 1px solid #f2f2f2;
-
+        #fakeButton {
+          display: none;
+        }
         p {
           font-size: 14px;
           color: $grey4;
@@ -176,6 +178,13 @@ $grey4: #585858d8;
 
       .Add {
         @extend .contact;
+        button {
+          padding: 10px 15px;
+          color: $primary;
+          background-color: transparent;
+          border: 1px solid $primary;
+          @include btnHover;
+        }
       }
       .direction {
         .MuiTextField-root {

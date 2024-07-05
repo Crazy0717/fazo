@@ -16,7 +16,7 @@ const authService = {
   },
 
   getUser: async () => {
-    const data = await axios.get("/users/get_own")
+    const data = await axios.get("/users/get_own", { headers: {} })
     return data
   },
 

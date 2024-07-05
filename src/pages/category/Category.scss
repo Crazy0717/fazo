@@ -275,6 +275,7 @@
           color: $black;
           font-size: 14px;
           font-weight: 400;
+          text-transform: capitalize;
           transition: background-color ease 0.1s;
           cursor: pointer;
           &:hover {

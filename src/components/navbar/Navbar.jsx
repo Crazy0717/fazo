@@ -1,13 +1,6 @@
 import "./Navbar.scss"
 // icons
-import {
-  FiArrowLeft,
-  FiChevronRight,
-  FiHeart,
-  FiPhone,
-  FiShoppingCart,
-  FiUser,
-} from "react-icons/fi"
+import { FiHeart, FiPhone, FiShoppingCart, FiUser } from "react-icons/fi"
 import { PiScales } from "react-icons/pi"
 import { HiBars3 } from "react-icons/hi2"
 import {
@@ -22,7 +15,6 @@ import { BiWallet } from "react-icons/bi"
 import { IoIosList } from "react-icons/io"
 // components
 import SearchBar from "./search-bar/search-bar"
-import HoverDropdown from "./hover-dropdown/hover-dropdown"
 import Navtop from "./nav top/navtop"
 //
 import { useEffect, useState } from "react"
@@ -33,7 +25,6 @@ import {
   enableNavBarsBlock,
   enableNavCategoryResBlock,
 } from "../../slices/transparent-black-background"
-import { categoryThemes, categoryThemesInside } from "../../data/category"
 import { Link } from "react-router-dom"
 import ServiceData from "../../service/service"
 import { getItem } from "../../helpers/persistance-storage"
@@ -50,7 +41,6 @@ const Navbar = () => {
     (state) => state.notifications
   )
   const [categoryBlockState, setCategoryBlockState] = useState(false)
-  const [categorySubmenuId, setCategorySubmenuId] = useState()
   const [categories, setCategories] = useState([])
   const dispatch = useDispatch()
   const token = getItem("token")
@@ -59,11 +49,11 @@ const Navbar = () => {
     if (token) {
       getUser()
     }
-    getApi()
+    getCategories()
     getCounts()
   }, [])
 
-  const getApi = async () => {
+  const getCategories = async () => {
     const { data } = await ServiceData.getData("categories/get_categories")
     setCategories(data)
   }
@@ -79,8 +69,8 @@ const Navbar = () => {
 
   const getCounts = async () => {
     try {
-      const cartCountRes = await ServiceData.getData("main/get_count_trade")
-      const favoriteCountRes = await ServiceData.getData("main/get_count_likes")
+      const cartCountRes = await ServiceData.getData("main/get_count_trades")
+      const favoriteCountRes = await ServiceData.getData("main/get_likes_count")
       dispatch(
         changeCounts({
           cartCounts: cartCountRes.data,
@@ -242,23 +232,6 @@ const Navbar = () => {
             : "bottom_category_block"
         }
       >
-        {/* <ul>
-          {categoryThemes.map((item) => (
-            <li
-              onMouseEnter={() => setCategorySubmenuId(item.id)}
-              className={categorySubmenuId === item.id ? "onhover" : ""}
-              key={item.id}
-            >
-              <div className="left_part">
-                <item.icon />
-                <p>{item.name}</p>
-              </div>
-
-              <FiChevronRight />
-            </li>
-          ))}
-        </ul> */}
-        {/* deleteFromProject */}
         <ul>
           {categories &&
             categories.map((item) => (
@@ -271,7 +244,6 @@ const Navbar = () => {
               </Link>
             ))}
         </ul>
-        <HoverDropdown categorySubmenuId={categorySubmenuId} />
       </div>
       {/* bottom_category_block_responsive */}
       <div
@@ -293,35 +265,11 @@ const Navbar = () => {
           </div>
         </div>
         <ul>
-          {categoryThemes.map((item) => (
-            <li
-              onClick={() => setCategorySubmenuId(item.id)}
-              className={categorySubmenuId === item.id ? "onhover" : ""}
-              key={item.id}
-            >
-              <div className="left_part">
-                <item.icon />
-                <p>{item.name}</p>
-              </div>
-              <FiChevronRight />
-            </li>
+          {categories.map((item) => (
+            <Link to={item.link} key={item.id}>
+              {item.name}
+            </Link>
           ))}
-          {/* bottom_category_block_inside */}
-          {categoryThemesInside
-            .filter((item) => categorySubmenuId == item.id)
-            .map((item) => (
-              <div className="bottom_category_block_inside" key={item.id}>
-                <div className="block_inside_top">
-                  <FiArrowLeft onClick={() => setCategorySubmenuId(null)} />
-                  <h3>{item.name}</h3>
-                </div>
-                <ul>
-                  {item.listCategoryNames.map((submenuItems) => (
-                    <li key={submenuItems.id}>{submenuItems.subname}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
         </ul>
       </div>
     </nav>

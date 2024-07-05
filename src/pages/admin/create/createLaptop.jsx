@@ -7,12 +7,14 @@ import { useNavigate } from "react-router-dom"
 import { AiOutlineUpload } from "react-icons/ai"
 import ServiceData from "../../../service/service"
 import axios from "../../../service/api"
+import { toast } from "react-toastify"
 
 const createLaptop = () => {
   const user = useSelector((state) => state.auth)
   const [productImages, setProductImages] = useState([])
   const [productImagesObj, setProductImagesObj] = useState([])
   const navigate = useNavigate()
+  const notifyError = (text) => toast.error(text)
   const [formData, setFormData] = useState({ discount_time: "2024-04-23" })
 
   const handleChange = (e, type = "text") => {
@@ -25,15 +27,19 @@ const createLaptop = () => {
 
   const createProduct = async (e) => {
     e.preventDefault()
-    try {
-      const createResponse = await ServiceData.createData(
-        `Laptops/create_laptops`,
-        [formData]
-      )
-      const response = await ServiceData.getData(`Laptops/get_laptops`)
-      putImages(response.data.data[0])
-    } catch (error) {
-      console.log("error in createProduct()" + error)
+    if (productImagesObj.length == 0) {
+      notifyError("Должно быть хотя бы одно изображение")
+    } else {
+      try {
+        const createResponse = await ServiceData.createData(
+          `Laptops/create_laptops`,
+          [formData]
+        )
+        const response = await ServiceData.getData(`Laptops/get_laptops`)
+        putImages(response.data.data[0])
+      } catch (error) {
+        console.log("error in createProduct()" + error)
+      }
     }
   }
 

@@ -13,11 +13,7 @@ const authService = createSlice({
     addFavorite: (state, action) => {
       if (state.favoriteDeterminer.includes(action.payload)) {
         const index = state.favoriteDeterminer.indexOf(action.payload)
-        if (index > -1) {
-          state.favoriteDeterminer.splice(index, 1)
-        } else {
-          console.log("item not found")
-        }
+        state.favoriteDeterminer.splice(index, 1)
       } else {
         state.favoriteDeterminer = [...state.favoriteDeterminer, action.payload]
       }

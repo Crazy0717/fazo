@@ -1,5 +1,4 @@
 import "./Footer.scss"
-
 import { Link, NavLink } from "react-router-dom"
 import { IoLogoInstagram } from "react-icons/io"
 import { FaYoutube } from "react-icons/fa"
@@ -12,10 +11,10 @@ const Footer = () => {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    getApi()
+    getCategories()
   }, [])
 
-  const getApi = async () => {
+  const getCategories = async () => {
     const { data } = await ServiceData.getData("categories/get_categories")
     setCategories(data)
   }

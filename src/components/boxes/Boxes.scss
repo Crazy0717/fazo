@@ -6,12 +6,10 @@
   align-items: start;
   flex-wrap: wrap;
   gap: 30px;
-  .notFound {
+  .productFound {
     display: none;
-    position: absolute;
-    top: 0;
     color: $black;
-    font-size: 24px;
+    font-size: 20px;
     &.active {
       display: inline-block;
     }

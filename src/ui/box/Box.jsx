@@ -11,6 +11,7 @@ import { Link } from "react-router-dom"
 import { MdDeleteOutline } from "react-icons/md"
 import axios from "axios"
 import { FaRegEdit } from "react-icons/fa"
+import { toast } from "react-toastify"
 
 const Box = ({ item, favorite, helper, setHelper }) => {
   const { isloading } = useSelector((state) => state.boxes)
@@ -19,6 +20,7 @@ const Box = ({ item, favorite, helper, setHelper }) => {
   const [imageUrl, setImageUrl] = useState()
   const [isProductDeleted, setIsProductDeleted] = useState(false)
   const dispatch = useDispatch()
+  const notifyError = (text) => toast.info(text)
 
   useEffect(() => {
     getImage()
@@ -33,6 +35,7 @@ const Box = ({ item, favorite, helper, setHelper }) => {
     }
   }
   const handleFavorite = async () => {
+    user == null ? notifyError("Вы ещё не вошли в аккаунт") : null
     try {
       getCounts()
       if (favoriteDeterminer.includes(`${item?.id}${item?.category_id}`)) {
@@ -59,12 +62,12 @@ const Box = ({ item, favorite, helper, setHelper }) => {
     }
   }
   const handleAddCartBox = async (itemDetail) => {
+    user == null ? notifyError("Вы ещё не вошли в аккаунт") : null
     try {
       getCounts()
       const data = await ServiceData.postData(
         `trade/create_trades?source=${itemDetail.name}&source_id=${itemDetail.id}`
       )
-      console.log(data)
     } catch (error) {
       console.log(error)
     }
@@ -88,15 +91,14 @@ const Box = ({ item, favorite, helper, setHelper }) => {
           },
         }
       )
-      console.log(response)
     } catch (error) {
       console.log(error)
     }
   }
   const getCounts = async () => {
     try {
-      const cartCountRes = await ServiceData.getData("main/get_count_trade")
-      const favoriteCountRes = await ServiceData.getData("main/get_count_likes")
+      const cartCountRes = await ServiceData.getData("main/get_count_trades")
+      const favoriteCountRes = await ServiceData.getData("main/get_likes_count")
       dispatch(
         changeCounts({
           cartCounts: cartCountRes.data,

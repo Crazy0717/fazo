@@ -14,9 +14,8 @@ export const boxesSlice = createSlice({
     boxesSuccessfully: (state) => {
       state.isloading = false
     },
-    boxesError: (state, error) => {
+    boxesError: (state) => {
       state.isloading = false
-      // console.log(error)
     },
   },
 })

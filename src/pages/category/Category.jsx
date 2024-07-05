@@ -32,6 +32,7 @@ const Category = () => {
   const [boxes, setBoxes] = useState([])
   const [totalPages, setTotalPages] = useState(50)
   const [currentPage, setCurrentPage] = useState(1)
+  const [categories, setCategories] = useState([])
   const [price, setPrice] = useState(0)
   const [ram_size, setRam_size] = useState(0)
   const [rom_size, setRom_size] = useState(0)
@@ -47,12 +48,15 @@ const Category = () => {
   const handleRomSize = (e) => {
     setRom_size(e.target.value)
   }
-
+  const getCategories = async () => {
+    const { data } = await ServiceData.getData("categories/get_categories")
+    setCategories(data)
+  }
   const getData = async () => {
     dispatch(boxesStart())
     try {
       const { data } = await ServiceData.getData(
-        `${subCategory}/${theme}?page=${currentPage}&limit=24&rom_size=${rom_size}&year=0&ram_size=${ram_size}&price=${price}&display=0`
+        `${subCategory}/${theme}?page=${currentPage}&limit=15&rom_size=${rom_size}&year=0&ram_size=${ram_size}&price=${price}&display=0`
       )
       setBoxes(data)
       dispatch(boxesSuccessfully())
@@ -64,7 +68,8 @@ const Category = () => {
 
   useEffect(() => {
     getData()
-  }, [subCategory, theme, submit, currentPage])
+    getCategories()
+  }, [theme, submit, currentPage])
 
   return (
     <div className="category">
@@ -72,8 +77,14 @@ const Category = () => {
         <div className="path">
           <h3>
             <Link to={"/"}>Главная</Link>
-            <FiChevronRight /> Телефоны, планшеты <FiChevronRight /> Телефоны и
-            гаджеты
+            <FiChevronRight />{" "}
+            {theme === "get_laptops"
+              ? "Компьютеры"
+              : theme === "get_tablets"
+              ? "Планшеты"
+              : theme === "get_phones"
+              ? "Телефоны"
+              : ""}
           </h3>
         </div>
         <div className="category_main">
@@ -203,39 +214,16 @@ const Category = () => {
             renderOnZeroPageCount={null}
             activeClassName="activePage"
           />
-          {/* <div>
-            <div className="pagination_button previous">
-              <FiChevronLeft />
-            </div>
-            <ul>
-              <li>1</li>
-              <li>2</li>
-              <li className="active">3</li>
-              <li>...</li>
-              <li>26</li>
-              <li>27</li>
-              <li>28</li>
-            </ul>
-            <div className="pagination_button next">
-              <FiChevronRight />
-            </div>
-          </div> */}
         </div>
         <div className="popular_categories">
           <h2>Популярные категории и модели</h2>
           <div>
-            <button>Realme</button>
-            <button>Realme</button>
-            <button>Realme</button>
-            <button>Смартфоны Samsung</button>
-            <button>Смартфоны Samsung</button>
-            <button>Realme</button>
-            <button>Realme</button>
-            <button>Смартфоны Samsung</button>
-            <button>RealСмартфоны Samsungme</button>
+            {categories &&
+              categories.map((category) => <button>{category.name}</button>)}
           </div>
         </div>
         <InterestingProducts
+          data={boxes.data?.slice(0, 3)}
           title={"Товары которые так же могут быть интересны"}
         />
         <Category_Accordion />

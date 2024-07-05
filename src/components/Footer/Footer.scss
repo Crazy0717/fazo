@@ -60,7 +60,6 @@
         color: $tertiary;
         font-family: monospace;
       }
-
       ul {
         margin-top: 20px;
         display: flex;
@@ -70,6 +69,7 @@
           font-size: 16px;
           font-weight: 400;
           color: $secondary;
+          text-transform: capitalize;
           transition: all ease 0.1s;
           cursor: pointer;
           &:hover {
@@ -84,16 +84,15 @@
 @media screen and (max-width: 447px) {
   .Footer {
     padding: 30px 20px 100px 20px;
-    height: auto;
     flex-wrap: wrap;
     .cantact {
       width: 100%;
       text-align: center;
+
       p {
         text-align: center;
         margin-top: 20px;
       }
-
       .networks {
         justify-content: center;
         margin: 20px 0px;
@@ -128,7 +127,6 @@
 @media screen and (min-width: 447px) and (max-width: 769px) {
   .Footer {
     padding: 30px 20px 110px 20px;
-    height: auto;
     flex-wrap: wrap;
     .cantact {
       width: 100%;
@@ -172,7 +170,6 @@
 @media screen and (min-width: 769px) and (max-width: 990px) {
   .Footer {
     padding: 30px 20px 40px 20px;
-    height: auto;
     flex-wrap: wrap;
     .cantact {
       width: 100%;
@@ -216,7 +213,6 @@
 @media screen and (min-width: 990px) and (max-width: 1200px) {
   .Footer {
     padding: 30px 0px 30px 20px;
-    height: auto;
     gap: 0;
     .cantact {
       width: 20%;

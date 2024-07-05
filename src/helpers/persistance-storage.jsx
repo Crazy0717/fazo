@@ -1,3 +1,5 @@
+import Cookie from "js-cookie"
+
 export const setItem = (key, data) => {
   localStorage.setItem(key, data)
 }

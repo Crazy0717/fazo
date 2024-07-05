@@ -31,10 +31,10 @@ html {
   background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #909090;
+  background: #c7c7c7;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #828080;
+  background: #aeaeae;
 }
 
 @media screen and (width < 768px) {

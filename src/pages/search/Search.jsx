@@ -14,7 +14,7 @@ const Search = () => {
 
   useEffect(() => {
     getSearchProducts()
-  }, [currentPage])
+  }, [currentPage, word])
 
   const getSearchProducts = async () => {
     try {

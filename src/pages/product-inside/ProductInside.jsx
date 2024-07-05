@@ -4,7 +4,6 @@ import { FiChevronRight } from "react-icons/fi"
 import {
   AStarter,
   Filter_inside_product_direction,
-  InterestingProducts,
   Product_About,
 } from "../../components"
 import { Link, useParams } from "react-router-dom"
@@ -110,8 +109,6 @@ const ProductInside = () => {
           <div className="AStarter">
             <AStarter />
           </div>
-          <InterestingProducts title={"Недавно просмотренные"} />{" "}
-          {/* deleteFromProject */}
         </div>
       </div>
     </div>

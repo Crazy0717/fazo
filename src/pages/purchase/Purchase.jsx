@@ -15,11 +15,14 @@ import { FiCalendar } from "react-icons/fi"
 import ServiceData from "../../service/service"
 import { useEffect, useState } from "react"
 import { IoCloseOutline } from "react-icons/io5"
+import { useDispatch } from "react-redux"
+import { changeCounts } from "../../slices/notifications"
 
 const Purchase = () => {
   const [cartsData, setCartsData] = useState()
   const [cartsImageData, setCartsImageData] = useState([])
   let totalPrice = 0
+  const dispatch = useDispatch()
 
   useEffect(() => {
     getCartsData()
@@ -27,35 +30,42 @@ const Purchase = () => {
 
   const getCartsData = async () => {
     try {
-      const response = await ServiceData.getData("/trade/get_trades")
+      const response = await ServiceData.getData("trade/get_trades_product")
       // get images ⬇
       const imagePromises = response.data.map(async (item) => {
-        const imageUrl = await ServiceData.getImages(
-          item.laptop.files[0]?.new_files
-        )
+        const imageUrl = await ServiceData.getImages(item.files[0]?.new_files)
         return {
-          imageName: item?.laptop?.files[0]?.new_files,
+          imageName: item.files[0]?.new_files,
           blobLink: imageUrl,
         }
       })
       const images = await Promise.all(imagePromises)
-
       setCartsData(response)
       setCartsImageData(images)
     } catch (error) {
-      setCartError(error?.response?.data?.detail)
       console.log(error)
     }
   }
-  const handleRemoveCart = async (id) => {
+  const handleRemoveCart = async (category, id) => {
     try {
       const data = await ServiceData.deleteData(
-        `trade/delete_trades?ident=${id}`
+        `trade/delete_trades?delete_all=false&source=${category}&source_id=${id}`
       )
       getCartsData()
+      getCounts()
     } catch (error) {
       console.log(error)
     }
+  }
+  const getCounts = async () => {
+    const cartCountRes = await ServiceData.getData("main/get_count_trades")
+    const favoriteCountRes = await ServiceData.getData("main/get_likes_count")
+    dispatch(
+      changeCounts({
+        cartCounts: cartCountRes.data,
+        favCounts: favoriteCountRes.data,
+      })
+    )
   }
 
   return (
@@ -89,25 +99,25 @@ const Purchase = () => {
               )}
               {cartsData &&
                 cartsData.data.map((item) => {
-                  totalPrice = item.laptop.discount_price
+                  totalPrice = item.laptop?.discount_price
+                  console.log(item)
                   return (
                     <div key={item.id} className="product">
                       <img
-                        src={cartsImageData.map((imageLink) =>
-                          item.laptop?.files[0]?.new_files ==
-                          imageLink.imageName
+                        src={cartsImageData.map((imageLink) => {
+                          return item.files[0]?.new_files == imageLink.imageName
                             ? imageLink.blobLink
                             : ""
-                        )}
+                        })}
                         alt="image"
                       />
                       <div className="product_info">
-                        <h3>{item.laptop.description}</h3>
-                        <span>{item.amount} шт</span>
-                        <p>{item.laptop.discount_price} cум</p>
+                        <h3>{item.description}</h3>
+                        <span>{item.count} шт</span>
+                        <p>{item.discount_price} cум</p>
                       </div>
                       <div
-                        onClick={() => handleRemoveCart(item.id)}
+                        onClick={() => handleRemoveCart(item.name, item.id)}
                         className="productDel"
                       >
                         <IoCloseOutline />
@@ -115,16 +125,6 @@ const Purchase = () => {
                     </div>
                   )
                 })}
-
-              {/* <div className="product">
-                <img src="/images/computer 2.png" alt="" />
-                <div className="product_info">
-                  <h3>Galaxy A03 Core 2/32Gb Black</h3>
-                  <span>1 шт</span>
-                  <p>1 334 000 cум</p>
-                </div>
-              </div> */}
-              {/* deleteFromProject */}
             </div>
           </section>
           <section>
@@ -243,7 +243,6 @@ const Purchase = () => {
       </div>
       <div className="purchase_right">
         <h3>Ваши данные</h3>
-
         <div className="stage line">
           <p>Доставка</p>
           <span>бесплатно</span>

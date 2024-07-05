@@ -33,7 +33,7 @@ const Main_menu = () => {
       <div className="menu">
         <NavLink to={loggedIn ? "/cabinet" : "/login"}>
           <FaRegUser className="icon" />
-          <p id="user-icon">{loggedIn ? user.name : "Войти"}</p>
+          <p id="user-icon">{loggedIn ? user?.name : "Войти"}</p>
         </NavLink>
       </div>
       <div className="menu">

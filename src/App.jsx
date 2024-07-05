@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, json } from "react-router-dom"
 import {
   BlackBackground,
   Footer,
@@ -27,8 +27,9 @@ import {
 } from "./pages"
 import "react-toastify/dist/ReactToastify.css"
 import axios from "axios"
-import { getItem, setItem } from "./helpers/persistance-storage"
+import { getItem, removeItem, setItem } from "./helpers/persistance-storage"
 import { useEffect } from "react"
+import { ToastContainer, Zoom } from "react-toastify"
 
 function App() {
   useEffect(() => {
@@ -38,15 +39,13 @@ function App() {
   const refreshToken = async () => {
     try {
       const response = await axios.post(
-        `refresh_token?token=${getItem("token")}`
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: `Bearer ${refreshToken}`,
-        //   },
-        // }
+        `refresh_token?token=${getItem("token")}`,
+        {
+          headers: {
+            Authorization: `Bearer ${getItem("token")}`,
+          },
+        }
       )
-      removeItem("token")
       setItem("token", response.data)
     } catch (error) {
       console.error("Error refreshing token:", error)
@@ -55,6 +54,7 @@ function App() {
 
   return (
     <div className="container">
+      <ToastContainer stacked transition={Zoom} />
       <BlackBackground />
       <Navbar />
       <Routes>

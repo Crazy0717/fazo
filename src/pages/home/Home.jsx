@@ -22,34 +22,23 @@ import {
   ProductBoxes,
   RecommendBoxes,
 } from "../../components/index"
-import { MdArrowRightAlt } from "react-icons/md"
+import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import ServiceData from "../../service/service"
 
 const Home = () => {
-  // const [brandsImageURLs, setBrandsImageURLs] = useState([])
+  const [categories, setCategories] = useState([])
 
-  // useEffect(() => {
-  //   getBrands()
-  // }, [])
+  useEffect(() => {
+    getCategories()
+  }, [])
 
-  // const getBrands = async () => {
-  //   try {
-  //     const response = await ServiceData.getData(
-  //       "/main/get_brands_for_main?page=1&limit=25"
-  //     )
-  //     const imagePromises = response.data.data.map(async (item) => {
-  //       const imageUrl = await ServiceData.getImages(item.files[0]?.new_files)
-  //       return { name: item.name, blobLink: imageUrl }
-  //     })
-  //     const images = await Promise.all(imagePromises)
-  //     setBrandsImageURLs(images)
-  //   } catch (error) {
-  //     console.log("error getBrands" + error)
-  //   }
-  // }
-  {/* deleteFromProject*/}
+  const getCategories = async () => {
+    const { data } = await ServiceData.getData("categories/get_categories")
+    setCategories(data)
+  }
 
+  console.log(categories)
   return (
     <div className="home">
       <header>
@@ -68,10 +57,9 @@ const Home = () => {
             spaceBetween={50}
             slidesPerView={1}
             effect={"fade"}
-            // autoplay={{ delay: "3000" }}
+            autoplay={{ delay: "3000" }}
             loop={true}
           >
-            {" "}
             <SwiperSlide>
               <div className="header_swiper_image">
                 <img
@@ -83,14 +71,25 @@ const Home = () => {
             <SwiperSlide>
               <div className="header_swiper_image">
                 <img
-                  src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?size=626&ext=jpg&ga=GA1.1.1319243779.1708992000&semt=sph"
+                  src="https://mini-io-api.texnomart.uz/newcontent/slider/108/l6nrFtw9pUlwK6C0kBW593PVtTnk13b10Ow9Ndln.webp"
                   alt=""
                 />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className="header_swiper_image">
-                <img src="./images/header image.png" alt="" />
+                <img
+                  src="https://mini-io-api.texnomart.uz/newcontent/slider/109/cmVgSupjAJIzZPnt9jvjOLDUKw7BqWCYHQoqqzL3.webp"
+                  alt=""
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="header_swiper_image">
+                <img
+                  src="https://mini-io-api.texnomart.uz/newcontent/slider/96/4kW7L6LzTGdJG0Q36KQpmltTBwpoYnWh5ZkPA180.webp"
+                  alt=""
+                />
               </div>
             </SwiperSlide>
           </Swiper>
@@ -109,10 +108,13 @@ const Home = () => {
         <div className="discount_boxes">
           <div className="discount_boxes_top">
             <h2>Горящие предложения</h2>
-            <div className="boxes_top_seeAll">
+            <Link
+              to={"/category/Laptops/get_laptops"}
+              className="boxes_top_seeAll"
+            >
               Посмотреть все
               <IoIosArrowRoundForward />
-            </div>
+            </Link>
           </div>
           <DiscountBoxes />
         </div>
@@ -129,6 +131,7 @@ const Home = () => {
               }}
               spaceBetween={10}
               slidesPerView={4}
+              autoplay={{ delay: "3000" }}
               breakpoints={{
                 0: {
                   slidesPerView: 1,
@@ -155,54 +158,17 @@ const Home = () => {
                 },
               }}
             >
-              <SwiperSlide>
-                <h3>Компьютеры</h3>
-                <div className="swiper_slider_image">
-                  <img src="./images/Computer 1.png" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <h3>Компьютеры</h3>
-                <div className="swiper_slider_image">
-                  <img src="./images/Computer 1.png" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <h3>Компьютеры</h3>
-                <div className="swiper_slider_image">
-                  <img src="./images/Computer 1.png" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <h3>Компьютеры</h3>
-                <div className="swiper_slider_image">
-                  <img src="./images/Computer 1.png" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <h3>Компьютеры</h3>
-                <div className="swiper_slider_image">
-                  <img src="./images/Computer 1.png" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <h3>Компьютеры</h3>
-                <div className="swiper_slider_image">
-                  <img src="./images/Computer 1.png" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <h3>Компьютеры</h3>
-                <div className="swiper_slider_image">
-                  <img src="./images/Computer 1.png" alt="" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <h3>Компьютеры</h3>
-                <div className="swiper_slider_image">
-                  <img src="./images/Computer 1.png" alt="" />
-                </div>
-              </SwiperSlide>
+              {categories &&
+                categories.map((category) => (
+                  <SwiperSlide key={category.id}>
+                    <Link to={`/category${category.link}`}>
+                      <h3>{category.name}</h3>
+                      <div className="swiper_slider_image">
+                        <img src="./images/Computer 1.png" alt="" />
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))}
             </Swiper>
 
             <div className="swiper_buttons_button category_button_left">
@@ -222,6 +188,7 @@ const Home = () => {
             }}
             slidesPerView={1}
             effect={"fade"}
+            autoplay={{ delay: "3000" }}
             loop={true}
           >
             <SwiperSlide>
@@ -291,20 +258,26 @@ const Home = () => {
         <div className="product_boxes">
           <div className="product_boxes_top">
             <h2>Товары дешевле:</h2>
-            <div className="boxes_top_seeAll">
+            <Link
+              to={"/category/Laptops/get_laptops"}
+              className="boxes_top_seeAll"
+            >
               Посмотреть все
               <IoIosArrowRoundForward />
-            </div>
+            </Link>
           </div>
           <ProductBoxes />
         </div>
         <div className="recommend_boxes">
           <div className="recommend_boxes_top">
             <h2>Рекомендуем</h2>
-            <div className="boxes_top_seeAll">
+            <Link
+              to={"/category/Laptops/get_laptops"}
+              className="boxes_top_seeAll"
+            >
               Посмотреть все
               <IoIosArrowRoundForward />
-            </div>
+            </Link>
           </div>
           <div className="recommend_boxes_bottom">
             <div className="boxes_bottom_img">
@@ -313,64 +286,6 @@ const Home = () => {
             <RecommendBoxes />
           </div>
         </div>
-        {/* <div className="brands">
-          <div className="brands_top">
-            <h2>Бренды</h2>
-            <div className="arrows">
-              <MdArrowRightAlt id="brands_button_left" />
-              <MdArrowRightAlt id="brands_button_right" />
-            </div>
-          </div>
-          <div className="brands-slider_swiper">
-            <Swiper
-              modules={[Navigation, Scrollbar, A11y, Autoplay]}
-              navigation={{
-                nextEl: "#brands_button_right",
-                prevEl: "#brands_button_left",
-              }}
-              spaceBetween={10}
-              slidesPerView={5}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                },
-                350: {
-                  slidesPerView: 1.5,
-                },
-                510: {
-                  slidesPerView: 2,
-                },
-                660: {
-                  slidesPerView: 2.5,
-                },
-                770: {
-                  slidesPerView: 2.8,
-                },
-                900: {
-                  slidesPerView: 3,
-                  spaceBetween: 20,
-                },
-                1000: {
-                  slidesPerView: 5,
-                  spaceBetween: 30,
-                },
-              }}
-            >
-              {brandsImageURLs &&
-                brandsImageURLs.map((image) => (
-                  <SwiperSlide>
-                    <div className="swiper_slider_image">
-                      <img
-                        loading="lazy"
-                        src={image.blobLink}
-                        alt={image.name}
-                      />
-                    </div>
-                  </SwiperSlide>
-                ))}
-            </Swiper>
-          </div>
-        </div> */}
       </main>
     </div>
   )

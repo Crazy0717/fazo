@@ -19,19 +19,6 @@ const Product_About = ({ item }) => {
             <p>Технические параметры</p> <p>{item.description}</p>
           </div>
         </div>
-
-        {/* <div className="ModeInformation">
-          <div className="texta">
-            <h3>Информация о модели</h3>
-          </div>
-          <div className="item">
-            <p>Парт Номер</p> <p>NX.A5UAA.006. </p>
-          </div>
-          <div className="item">
-            <p>Линейка</p> <p>Swift </p>
-          </div>
-        </div> */}
-
         <div className="Classification">
           <div className="texta">
             <h3>Классификация</h3>
@@ -59,32 +46,12 @@ const Product_About = ({ item }) => {
           <div className="item">
             <p>Диагональ</p> {item.display}
           </div>
-          {/* <div className="item">
-            <p>Диагональ </p> <p>14.0</p>
-          </div> */}
-          {/* deleteFromProject */}
         </div>
         <div className="CPU">
           <div className="texta">
             <h3>Процессор</h3>
           </div>
           <div className="item">{item.processor}</div>
-          {/* <div className="item">
-            <p>Семейство</p> <p>Core™ i7 </p>
-          </div>
-          <div className="item">
-            <p>Частота смены кадров </p> <p>60 Гц </p>
-          </div>
-          <div className="item">
-            <p>Тип матрицы </p> <p>IPS </p>
-          </div>
-          <div className="item">
-            <p>Разрешение </p> <p>Full HD 1920x1080 Пикселей </p>
-          </div>
-          <div className="item">
-            <p>Диагональ </p> <p>14.0</p>
-          </div> */}
-          {/* deleteFromProject */}
         </div>
         <div className="RAM">
           <div className="texta">
